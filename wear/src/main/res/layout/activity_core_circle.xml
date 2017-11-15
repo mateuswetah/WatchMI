@@ -40,13 +40,13 @@
 
     </RelativeLayout>
 
-    <hsyeo.watchmi.DrawView
+    <mateuswetah.wearablebraille.DrawView
         android:id="@+id/draw_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"/>
 
-    <hsyeo.watchmi.DrawViewApps
+    <mateuswetah.wearablebraille.DrawViewApps
         android:id="@+id/draw_view_apps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

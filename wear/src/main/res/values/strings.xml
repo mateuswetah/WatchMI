@@ -3,16 +3,17 @@
         <item name="android:windowSwipeToDismiss">false</item>
     </style>
 
-    <string name="app_name">WatchMI Wear 1.0</string>
+    <string name="app_name">Wearable Braille</string>
     <string name="back">B\na\nc\nk</string>
 
-    <string name="btn1">Just Try</string>
+    <string name="btn1">Just  Try</string>
     <string name="btn2">User Study</string>
     <string name="btn3">Demo Apps</string>
 
-    <string name="tech1">Pressure Touch</string>
-    <string name="tech2">Twisting</string>
-    <string name="tech3">Panning</string>
+    <string name="tech1">Touch</string>
+    <string name="tech2">Swype</string>
+    <string name="tech3">Pressure</string>
+    <string name="tech4">Serial</string>
 
     <string name="app1">Clock</string>
     <string name="app2">Map</string>

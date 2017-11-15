@@ -51,7 +51,7 @@ public class ActivityTechPanning extends WearableActivity implements SensorEvent
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_core_stub);
+        setContentView(R.layout.activity_braille_core_stub);
 //region Bundle getIntent
         Bundle extras = getIntent().getExtras();
         if (extras != null) {

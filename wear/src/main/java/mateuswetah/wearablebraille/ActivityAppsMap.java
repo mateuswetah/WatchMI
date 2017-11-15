@@ -42,7 +42,7 @@ public class ActivityAppsMap extends WearableActivity implements SensorEventList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_core_stub);
+        setContentView(R.layout.activity_braille_core_stub);
 
         WatchViewStub stub = (WatchViewStub) findViewById(R.id.stub);
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {

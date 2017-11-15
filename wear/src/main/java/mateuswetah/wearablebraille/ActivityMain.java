@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class ActivityMain extends WearableActivity {
 
-    private Button btn1, btn2, btn3;
+    private Button btn1, btn2, btn3, btn4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.wearable.view.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityTechPressure"
+    tools:deviceIds="wear"
+    android:keepScreenOn="true">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/relative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        app:layout_box="all">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv1"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv2"
+            android:text="@string/app_name"
+            android:textColor="@color/black" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        android:orientation="vertical"
+        android:padding="0dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="top|center_horizontal"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/dotButton1"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="top|start"
+                android:layout_marginRight="12dp"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="Braille Dot Button 1"
+                android:padding="16dp"
+                android:src="@drawable/dot_active" />
+
+            <ImageButton
+                android:id="@+id/dotButton4"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="right"
+                android:layout_marginLeft="12dp"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="Braille Dot Button 4"
+                android:padding="16dp"
+                android:src="@drawable/dot_active" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|fill_vertical|center_horizontal|fill_horizontal"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/dotButton2"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginBottom="6dp"
+                android:layout_marginRight="44dp"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="Braille Dot Button 2"
+                android:padding="16dp"
+                android:src="@drawable/dot_active" />
+
+            <ImageButton
+                android:id="@+id/dotButton5"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginLeft="42dp"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="Braille Dot Button 5"
+                android:padding="16dp"
+                android:src="@drawable/dot_active" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="bottom|center_horizontal"
+            android:orientation="horizontal">
+
+
+            <ImageButton
+                android:id="@+id/dotButton3"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="left"
+                android:layout_marginRight="12dp"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="Braille Dot Button 3"
+                android:padding="16dp"
+                android:src="@drawable/dot_active" />
+
+            <ImageButton
+                android:id="@+id/dotButton6"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="right"
+                android:layout_marginLeft="12dp"
+                android:backgroundTint="@android:color/transparent"
+                android:contentDescription="Braille Dot Button 6"
+                android:padding="16dp"
+                android:src="@drawable/dot_active" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <mateuswetah.wearablebraille.DrawView
+        android:id="@+id/draw_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"/>
+
+    <mateuswetah.wearablebraille.DrawViewApps
+        android:id="@+id/draw_view_apps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"/>
+</android.support.wearable.view.BoxInsetLayout>

@@ -5,9 +5,12 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_centerHorizontal="false"
+    android:layout_centerInParent="false"
+    android:layout_centerVertical="false"
+    android:keepScreenOn="true"
     tools:context=".ActivityMain"
-    tools:deviceIds="wear"
-    android:keepScreenOn="true">
+    tools:deviceIds="wear">
 
     <Button
         android:id="@+id/btnBack"
@@ -16,32 +19,43 @@
         android:layout_marginLeft="-5dp"
         android:text="@string/back" />
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:id="@+id/relative"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:gravity="fill_vertical|center"
         app:layout_box="all">
 
         <Button
             android:id="@+id/btn1"
-            android:text="@string/tech1"
             android:layout_width="120dp"
-            android:layout_height="50dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/tech1"
             android:textSize="12sp" />
+
         <Button
             android:id="@+id/btn2"
-            android:text="@string/tech2"
             android:layout_width="120dp"
-            android:layout_height="50dp"
+            android:layout_height="42dp"
             android:layout_below="@+id/btn1"
+            android:text="@string/tech2"
             android:textSize="12sp" />
+
         <Button
             android:id="@+id/btn3"
-            android:text="@string/tech3"
             android:layout_width="120dp"
-            android:layout_height="50dp"
+            android:layout_height="42dp"
             android:layout_below="@+id/btn2"
+            android:text="@string/tech3"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btn4"
+            android:layout_width="120dp"
+            android:layout_height="42dp"
+            android:layout_below="@+id/btn3"
+            android:text="@string/tech4"
             android:textSize="12sp" />
 
     </RelativeLayout>

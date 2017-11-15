@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true">
 
-    <android.support.wearable.view.WatchViewStub
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <android.support.wearable.view.WatchViewStub xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/stub"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/stub"
-        app:rectLayout="@layout/activity_core_square"
-        app:roundLayout="@layout/activity_core_circle"/>
+        android:background="@android:color/white"
+        app:rectLayout="@layout/activity_braille_core_square"
+        app:roundLayout="@layout/activity_braille_core_circle" />
 </FrameLayout>

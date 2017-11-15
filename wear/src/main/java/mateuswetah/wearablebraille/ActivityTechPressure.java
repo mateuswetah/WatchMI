@@ -8,6 +8,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.wearable.activity.WearableActivity;
 import android.support.wearable.view.BoxInsetLayout;
 import android.support.wearable.view.WatchViewStub;
@@ -24,15 +25,41 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
+
 public class ActivityTechPressure extends WearableActivity implements SensorEventListener {
 
+
+    // View Components
     private BoxInsetLayout mContainerView;
     private DrawView drawView;
+    private BrailleDots brailleDots;
     private TextView tv1, tv2, tv3;
+    private WearableActivity activity;
+
+    // Touch Listeners
     TwoFingersDoubleTapDetector twoFingersListener;
+    private View.OnClickListener dotClickListener;
+
+    // Sensors
     private SensorManager mSensorManager;
     private Sensor mSensor;
 
+    // Vibrations generator for feedbacks
+    private Vibrator vibrator;
+
+    //Flags
+    boolean started = false;
+    boolean stopped = true;
+    boolean isStudy = false;
+    boolean reset = false;
+    boolean isActivated = false;
+
+    // Test related
+    int trialCount = 0;
+    Util util;
+
+    // Pressure Touch variables
     private float[] mRotationMatrix = new float[16];
     float[] rotValues = new float[3];
     double yaw, pitch, roll;
@@ -40,19 +67,13 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
     float startX, startY, startZ;
     float diffX, diffY, diffZ;
 
-    boolean started = false;
-    boolean stopped = true;
-    boolean isStudy = false;
-    boolean reset = false;
-
-    int trialCount = 0;
-    Util util;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_core_stub);
-//region Bundle getIntent
+        setContentView(R.layout.activity_braille_core_stub);
+
+        // Checks if view is in test mode
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             if (extras.getBoolean("study") == true) {
@@ -60,7 +81,12 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
                 Toast.makeText(getApplicationContext(), "User study mode", Toast.LENGTH_SHORT).show();
             } else isStudy = false;
         }
-//endregion
+
+        this.activity = this;
+
+        // Sets the Vibrator
+        vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+
         WatchViewStub stub = (WatchViewStub) findViewById(R.id.stub);
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
@@ -79,6 +105,7 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
                     }
                 });
                 setTouchListener();
+
                 tv1 = (TextView) findViewById(R.id.tv1);
                 tv2 = (TextView) findViewById(R.id.tv2);
                 tv3 = (TextView) findViewById(R.id.tv3);
@@ -91,6 +118,14 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
                     tv1.setText("Correct/Wrong");
                     tv3.setText("Trial:" + trialCount);
                 }
+
+                brailleDots = new BrailleDots(activity);
+
+                // Associate OnClick and OnLongClick listeners to ButtonDots.
+                for (int i = 0; i < brailleDots.ButtonDots.length; i++) {
+                    brailleDots.ButtonDots[i].setClickable(false);
+                }
+
             }
         });
 
@@ -212,6 +247,59 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
 
                 drawView.setXYZ(diffX, diffY, diffZ);
 
+
+                if (this.isViewContains(brailleDots.ButtonDots[0], diffX*Constants.MAGIC_XY + drawView.halfScreen, diffY*Constants.MAGIC_XY + drawView.halfScreen)) {
+                    Log.d("BUTTON 0", "ENTER REGION!");
+                    if (this.isActivated == false) {
+                        vibrator.vibrate(100);
+                        brailleDots.toggleDotVisibility(0);
+                        this.brailleDots.ButtonDots[0].callOnClick();
+                        this.isActivated = true;
+                    }
+                } else if (this.isViewContains(brailleDots.ButtonDots[1], diffX*Constants.MAGIC_XY + drawView.halfScreen, diffY*Constants.MAGIC_XY + drawView.halfScreen)) {
+                    Log.d("BUTTON 1", "ENTER REGION!");
+                    if (this.isActivated == false) {
+                        vibrator.vibrate(100);
+                        brailleDots.toggleDotVisibility(1);
+                        this.brailleDots.ButtonDots[1].callOnClick();
+                        this.isActivated = true;
+                    }
+                } else if (this.isViewContains(brailleDots.ButtonDots[2], diffX*Constants.MAGIC_XY + drawView.halfScreen, diffY*Constants.MAGIC_XY + drawView.halfScreen)) {
+                    Log.d("BUTTON 2", "ENTER REGION!");
+                    if (this.isActivated == false) {
+                        vibrator.vibrate(100);
+                        brailleDots.toggleDotVisibility(2);
+                        this.brailleDots.ButtonDots[2].callOnClick();
+                        this.isActivated = true;
+                    }
+                } else if (this.isViewContains(brailleDots.ButtonDots[3], diffX*Constants.MAGIC_XY + drawView.halfScreen, diffY*Constants.MAGIC_XY + drawView.halfScreen)) {
+                    Log.d("BUTTON 3", "ENTER REGION!");
+                    if (this.isActivated == false) {
+                        vibrator.vibrate(100);
+                        brailleDots.toggleDotVisibility(3);
+                        this.brailleDots.ButtonDots[3].callOnClick();
+                        this.isActivated = true;
+                    }
+                } else if (this.isViewContains(brailleDots.ButtonDots[4], diffX*Constants.MAGIC_XY + drawView.halfScreen, diffY*Constants.MAGIC_XY + drawView.halfScreen)) {
+                    Log.d("BUTTON 4", "ENTER REGION!");
+                    if (this.isActivated == false) {
+                        vibrator.vibrate(100);
+                        brailleDots.toggleDotVisibility(4);
+                        this.brailleDots.ButtonDots[4].callOnClick();
+                        this.isActivated = true;
+                    }
+                } else if (this.isViewContains(brailleDots.ButtonDots[5], diffX*Constants.MAGIC_XY + drawView.halfScreen, diffY*Constants.MAGIC_XY + drawView.halfScreen)) {
+                    Log.d("BUTTON 5", "ENTER REGION!");
+                    if (this.isActivated == false) {
+                        vibrator.vibrate(100);
+                        brailleDots.toggleDotVisibility(5);
+                        this.brailleDots.ButtonDots[5].callOnClick();
+                        this.isActivated = true;
+                    }
+                } else {
+                    this.isActivated = false;
+                }
+
                 if (reset){
                     diffX = diffY = diffZ = 0;
                     drawView.setXYZ(0, 0, 0);
@@ -302,5 +390,52 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
     // simple high-pass filter
     float highPass(float current, float last, float filtered) {
         return alphaH * (filtered + current - last);
+    }
+
+    private boolean isViewContains(View view, float px, float py) {
+
+        int[] topLeftPoint = new int[2];
+        view.getLocationOnScreen(topLeftPoint);
+        int x = topLeftPoint[0];
+        int y = topLeftPoint[1];
+
+        int w = view.getWidth();
+        int h = view.getHeight();
+
+        switch (view.getId()) {
+
+            case R.id.dotButton1:
+                if (px > x + w || py > y + h) {
+                    return false;
+                }
+                break;
+            case R.id.dotButton4:
+                if (px < x || py > y + h) {
+                    return false;
+                }
+                break;
+            case R.id.dotButton2:
+                if (px > x + w || py < y || py > y + h) {
+                    return false;
+                }
+                break;
+            case R.id.dotButton5:
+                if (px < x || py < y || py > y + h) {
+                    return false;
+                }
+                break;
+            case R.id.dotButton3:
+                if (px > x + w || py < y ) {
+                    return false;
+                }
+                break;
+            case R.id.dotButton6:
+                if (px < x || py < y) {
+                    return false;
+                }
+                break;
+        }
+
+        return true;
     }
 }

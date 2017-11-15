@@ -2,14 +2,12 @@ package mateuswetah.wearablebraille;
 
 import android.content.Context;
 import android.content.Intent;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.wearable.activity.WearableActivity;
 import android.support.wearable.view.BoxInsetLayout;
 import android.support.wearable.view.WatchViewStub;
-import android.util.Log;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
@@ -22,7 +20,7 @@ import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
  * Created by orpheus on 15/11/17.
  */
 
-public class ActivityTechTouch extends WearableActivity {
+public class ActivityTechSwipe extends WearableActivity{
 
     // View Components
     private BoxInsetLayout mContainerView;
@@ -32,6 +30,7 @@ public class ActivityTechTouch extends WearableActivity {
 
     // Touch Listeners
     TwoFingersDoubleTapDetector twoFingersListener;
+    private GestureDetector gestureDetector;
     private View.OnClickListener dotClickListener;
 
     // Vibrations generator for feedbacks
@@ -80,6 +79,46 @@ public class ActivityTechTouch extends WearableActivity {
                         return insets;
                     }
                 });
+
+                // Swype Gesture Detection
+                gestureDetector = new GestureDetector(activity, new SwipeDirectionsDetector() {
+                    @Override
+                    public void onTopLeftSwipe() {
+                        vibrator.vibrate(100);
+                        brailleDots.toggleDotVisibility(0);
+                    }
+
+                    @Override
+                    public void onTopRightSwipe() {
+                        vibrator.vibrate(100);
+                        brailleDots.toggleDotVisibility(3);
+                    }
+
+                    @Override
+                    public void onMiddleLeftSwipe() {
+                        vibrator.vibrate(100);
+                        brailleDots.toggleDotVisibility(1);
+                    }
+
+                    @Override
+                    public void onMiddleRightSwipe() {
+                        vibrator.vibrate(100);
+                        brailleDots.toggleDotVisibility(4);
+                    }
+
+                    @Override
+                    public void onBottomLeftSwipe() {
+                        vibrator.vibrate(100);
+                        brailleDots.toggleDotVisibility(2);
+                    }
+
+                    @Override
+                    public void onBottomRightSwipe() {
+                        vibrator.vibrate(100);
+                        brailleDots.toggleDotVisibility(5);
+                    }
+                });
+
                 setTouchListener();
 
                 tv1 = (TextView) findViewById(R.id.tv1);
@@ -98,7 +137,6 @@ public class ActivityTechTouch extends WearableActivity {
 
                 // Instantiate braille buttons
                 brailleDots = new BrailleDots(activity);
-
                 dotClickListener = new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -142,7 +180,7 @@ public class ActivityTechTouch extends WearableActivity {
 
                 // Associate OnClick and OnLongClick listeners to ButtonDots.
                 for (int i = 0; i < brailleDots.ButtonDots.length; i++) {
-                    brailleDots.ButtonDots[i].setOnClickListener(dotClickListener);
+                    brailleDots.ButtonDots[i].setClickable(false);
                 }
             }
         });
@@ -168,6 +206,7 @@ public class ActivityTechTouch extends WearableActivity {
         mContainerView.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 twoFingersListener.onTouchEvent(event);
+                gestureDetector.onTouchEvent(event);
                 return true;
             }
         });

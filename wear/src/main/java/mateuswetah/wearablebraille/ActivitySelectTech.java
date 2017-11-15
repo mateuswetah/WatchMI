@@ -3,7 +3,6 @@ package mateuswetah.wearablebraille;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -53,7 +52,7 @@ public class ActivitySelectTech extends WearableActivity {
         public void onClick(View arg0) {
             Bundle b = new Bundle();
             b.putBoolean("study", isStudy);
-            Intent i = new Intent(getApplicationContext(),  ActivityTechSwype.class);
+            Intent i = new Intent(getApplicationContext(),  ActivityTechSwipe.class);
             i.putExtras(b);
             startActivity(i);
             finish();

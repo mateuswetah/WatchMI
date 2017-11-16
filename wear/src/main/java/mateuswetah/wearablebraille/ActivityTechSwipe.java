@@ -80,8 +80,8 @@ public class ActivityTechSwipe extends WearableActivity{
                     }
                 });
 
-                // Swype Gesture Detection
-                gestureDetector = new GestureDetector(activity, new SwipeDirectionsDetector() {
+                // Swipe Gesture Detection
+                gestureDetector = new GestureDetector(activity, new Swipe8DirectionsDetector() {
                     @Override
                     public void onTopLeftSwipe() {
                         vibrator.vibrate(100);
@@ -137,46 +137,6 @@ public class ActivityTechSwipe extends WearableActivity{
 
                 // Instantiate braille buttons
                 brailleDots = new BrailleDots(activity);
-                dotClickListener = new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        // Feedbacks
-                        vibrator.vibrate(100);
-
-                        int currentButton = v.getId();
-
-                        switch (currentButton) {
-
-                            case R.id.dotButton1:
-                                brailleDots.toggleDotVisibility(0);
-//                        tts.speak("1", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 1");
-                                break;
-                            case R.id.dotButton4:
-                                brailleDots.toggleDotVisibility(3);
-//                        tts.speak("4", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 4");
-                                break;
-                            case R.id.dotButton2:
-                                brailleDots.toggleDotVisibility(1);
-//                        tts.speak("2", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 2");
-                                break;
-                            case R.id.dotButton5:
-                                brailleDots.toggleDotVisibility(4);
-//                        tts.speak("5", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 5");
-                                break;
-                            case R.id.dotButton3:
-                                brailleDots.toggleDotVisibility(2);
-//                        tts.speak("3", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 3");
-                                break;
-                            case R.id.dotButton6:
-                                brailleDots.toggleDotVisibility(5);
-//                        tts.speak("6", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 6");
-                                break;
-                        }
-
-
-                    }
-                };
 
                 // Associate OnClick and OnLongClick listeners to ButtonDots.
                 for (int i = 0; i < brailleDots.ButtonDots.length; i++) {

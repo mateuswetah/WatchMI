@@ -64,6 +64,7 @@
 
 
             <LinearLayout
+                android:id="@+id/serial_line_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -94,6 +95,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/serial_line_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="0dp"
@@ -127,6 +129,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/serial_line_3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

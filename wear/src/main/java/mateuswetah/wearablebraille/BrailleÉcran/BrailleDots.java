@@ -1,6 +1,7 @@
 package mateuswetah.wearablebraille.BrailleÉcran;
 
 import android.support.wearable.activity.WearableActivity;
+import android.util.Log;
 import android.widget.ImageButton;
 
 import java.util.ArrayList;
@@ -240,6 +241,7 @@ public class BrailleDots {
 
         }
 
+        Log.d("BRAILLE_DOTS", "Output: " + latimOutput);
         return latimOutput;
     }
 

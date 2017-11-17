@@ -13,7 +13,7 @@
     <RelativeLayout
         android:id="@+id/relative"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center"
         app:layout_box="all">
 
@@ -48,6 +48,17 @@
             android:layout_below="@id/btn2"
             android:layout_marginBottom="-5dp"
             android:text="@string/btn3"
+            android:textSize="12sp" />
+
+        <Switch
+            android:id="@+id/screenRotateSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_alignEnd="@+id/btn3"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/btn3"
+            android:layout_below="@+id/btn3"
+            android:text="Rotate Screen"
             android:textSize="12sp" />
 
     </RelativeLayout>

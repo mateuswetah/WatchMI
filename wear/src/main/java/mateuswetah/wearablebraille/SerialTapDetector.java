@@ -12,6 +12,7 @@ public abstract class SerialTapDetector {
     private static final int TIMEOUT = ViewConfiguration.getDoubleTapTimeout() + 750;
     private float width;
     private boolean doubleTapApplied = false;
+    private boolean waitForDoubleSingleTap = false;
 
     public SerialTapDetector(float screenWidth) {
         super();
@@ -39,9 +40,25 @@ public abstract class SerialTapDetector {
             case MotionEvent.ACTION_UP:
 
                 float x = event.getX();
-                if (!doubleTapApplied)
-                    onSerialSingleTap(x > width/2);
+                final boolean isRightSide = x > event.getX();
 
+                if (!doubleTapApplied) {
+
+                    waitForDoubleSingleTap = true;
+
+                    // 800ms of opportunity to perform a double tap composed by two single taps
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!waitForDoubleSingleTap)
+                                onSerialDoubleTap();
+                            else
+                                onSerialSingleTap(isRightSide);
+                            waitForDoubleSingleTap = false;
+                        }
+                    }, 800);
+                }
                 return true;
 
             case MotionEvent.ACTION_CANCEL:

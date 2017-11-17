@@ -1,6 +1,7 @@
 package mateuswetah.wearablebraille;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
 import android.view.View;
@@ -10,6 +11,7 @@ public class ActivitySelectTech extends WearableActivity {
 
     private Button btn1, btn2, btn3, btn4, btnBack;
     private boolean isStudy = false;
+    private boolean isScreenRotated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,13 @@ public class ActivitySelectTech extends WearableActivity {
             } else {
                 isStudy = false;
             }
+            if (extras.getBoolean("isScreenRotated") == true) {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+                isScreenRotated = true;
+            } else {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                isScreenRotated = false;
+            }
         }
     }
 
@@ -42,6 +51,7 @@ public class ActivitySelectTech extends WearableActivity {
         public void onClick(View arg0) {
             Bundle b = new Bundle();
             b.putBoolean("study", isStudy);
+            b.putBoolean("isScreenRotated", isScreenRotated);
             Intent i = new Intent(getApplicationContext(),  ActivityTechTouch.class);
             i.putExtras(b);
             startActivity(i);
@@ -52,6 +62,7 @@ public class ActivitySelectTech extends WearableActivity {
         public void onClick(View arg0) {
             Bundle b = new Bundle();
             b.putBoolean("study", isStudy);
+            b.putBoolean("isScreenRotated", isScreenRotated);
             Intent i = new Intent(getApplicationContext(),  ActivityTechSwipe.class);
             i.putExtras(b);
             startActivity(i);
@@ -62,6 +73,7 @@ public class ActivitySelectTech extends WearableActivity {
         public void onClick(View arg0) {
             Bundle b = new Bundle();
             b.putBoolean("study", isStudy);
+            b.putBoolean("isScreenRotated", isScreenRotated);
             Intent i = new Intent(getApplicationContext(),  ActivityTechPressure.class);
             i.putExtras(b);
             startActivity(i);
@@ -72,6 +84,7 @@ public class ActivitySelectTech extends WearableActivity {
         public void onClick(View arg0) {
             Bundle b = new Bundle();
             b.putBoolean("study", isStudy);
+            b.putBoolean("isScreenRotated", isScreenRotated);
             Intent i = new Intent(getApplicationContext(),  ActivityTechSerial.class);
             i.putExtras(b);
             startActivity(i);
@@ -80,7 +93,10 @@ public class ActivitySelectTech extends WearableActivity {
     };
     Button.OnClickListener buttonBackClickListener = new Button.OnClickListener() {
         public void onClick(View arg0) {
+            Bundle b = new Bundle();
+            b.putBoolean("isScreenRotated", isScreenRotated);
             Intent i = new Intent(getApplicationContext(), ActivityMain.class);
+            i.putExtras(b);
             startActivity(i);
             finish();
         }

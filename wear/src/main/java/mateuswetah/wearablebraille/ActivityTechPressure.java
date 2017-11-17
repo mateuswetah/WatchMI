@@ -2,6 +2,7 @@ package mateuswetah.wearablebraille;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -52,6 +53,7 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
     boolean started = false;
     boolean stopped = true;
     boolean isStudy = false;
+    boolean isScreenRotated = false;
     boolean reset = false;
     boolean isActivated = false;
 
@@ -80,6 +82,14 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
                 isStudy = true;
                 Toast.makeText(getApplicationContext(), "User study mode", Toast.LENGTH_SHORT).show();
             } else isStudy = false;
+
+            if (extras.getBoolean("isScreenRotated") == true) {
+                isScreenRotated = true;
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+            } else {
+                isScreenRotated = false;
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            }
         }
 
         this.activity = this;
@@ -146,11 +156,13 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
             public void onTwoFingersDoubleTap() {
 //                Toast.makeText(getApplicationContext(), "Exit by Two Fingers Double Tap", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplicationContext(), ActivitySelectTech.class);
-                if (isStudy) {
-                    Bundle b = new Bundle();
+                Bundle b = new Bundle();
+
+                if (isStudy)
                     b.putBoolean("study", isStudy);
-                    i.putExtras(b);
-                }
+
+                b.putBoolean("isScreenRotated", isScreenRotated);
+                i.putExtras(b);
                 startActivity(i);
                 finish();
             }

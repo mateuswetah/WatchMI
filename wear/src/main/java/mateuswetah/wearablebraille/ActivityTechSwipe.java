@@ -2,6 +2,7 @@ package mateuswetah.wearablebraille;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.wearable.activity.WearableActivity;
@@ -40,6 +41,7 @@ public class ActivityTechSwipe extends WearableActivity{
     boolean started = false;
     boolean stopped = true;
     boolean isStudy = false;
+    boolean isScreenRotated = false;
     boolean reset = false;
 
     // Test related
@@ -62,6 +64,14 @@ public class ActivityTechSwipe extends WearableActivity{
                 isStudy = true;
                 Toast.makeText(getApplicationContext(), "User study mode", Toast.LENGTH_SHORT).show();
             } else isStudy = false;
+
+            if (extras.getBoolean("isScreenRotated") == true) {
+                isScreenRotated = true;
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+            } else {
+                isScreenRotated = false;
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            }
         }
 
         // Build and set view components
@@ -151,11 +161,13 @@ public class ActivityTechSwipe extends WearableActivity{
             public void onTwoFingersDoubleTap() {
 //                Toast.makeText(getApplicationContext(), "Exit by Two Fingers Double Tap", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplicationContext(), ActivitySelectTech.class);
-                if (isStudy) {
-                    Bundle b = new Bundle();
+                Bundle b = new Bundle();
+
+                if (isStudy)
                     b.putBoolean("study", isStudy);
-                    i.putExtras(b);
-                }
+
+                b.putBoolean("isScreenRotated", isScreenRotated);
+                i.putExtras(b);
                 startActivity(i);
                 finish();
             }

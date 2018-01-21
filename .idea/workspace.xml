@@ -18,17 +18,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ce1f277-6be9-47e3-8ba5-bca95ff8083d" name="Default" comment="initial commit">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechConnect.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPerkins.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/PerkinsTapDetector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_animated_vector_drawable_25_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_animated_vector_drawable_25_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_appcompat_v7_25_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_appcompat_v7_25_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_constraint_constraint_layout_1_0_0_beta4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_constraint_constraint_layout_1_0_0_beta4.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_percent_23_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_percent_23_0_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_recyclerview_v7_23_0_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_recyclerview_v7_23_0_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_compat_25_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_compat_25_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_core_ui_25_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_core_ui_25_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_core_utils_25_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_core_utils_25_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_fragment_25_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_fragment_25_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_media_compat_25_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_media_compat_25_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_v4_24_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_v4_24_0_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_v4_25_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_v4_25_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_vector_drawable_25_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_vector_drawable_25_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_test_espresso_espresso_core_2_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_test_espresso_espresso_core_2_2_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_test_espresso_espresso_idling_resource_2_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_test_espresso_espresso_idling_resource_2_2_2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_test_exposed_instrumentation_api_publish_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_test_exposed_instrumentation_api_publish_0_5.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_test_rules_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_test_rules_0_5.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_test_runner_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_android_support_test_runner_0_5.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_base_10_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_base_10_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_basement_10_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_basement_10_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_tasks_10_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_tasks_10_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_wearable_10_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_wearable_10_2_0.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_support_wearable_2_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_google_android_support_wearable_2_0_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mobile/build.gradle" afterPath="$PROJECT_DIR$/mobile/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/build.gradle" afterPath="$PROJECT_DIR$/wear/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityMain.java" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityMain.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivitySelectTech.java" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivitySelectTech.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPressure.java" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPressure.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSerial.java" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSerial.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSwipe.java" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSwipe.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechTouch.java" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechTouch.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/BrailleÉcran/BrailleDots.java" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/BrailleÉcran/BrailleDots.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/SerialTapDetector.java" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/SerialTapDetector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/wear/src/main/res/layout/activity_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/res/layout/activity_braille_core_square.xml" afterPath="$PROJECT_DIR$/wear/src/main/res/layout/activity_braille_core_square.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/res/layout/activity_select_tech.xml" afterPath="$PROJECT_DIR$/wear/src/main/res/layout/activity_select_tech.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/wear/src/main/res/values/strings.xml" />
     </list>
     <ignored path="WatchMI.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,122 +89,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="ActivityTechSerial.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSerial.java">
+      <file leaf-file-name="settings.gradle" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/settings.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="686">
-              <caret line="248" column="32" lean-forward="true" selection-start-line="248" selection-start-column="32" selection-end-line="248" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActivityTechPressure.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPressure.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6030">
-              <caret line="160" column="28" lean-forward="false" selection-start-line="160" selection-start-column="28" selection-end-line="160" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#16451#16452#0" expanded="false" />
-                <element signature="e#16515#16516#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SerialTapDetector.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/SerialTapDetector.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="59" column="24" lean-forward="false" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1710#2119#0" expanded="true" />
-                <element signature="e#2118#2119#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActivityTechSwipe.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSwipe.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6165">
-              <caret line="152" column="47" lean-forward="false" selection-start-line="152" selection-start-column="47" selection-end-line="152" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Swipe8DirectionsDetector.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/Swipe8DirectionsDetector.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2430">
-              <caret line="56" column="68" lean-forward="false" selection-start-line="56" selection-start-column="68" selection-end-line="56" selection-end-column="68" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActivityTechTouch.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechTouch.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3328">
-              <caret line="66" column="35" lean-forward="false" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2565#6456#0" expanded="true" />
-                <element signature="e#2840#3212#0" expanded="true" />
-                <element signature="e#3211#3212#0" expanded="true" />
-                <element signature="e#3894#6176#0" expanded="true" />
-                <element signature="e#6175#6176#0" expanded="true" />
-                <element signature="e#6455#6456#0" expanded="true" />
-                <element signature="e#6536#7232#0" expanded="true" />
-                <element signature="e#7231#7232#0" expanded="true" />
-                <element signature="e#7313#7514#0" expanded="true" />
-                <element signature="e#7513#7514#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActivityMain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1575">
-              <caret line="42" column="48" lean-forward="false" selection-start-line="42" selection-start-column="48" selection-end-line="42" selection-end-column="48" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActivitySelectTech.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivitySelectTech.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2610">
-              <caret line="63" column="43" lean-forward="false" selection-start-line="63" selection-start-column="43" selection-end-line="64" selection-end-column="61" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_main.xml">
-          <provider selected="true" editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="2790">
-              <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -184,9 +102,70 @@
       <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wear/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="7" column="24" lean-forward="false" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+            <state relative-caret-position="675">
+              <caret line="15" column="49" lean-forward="false" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivityTechTouch.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechTouch.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="585">
+              <caret line="135" column="84" lean-forward="false" selection-start-line="135" selection-start-column="84" selection-end-line="135" selection-end-column="84" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1973#2160#0" expanded="true" />
+                <element signature="e#2159#2160#0" expanded="true" />
+                <element signature="e#8417#9005#0" expanded="true" />
+                <element signature="e#9004#9005#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivityTechConnect.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechConnect.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1009">
+              <caret line="338" column="0" lean-forward="false" selection-start-line="338" selection-start-column="0" selection-end-line="340" selection-end-column="51" />
+              <folding>
+                <element signature="e#3022#6896#0" expanded="true" />
+                <element signature="e#3297#3669#0" expanded="true" />
+                <element signature="e#3668#3669#0" expanded="true" />
+                <element signature="e#4351#6633#0" expanded="true" />
+                <element signature="e#6632#6633#0" expanded="true" />
+                <element signature="e#6895#6896#0" expanded="true" />
+                <element signature="e#6976#7672#0" expanded="true" />
+                <element signature="e#7671#7672#0" expanded="true" />
+                <element signature="e#7753#8596#0" expanded="true" />
+                <element signature="e#8595#8596#0" expanded="true" />
+                <element signature="e#13387#13872#0" expanded="true" />
+                <element signature="e#13871#13872#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivityTechPressure.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPressure.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="263" column="0" lean-forward="false" selection-start-line="263" selection-start-column="0" selection-end-line="268" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActivitySelectTech.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivitySelectTech.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4860">
+              <caret line="113" column="79" lean-forward="false" selection-start-line="113" selection-start-column="79" selection-end-line="113" selection-end-column="79" />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -205,6 +184,10 @@
     <findStrings>
       <find>vibrate</find>
       <find>double</find>
+      <find>chec</find>
+      <find>isRightSide</find>
+      <find>width</find>
+      <find>Output</find>
     </findStrings>
   </component>
   <component name="GenerateSignedApkSettings">
@@ -2320,13 +2303,13 @@
                       <ExternalModuleBuildClasspathPojo>
                         <option name="entries">
                           <list>
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle/3.0.0/gradle-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle-core/3.0.0/gradle-core-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder/3.0.0/builder-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint/26.0.0/lint-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/org-jetbrains/uast/26.0.0/uast-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle-api/3.0.0/gradle-api-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/databinding/compilerCommon/3.0.0/compilerCommon-3.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle/3.0.1/gradle-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle-core/3.0.1/gradle-core-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder/3.0.1/builder-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint/26.0.1/lint-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/org-jetbrains/uast/26.0.1/uast-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle-api/3.0.1/gradle-api-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/databinding/compilerCommon/3.0.1/compilerCommon-3.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/jetbrains/kotlin/kotlin-stdlib/1.1.3-2/kotlin-stdlib-1.1.3-2.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/transform-api/2.0.0-deprecated-use-gradle-api/transform-api-2.0.0-deprecated-use-gradle-api.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/ow2/asm/asm/5.1/asm-5.1.jar" />
@@ -2338,47 +2321,47 @@
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/jopt-simple/jopt-simple/4.9/jopt-simple-4.9.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/proguard/proguard-gradle/5.3.3/proguard-gradle-5.3.3.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/protobuf/protobuf-java/3.0.0/protobuf-java-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder-model/3.0.0/builder-model-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder-test-api/3.0.0/builder-test-api-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/sdklib/26.0.0/sdklib-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/sdk-common/26.0.0/sdk-common-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/common/26.0.0/common-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/manifest-merger/26.0.0/manifest-merger-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/ddms/ddmlib/26.0.0/ddmlib-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/protos/26.0.0/protos-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/shared/26.0.0/shared-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/tracker/26.0.0/tracker-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/apksig/3.0.0/apksig-3.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder-model/3.0.1/builder-model-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder-test-api/3.0.1/builder-test-api-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/sdklib/26.0.1/sdklib-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/sdk-common/26.0.1/sdk-common-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/common/26.0.1/common-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/manifest-merger/26.0.1/manifest-merger-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/ddms/ddmlib/26.0.1/ddmlib-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/protos/26.0.1/protos-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/shared/26.0.1/shared-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/tracker/26.0.1/tracker-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/apksig/3.0.1/apksig-3.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/squareup/javawriter/2.5.0/javawriter-2.5.0.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/bouncycastle/bcpkix-jdk15on/1.56/bcpkix-jdk15on-1.56.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/bouncycastle/bcprov-jdk15on/1.56/bcprov-jdk15on-1.56.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/ow2/asm/asm-tree/5.1/asm-tree-5.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/it/unimi/dsi/fastutil/7.2.0/fastutil-7.2.0.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/googlecode/json-simple/json-simple/1.1/json-simple-1.1.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint-checks/26.0.0/lint-checks-26.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint-checks/26.0.1/lint-checks-26.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/eclipse/jdt/core/compiler/ecj/4.6.1/ecj-4.6.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/guava/guava/22.0/guava-22.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/databinding/baseLibrary/3.0.0/baseLibrary-3.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/databinding/baseLibrary/3.0.1/baseLibrary-3.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/antlr/antlr4/4.5.3/antlr4-4.5.3.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-io/commons-io/2.4/commons-io-2.4.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/googlecode/juniversalchardet/juniversalchardet/1.0.3/juniversalchardet-1.0.3.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/annotations/26.0.0/annotations-26.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/annotations/26.0.1/annotations-26.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/proguard/proguard-base/5.3.3/proguard-base-5.3.3.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/layoutlib/layoutlib-api/26.0.0/layoutlib-api-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/dvlib/26.0.0/dvlib-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/repository/26.0.0/repository-26.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/layoutlib/layoutlib-api/26.0.1/layoutlib-api-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/dvlib/26.0.1/dvlib-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/repository/26.0.1/repository-26.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/code/gson/gson/2.3/gson-2.3.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/commons/commons-compress/1.12/commons-compress-1.12.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/httpcomponents/httpclient/4.2.6/httpclient-4.2.6.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/httpcomponents/httpmime/4.1/httpmime-4.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/kxml/kxml2/2.3.0/kxml2-2.3.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint-api/26.0.0/lint-api-26.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint-api/26.0.1/lint-api-26.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/intellij/annotations/12.0/annotations-12.0.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/jimfs/jimfs/1.1/jimfs-1.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/httpcomponents/httpcore/4.2.5/httpcore-4.2.5.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-codec/commons-codec/1.6/commons-codec-1.6.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/com-intellij/intellij-core/26.0.0/intellij-core-26.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/com-intellij/intellij-core/26.0.1/intellij-core-26.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/jetbrains/kotlin/kotlin-reflect/1.1.3-2/kotlin-reflect-1.1.3-2.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/jetbrains/annotations/13.0/annotations-13.0.jar" />
@@ -2398,13 +2381,13 @@
                       <ExternalModuleBuildClasspathPojo>
                         <option name="entries">
                           <list>
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle/3.0.0/gradle-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle-core/3.0.0/gradle-core-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder/3.0.0/builder-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint/26.0.0/lint-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/org-jetbrains/uast/26.0.0/uast-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle-api/3.0.0/gradle-api-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/databinding/compilerCommon/3.0.0/compilerCommon-3.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle/3.0.1/gradle-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle-core/3.0.1/gradle-core-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder/3.0.1/builder-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint/26.0.1/lint-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/org-jetbrains/uast/26.0.1/uast-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle-api/3.0.1/gradle-api-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/databinding/compilerCommon/3.0.1/compilerCommon-3.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/jetbrains/kotlin/kotlin-stdlib/1.1.3-2/kotlin-stdlib-1.1.3-2.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/transform-api/2.0.0-deprecated-use-gradle-api/transform-api-2.0.0-deprecated-use-gradle-api.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/ow2/asm/asm/5.1/asm-5.1.jar" />
@@ -2416,47 +2399,47 @@
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/jopt-simple/jopt-simple/4.9/jopt-simple-4.9.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/proguard/proguard-gradle/5.3.3/proguard-gradle-5.3.3.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/protobuf/protobuf-java/3.0.0/protobuf-java-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder-model/3.0.0/builder-model-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder-test-api/3.0.0/builder-test-api-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/sdklib/26.0.0/sdklib-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/sdk-common/26.0.0/sdk-common-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/common/26.0.0/common-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/manifest-merger/26.0.0/manifest-merger-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/ddms/ddmlib/26.0.0/ddmlib-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/protos/26.0.0/protos-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/shared/26.0.0/shared-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/tracker/26.0.0/tracker-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/apksig/3.0.0/apksig-3.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder-model/3.0.1/builder-model-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder-test-api/3.0.1/builder-test-api-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/sdklib/26.0.1/sdklib-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/sdk-common/26.0.1/sdk-common-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/common/26.0.1/common-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/manifest-merger/26.0.1/manifest-merger-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/ddms/ddmlib/26.0.1/ddmlib-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/protos/26.0.1/protos-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/shared/26.0.1/shared-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/tracker/26.0.1/tracker-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/apksig/3.0.1/apksig-3.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/squareup/javawriter/2.5.0/javawriter-2.5.0.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/bouncycastle/bcpkix-jdk15on/1.56/bcpkix-jdk15on-1.56.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/bouncycastle/bcprov-jdk15on/1.56/bcprov-jdk15on-1.56.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/ow2/asm/asm-tree/5.1/asm-tree-5.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/it/unimi/dsi/fastutil/7.2.0/fastutil-7.2.0.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/googlecode/json-simple/json-simple/1.1/json-simple-1.1.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint-checks/26.0.0/lint-checks-26.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint-checks/26.0.1/lint-checks-26.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/eclipse/jdt/core/compiler/ecj/4.6.1/ecj-4.6.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/guava/guava/22.0/guava-22.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/databinding/baseLibrary/3.0.0/baseLibrary-3.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/databinding/baseLibrary/3.0.1/baseLibrary-3.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/antlr/antlr4/4.5.3/antlr4-4.5.3.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-io/commons-io/2.4/commons-io-2.4.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/googlecode/juniversalchardet/juniversalchardet/1.0.3/juniversalchardet-1.0.3.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/annotations/26.0.0/annotations-26.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/annotations/26.0.1/annotations-26.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/proguard/proguard-base/5.3.3/proguard-base-5.3.3.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/layoutlib/layoutlib-api/26.0.0/layoutlib-api-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/dvlib/26.0.0/dvlib-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/repository/26.0.0/repository-26.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/layoutlib/layoutlib-api/26.0.1/layoutlib-api-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/dvlib/26.0.1/dvlib-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/repository/26.0.1/repository-26.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/code/gson/gson/2.3/gson-2.3.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/commons/commons-compress/1.12/commons-compress-1.12.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/httpcomponents/httpclient/4.2.6/httpclient-4.2.6.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/httpcomponents/httpmime/4.1/httpmime-4.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/kxml/kxml2/2.3.0/kxml2-2.3.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint-api/26.0.0/lint-api-26.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint-api/26.0.1/lint-api-26.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/intellij/annotations/12.0/annotations-12.0.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/jimfs/jimfs/1.1/jimfs-1.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/httpcomponents/httpcore/4.2.5/httpcore-4.2.5.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-codec/commons-codec/1.6/commons-codec-1.6.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/com-intellij/intellij-core/26.0.0/intellij-core-26.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/com-intellij/intellij-core/26.0.1/intellij-core-26.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/jetbrains/kotlin/kotlin-reflect/1.1.3-2/kotlin-reflect-1.1.3-2.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/jetbrains/annotations/13.0/annotations-13.0.jar" />
@@ -2476,13 +2459,13 @@
                       <ExternalModuleBuildClasspathPojo>
                         <option name="entries">
                           <list>
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle/3.0.0/gradle-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle-core/3.0.0/gradle-core-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder/3.0.0/builder-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint/26.0.0/lint-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/org-jetbrains/uast/26.0.0/uast-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle-api/3.0.0/gradle-api-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/databinding/compilerCommon/3.0.0/compilerCommon-3.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle/3.0.1/gradle-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle-core/3.0.1/gradle-core-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder/3.0.1/builder-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint/26.0.1/lint-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/org-jetbrains/uast/26.0.1/uast-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/gradle-api/3.0.1/gradle-api-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/databinding/compilerCommon/3.0.1/compilerCommon-3.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/jetbrains/kotlin/kotlin-stdlib/1.1.3-2/kotlin-stdlib-1.1.3-2.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/transform-api/2.0.0-deprecated-use-gradle-api/transform-api-2.0.0-deprecated-use-gradle-api.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/ow2/asm/asm/5.1/asm-5.1.jar" />
@@ -2494,47 +2477,47 @@
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/jopt-simple/jopt-simple/4.9/jopt-simple-4.9.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/proguard/proguard-gradle/5.3.3/proguard-gradle-5.3.3.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/protobuf/protobuf-java/3.0.0/protobuf-java-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder-model/3.0.0/builder-model-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder-test-api/3.0.0/builder-test-api-3.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/sdklib/26.0.0/sdklib-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/sdk-common/26.0.0/sdk-common-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/common/26.0.0/common-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/manifest-merger/26.0.0/manifest-merger-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/ddms/ddmlib/26.0.0/ddmlib-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/protos/26.0.0/protos-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/shared/26.0.0/shared-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/tracker/26.0.0/tracker-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/apksig/3.0.0/apksig-3.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder-model/3.0.1/builder-model-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/builder-test-api/3.0.1/builder-test-api-3.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/sdklib/26.0.1/sdklib-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/sdk-common/26.0.1/sdk-common-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/common/26.0.1/common-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/manifest-merger/26.0.1/manifest-merger-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/ddms/ddmlib/26.0.1/ddmlib-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/protos/26.0.1/protos-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/shared/26.0.1/shared-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/analytics-library/tracker/26.0.1/tracker-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/build/apksig/3.0.1/apksig-3.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/squareup/javawriter/2.5.0/javawriter-2.5.0.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/bouncycastle/bcpkix-jdk15on/1.56/bcpkix-jdk15on-1.56.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/bouncycastle/bcprov-jdk15on/1.56/bcprov-jdk15on-1.56.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/ow2/asm/asm-tree/5.1/asm-tree-5.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/it/unimi/dsi/fastutil/7.2.0/fastutil-7.2.0.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/googlecode/json-simple/json-simple/1.1/json-simple-1.1.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint-checks/26.0.0/lint-checks-26.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint-checks/26.0.1/lint-checks-26.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/eclipse/jdt/core/compiler/ecj/4.6.1/ecj-4.6.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/guava/guava/22.0/guava-22.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/databinding/baseLibrary/3.0.0/baseLibrary-3.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/databinding/baseLibrary/3.0.1/baseLibrary-3.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/antlr/antlr4/4.5.3/antlr4-4.5.3.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-io/commons-io/2.4/commons-io-2.4.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/googlecode/juniversalchardet/juniversalchardet/1.0.3/juniversalchardet-1.0.3.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/annotations/26.0.0/annotations-26.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/annotations/26.0.1/annotations-26.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/proguard/proguard-base/5.3.3/proguard-base-5.3.3.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/layoutlib/layoutlib-api/26.0.0/layoutlib-api-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/dvlib/26.0.0/dvlib-26.0.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/repository/26.0.0/repository-26.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/layoutlib/layoutlib-api/26.0.1/layoutlib-api-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/dvlib/26.0.1/dvlib-26.0.1.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/repository/26.0.1/repository-26.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/code/gson/gson/2.3/gson-2.3.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/commons/commons-compress/1.12/commons-compress-1.12.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/httpcomponents/httpclient/4.2.6/httpclient-4.2.6.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/httpcomponents/httpmime/4.1/httpmime-4.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/kxml/kxml2/2.3.0/kxml2-2.3.0.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint-api/26.0.0/lint-api-26.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/lint/lint-api/26.0.1/lint-api-26.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/intellij/annotations/12.0/annotations-12.0.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/google/jimfs/jimfs/1.1/jimfs-1.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/apache/httpcomponents/httpcore/4.2.5/httpcore-4.2.5.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/commons-codec/commons-codec/1.6/commons-codec-1.6.jar" />
-                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/com-intellij/intellij-core/26.0.0/intellij-core-26.0.0.jar" />
+                            <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/com-intellij/intellij-core/26.0.1/intellij-core-26.0.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/com/android/tools/external/lombok/lombok-ast/0.2.3/lombok-ast-0.2.3.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/jetbrains/kotlin/kotlin-reflect/1.1.3-2/kotlin-reflect-1.1.3-2.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/org/jetbrains/annotations/13.0/annotations-13.0.jar" />
@@ -2702,10 +2685,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/wear/src/main/res/layout/activity_select_apps.xml" />
-        <option value="$PROJECT_DIR$/wear/src/main/java/hsyeo/watchmi/ActivityTwist.java" />
-        <option value="$PROJECT_DIR$/wear/src/main/java/hsyeo/watchmi/ActivityPanning.java" />
-        <option value="$PROJECT_DIR$/wear/src/main/java/hsyeo/watchmi/ActivityPressure.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/hsyeo/watchmi/ActivityMain.java" />
         <option value="$PROJECT_DIR$/wear/src/main/res/layout/activity_demo_file_explorer.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/java/hsyeo/watchmi/ActivitySelectApps.java" />
@@ -2727,32 +2706,36 @@
         <option value="$PROJECT_DIR$/wear/src/main/java/hsyeo/watchmi/Util.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/hsyeo/watchmi/DrawViewApps.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/hsyeo/watchmi/DrawView.java" />
-        <option value="$PROJECT_DIR$/mobile/build.gradle" />
         <option value="$PROJECT_DIR$/wear/src/main/java/hsyeo/wearablebraille/DrawView.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/DrawView.java" />
-        <option value="$PROJECT_DIR$/wear/src/main/res/layout/activity_select_tech.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/res/layout/activity_braille_core_stub.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/res/layout/activity_braille_core_circle.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/SwypeDirectionsDetector.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSwype.java" />
-        <option value="$PROJECT_DIR$/wear/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/SwipeDirectionsDetector.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/Swipe8DirectionsDetector.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/TwoFingersDoubleTapDetector.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/Swipe4DirectionsDetector.java" />
-        <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/BrailleÉcran/BrailleDots.java" />
-        <option value="$PROJECT_DIR$/wear/src/main/res/layout/activity_braille_core_square.xml" />
-        <option value="$PROJECT_DIR$/wear/build.gradle" />
         <option value="$PROJECT_DIR$/wear/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivitySelectTech.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityMain.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechTwist.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSwipe.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPressure.java" />
-        <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechTouch.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/BrailleÉcran/BrailleDots.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/SerialTapDetector.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/res/layout/activity_select_tech.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSerial.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/res/layout/activity_braille_core_square.xml" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPerkins.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/PerkinsTapDetector.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivitySelectTech.java" />
+        <option value="$PROJECT_DIR$/mobile/build.gradle" />
+        <option value="$PROJECT_DIR$/wear/build.gradle" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechConnect.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechTouch.java" />
       </list>
     </option>
   </component>
@@ -2777,6 +2760,21 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WearableBraille" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidBuildScriptsGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2805,20 +2803,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WearableBraille" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle Scripts" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidBuildScriptsGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -2834,7 +2818,6 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2848,6 +2831,8 @@
     <property name="ExportApk.SignV1" value="true" />
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
+    <property name="android.profiler.active" value="true" />
+    <property name="sync.plugin.last.upgrade.timestamp" value="1516293183074" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -2947,7 +2932,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1510937775880" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516564036951" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2995,7 +2980,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1510937775880" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516564036951" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -3027,27 +3012,6 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <method />
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
@@ -3178,7 +3142,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1510937775881" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516564036959" />
       </method>
     </configuration>
     <configuration default="false" name="wear" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
@@ -3227,7 +3191,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1510937775881" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516564036959" />
       </method>
     </configuration>
     <list size="2">
@@ -3290,29 +3254,29 @@
     <frame x="0" y="40" width="3200" height="1760" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884097" sideWeight="0.4958632" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34517425" sideWeight="0.4958632" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32951483" sideWeight="0.5118588" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26145554" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.51970184" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32951483" sideWeight="0.4958632" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32951483" sideWeight="0.48262548" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32951483" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28753352" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32841823" sideWeight="0.4802982" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41042346" sideWeight="0.49201277" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.50165325" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16559692" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17650834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -3321,8 +3285,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2025032" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32951483" sideWeight="0.4958632" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20218228" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.4958632" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3385,21 +3349,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/local.properties" />
-    <entry file="file://$PROJECT_DIR$/gradle.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wear/proguard-rules.pro">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mobile/proguard-rules.pro">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -3408,13 +3357,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -3457,13 +3399,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/mateuswetah/wearablebraille/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="50">
@@ -3489,13 +3424,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
         </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityAppsClock.java">
@@ -3540,28 +3475,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-18">
-          <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/DrawView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="945">
           <caret line="21" column="41" lean-forward="false" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="method#setupColors#0;class#DrawView#0" expanded="false" />
-            <element signature="method#setDrawModes#0;class#DrawView#0" expanded="false" />
-            <element signature="method#setTrial#0;class#DrawView#0" expanded="false" />
-            <element signature="method#setXYZ#0;class#DrawView#0" expanded="false" />
-            <element signature="method#DrawExpTwist#0;class#DrawView#0" expanded="false" />
-            <element signature="method#DrawExpPanning#0;class#DrawView#0" expanded="false" />
-            <element signature="method#InitExpVariables#0;class#DrawView#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3576,23 +3493,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_select_tech.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-619">
-          <caret line="21" column="4" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
-          <folding>
-            <element signature="e#776#790#0" expanded="false" />
-            <element signature="e#1219#1234#0" expanded="false" />
-            <element signature="e#1478#1493#0" expanded="false" />
-            <element signature="e#1737#1752#0" expanded="false" />
-            <element signature="e#1996#2011#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/res/drawable/braille_ecran_button.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -3600,7 +3500,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3625,15 +3524,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="6435">
           <caret line="143" column="19" lean-forward="false" selection-start-line="143" selection-start-column="19" selection-end-line="143" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="13" column="28" lean-forward="false" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3641,7 +3531,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="7" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3652,6 +3541,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="805">
+          <caret line="42" column="48" lean-forward="false" selection-start-line="42" selection-start-column="48" selection-end-line="42" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/Swipe8DirectionsDetector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1242">
+          <caret line="56" column="68" lean-forward="false" selection-start-line="56" selection-start-column="68" selection-end-line="56" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechTwist.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1225">
+          <caret line="114" column="25" lean-forward="true" selection-start-line="108" selection-start-column="15" selection-end-line="114" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding>
+            <element signature="e#2173#2191#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/BrailleÉcran/BrailleDots.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1978">
+          <caret line="93" column="36" lean-forward="false" selection-start-line="93" selection-start-column="36" selection-end-line="93" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_select_tech.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="92" column="38" lean-forward="false" selection-start-line="92" selection-start-column="37" selection-end-line="92" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_braille_core_stub.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -3659,51 +3609,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/BrailleÉcran/BrailleDots.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5669">
-          <caret line="243" column="24" lean-forward="false" selection-start-line="243" selection-start-column="24" selection-end-line="243" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_braille_core_square.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5895">
-          <caret line="131" column="46" lean-forward="false" selection-start-line="131" selection-start-column="46" selection-end-line="131" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/Swipe4DirectionsDetector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="7" column="90" lean-forward="false" selection-start-line="7" selection-start-column="90" selection-end-line="7" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wear/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="7" column="24" lean-forward="false" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3718,114 +3623,151 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="12" column="45" lean-forward="false" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
+    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_braille_core_square.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="4050">
+          <caret line="90" column="8" lean-forward="false" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/SerialTapDetector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="17" column="16" lean-forward="false" selection-start-line="17" selection-start-column="16" selection-end-line="17" selection-end-column="16" />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityMain.java">
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPerkins.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1575">
-          <caret line="42" column="48" lean-forward="false" selection-start-line="42" selection-start-column="48" selection-end-line="42" selection-end-column="48" />
+        <state relative-caret-position="10620">
+          <caret line="254" column="60" lean-forward="false" selection-start-line="254" selection-start-column="60" selection-end-line="254" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/Swipe4DirectionsDetector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="7" column="90" lean-forward="false" selection-start-line="7" selection-start-column="90" selection-end-line="7" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/PerkinsTapDetector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3375">
+          <caret line="80" column="53" lean-forward="false" selection-start-line="69" selection-start-column="57" selection-end-line="80" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivitySelectTech.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4860">
+          <caret line="113" column="79" lean-forward="false" selection-start-line="113" selection-start-column="79" selection-end-line="113" selection-end-column="79" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/Swipe8DirectionsDetector.java">
+    <entry file="file://$PROJECT_DIR$/wear/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2430">
-          <caret line="56" column="68" lean-forward="false" selection-start-line="56" selection-start-column="68" selection-end-line="56" selection-end-column="68" />
+        <state relative-caret-position="675">
+          <caret line="15" column="49" lean-forward="false" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechTwist.java">
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/java/mateuswetah/wearablebraille/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1225">
-          <caret line="114" column="25" lean-forward="true" selection-start-line="108" selection-start-column="15" selection-end-line="114" selection-end-column="25" />
+        <state relative-caret-position="180">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSerial.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="274" column="19" lean-forward="false" selection-start-line="274" selection-start-column="19" selection-end-line="276" selection-end-column="78" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSwipe.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6165">
+        <state relative-caret-position="5940">
           <caret line="152" column="47" lean-forward="false" selection-start-line="152" selection-start-column="47" selection-end-line="152" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPressure.java">
+    <entry file="file://$PROJECT_DIR$/settings.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6030">
-          <caret line="160" column="28" lean-forward="false" selection-start-line="160" selection-start-column="28" selection-end-line="160" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#16451#16452#0" expanded="false" />
-            <element signature="e#16515#16516#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivitySelectTech.java">
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechConnect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2610">
-          <caret line="63" column="43" lean-forward="false" selection-start-line="63" selection-start-column="43" selection-end-line="64" selection-end-column="61" />
+        <state relative-caret-position="1009">
+          <caret line="338" column="0" lean-forward="false" selection-start-line="338" selection-start-column="0" selection-end-line="340" selection-end-column="51" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="e#3022#6896#0" expanded="true" />
+            <element signature="e#3297#3669#0" expanded="true" />
+            <element signature="e#3668#3669#0" expanded="true" />
+            <element signature="e#4351#6633#0" expanded="true" />
+            <element signature="e#6632#6633#0" expanded="true" />
+            <element signature="e#6895#6896#0" expanded="true" />
+            <element signature="e#6976#7672#0" expanded="true" />
+            <element signature="e#7671#7672#0" expanded="true" />
+            <element signature="e#7753#8596#0" expanded="true" />
+            <element signature="e#8595#8596#0" expanded="true" />
+            <element signature="e#13387#13872#0" expanded="true" />
+            <element signature="e#13871#13872#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechTouch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3328">
-          <caret line="66" column="35" lean-forward="false" selection-start-line="66" selection-start-column="35" selection-end-line="66" selection-end-column="35" />
+        <state relative-caret-position="585">
+          <caret line="135" column="84" lean-forward="false" selection-start-line="135" selection-start-column="84" selection-end-line="135" selection-end-column="84" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2565#6456#0" expanded="true" />
-            <element signature="e#2840#3212#0" expanded="true" />
-            <element signature="e#3211#3212#0" expanded="true" />
-            <element signature="e#3894#6176#0" expanded="true" />
-            <element signature="e#6175#6176#0" expanded="true" />
-            <element signature="e#6455#6456#0" expanded="true" />
-            <element signature="e#6536#7232#0" expanded="true" />
-            <element signature="e#7231#7232#0" expanded="true" />
-            <element signature="e#7313#7514#0" expanded="true" />
-            <element signature="e#7513#7514#0" expanded="true" />
+            <element signature="e#1973#2160#0" expanded="true" />
+            <element signature="e#2159#2160#0" expanded="true" />
+            <element signature="e#8417#9005#0" expanded="true" />
+            <element signature="e#9004#9005#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/SerialTapDetector.java">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="59" column="24" lean-forward="false" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1710#2119#0" expanded="true" />
-            <element signature="e#2118#2119#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="585">
+          <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSerial.java">
+    <entry file="file://$PROJECT_DIR$/mobile/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="686">
-          <caret line="248" column="32" lean-forward="true" selection-start-line="248" selection-start-column="32" selection-end-line="248" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-472">
+          <caret line="6" column="45" lean-forward="false" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPressure.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="263" column="0" lean-forward="false" selection-start-line="263" selection-start-column="0" selection-end-line="268" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>

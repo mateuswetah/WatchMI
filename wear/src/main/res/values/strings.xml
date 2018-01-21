@@ -12,8 +12,9 @@
 
     <string name="tech1">Touch</string>
     <string name="tech2">Swipe</string>
-    <string name="tech3">Pressure</string>
-    <string name="tech4">Serial</string>
+    <string name="tech3">Connect</string>
+    <string name="tech4">Pressure</string>
+    <string name="tech5">Serial</string>
 
     <string name="app1">Clock</string>
     <string name="app2">Map</string>
@@ -21,4 +22,5 @@
     <string name="app4">app4</string>
     <string name="app5">app5</string>
     <string name="app6">app6</string>
+    <string name="tech6">Perkins</string>
 </resources>

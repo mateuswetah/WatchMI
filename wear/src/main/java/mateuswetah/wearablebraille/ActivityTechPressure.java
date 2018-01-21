@@ -259,7 +259,6 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
 
                 drawView.setXYZ(diffX, diffY, diffZ);
 
-
                 if (this.isViewContains(brailleDots.ButtonDots[0], diffX*Constants.MAGIC_XY + drawView.halfScreen, diffY*Constants.MAGIC_XY + drawView.halfScreen)) {
                     Log.d("BUTTON 0", "ENTER REGION!");
                     if (this.isActivated == false) {

@@ -1,20 +1,17 @@
 package mateuswetah.wearablebraille;
 
-import android.app.Activity;
 import android.os.Handler;
 import android.util.Log;
-import android.view.Display;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
-import android.view.WindowManager;
 
-public abstract class SerialTapDetector {
+public abstract class PerkinsTapDetector {
     private static final int TIMEOUT = ViewConfiguration.getDoubleTapTimeout() + 750;
     private float width;
     private boolean doubleTapApplied = false;
     private boolean waitForDoubleSingleTap = false;
 
-    public SerialTapDetector(float screenWidth) {
+    public PerkinsTapDetector(float screenWidth) {
         super();
         this.width = screenWidth;
     }
@@ -24,7 +21,18 @@ public abstract class SerialTapDetector {
         switch(event.getActionMasked()) {
             case MotionEvent.ACTION_POINTER_UP:
                 if(event.getPointerCount() == 2) {
-                    onSerialDoubleTap();
+
+                    float x = event.getX();
+                    final int line;
+                    if (x < width/3) {
+                        line = 1;
+                    } else if (x > (width/3)*2) {
+                        line = 3;
+                    } else {
+                        line = 2;
+                    }
+
+                    onPerkinsDoubleTap(line);
                     doubleTapApplied = true;
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -40,7 +48,14 @@ public abstract class SerialTapDetector {
             case MotionEvent.ACTION_UP:
 
                 float x = event.getX();
-                final boolean isRightSide = (x > width/2);
+                final int line;
+                if (x < width/3) {
+                    line = 1;
+                } else if (x > (width/3)*2) {
+                    line = 3;
+                } else {
+                    line = 2;
+                }
 
                 if (!doubleTapApplied) {
 
@@ -52,14 +67,19 @@ public abstract class SerialTapDetector {
                         @Override
                         public void run() {
                             if (!waitForDoubleSingleTap)
-                                onSerialDoubleTap();
+                                onPerkinsDoubleTap(line);
                             else
-                                onSerialSingleTap(isRightSide);
+                                onPerkinsSingleTap(line);
                             waitForDoubleSingleTap = false;
                         }
                     }, 800);
                 }
                 return true;
+
+            case MotionEvent.ACTION_MOVE:
+                onPerkinsSwipe(true);
+                Log.d("MOTION_EVENT", "ACTION_MOVE");
+                break;
 
             case MotionEvent.ACTION_CANCEL:
                 break;
@@ -68,7 +88,8 @@ public abstract class SerialTapDetector {
         return false;
     }
 
-    public abstract void onSerialDoubleTap();
-    public abstract void onSerialSingleTap(boolean isRightSide);
+    public abstract void onPerkinsDoubleTap(int line);
+    public abstract void onPerkinsSingleTap(int line);
+    public abstract void onPerkinsSwipe(boolean isUp);
 
 }

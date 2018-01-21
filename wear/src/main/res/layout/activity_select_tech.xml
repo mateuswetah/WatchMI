@@ -12,51 +12,81 @@
     tools:context=".ActivityMain"
     tools:deviceIds="wear">
 
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="40dp"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="-5dp"
-        android:text="@string/back" />
-
     <RelativeLayout
         android:id="@+id/relative"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="fill_vertical|center"
         app:layout_box="all">
 
         <Button
-            android:id="@+id/btn1"
-            android:layout_width="120dp"
-            android:layout_height="42dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/tech1"
-            android:textSize="12sp" />
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/back" />
 
-        <Button
-            android:id="@+id/btn2"
-            android:layout_width="120dp"
-            android:layout_height="42dp"
-            android:layout_below="@+id/btn1"
-            android:text="@string/tech2"
-            android:textSize="12sp" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@+id/btnBack">
 
-        <Button
-            android:id="@+id/btn3"
-            android:layout_width="120dp"
-            android:layout_height="42dp"
-            android:layout_below="@+id/btn2"
-            android:text="@string/tech3"
-            android:textSize="12sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn4"
-            android:layout_width="120dp"
-            android:layout_height="42dp"
-            android:layout_below="@+id/btn3"
-            android:text="@string/tech4"
-            android:textSize="12sp" />
+                <Button
+                    android:id="@+id/btn1"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignStart="@+id/btn2"
+                    android:text="@string/tech1"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btn2"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/btn1"
+                    android:text="@string/tech2"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btn3"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/btn2"
+                    android:text="@string/tech3"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btn4"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/btn3"
+                    android:text="@string/tech4"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btn5"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/btn4"
+                    android:text="@string/tech5"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btn6"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/btn5"
+                    android:text="@string/tech6"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </ScrollView>
 
     </RelativeLayout>
 

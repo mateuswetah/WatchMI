@@ -93,8 +93,10 @@ public class BrailleDots {
     // Disappear all the Dots
     public void toggleAllDotsOff() {
 
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 6; i++) {
             ButtonDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
+            ButtonDots[i].setTag(new Boolean(false));
+        }
 
     }
 

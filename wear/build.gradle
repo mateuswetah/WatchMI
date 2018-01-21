@@ -4,8 +4,8 @@ android {
     compileSdkVersion 25
     buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId "hsyeo.watchmi1"
-        minSdkVersion 22
+        applicationId "mateus.wearablebraille"
+        minSdkVersion 21
         targetSdkVersion 25
         versionCode 5
         versionName "1.4"

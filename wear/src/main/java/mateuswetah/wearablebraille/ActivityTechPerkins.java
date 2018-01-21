@@ -4,9 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Point;
-import android.graphics.drawable.Drawable;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -27,7 +24,7 @@ import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
  * Created by orpheus on 15/11/17.
  */
 
-public class ActivityTechSerial extends WearableActivity{
+public class ActivityTechPerkins extends WearableActivity{
 
     // View Components
     private BoxInsetLayout mContainerView;
@@ -39,7 +36,7 @@ public class ActivityTechSerial extends WearableActivity{
     TwoFingersDoubleTapDetector twoFingersListener;
     private GestureDetector gestureDetector;
     private View.OnClickListener dotClickListener;
-    private SerialTapDetector serialTapDetector;
+    private PerkinsTapDetector perkinsTapDetector;
 
     // Vibrations generator for feedbacks
     private Vibrator vibrator;
@@ -51,8 +48,8 @@ public class ActivityTechSerial extends WearableActivity{
     boolean isScreenRotated = false;
     boolean reset = false;
 
-    // Serial Input Control
-    int serialLine = 0;
+    // Perkins Column Control
+    boolean perkinsColumnLeft = true;
     float windowWidth;
 
     // Test related
@@ -101,17 +98,16 @@ public class ActivityTechSerial extends WearableActivity{
                     }
                 });
 
-                // Initialize Serial Line
-                activity.findViewById(R.id.serial_line_1).setBackgroundResource(R.drawable.braille_ecran_button);
-                activity.findViewById(R.id.serial_line_2).setBackground(null);
-                activity.findViewById(R.id.serial_line_3).setBackground(null);
+                // Initialize Perkins Column
+                activity.findViewById(R.id.perkins_column_1).setBackgroundResource(R.drawable.braille_ecran_button);
+                activity.findViewById(R.id.perkins_column_2).setBackground(null);
 
                 // Swipe Gesture Detection
                 gestureDetector = new GestureDetector(activity, new Swipe4DirectionsDetector() {
                     @Override
                     public void onTopSwipe() {
                         // Move to next Serial Line
-                        incrementSerialLine();
+                        switchPerkinsColumn();
                     }
 
                     @Override
@@ -176,62 +172,101 @@ public class ActivityTechSerial extends WearableActivity{
         getWindowManager().getDefaultDisplay().getSize(dimensions);
         windowWidth = dimensions.x;
 
-        serialTapDetector = new SerialTapDetector(windowWidth) {
+        perkinsTapDetector = new PerkinsTapDetector(windowWidth) {
 
             @Override
-            public void onSerialDoubleTap() {
-                switch (serialLine) {
-                    case 0:
-                        brailleDots.setDotVisibility(0, true);
-                        brailleDots.setDotVisibility(3, true);
-                        break;
-                    case 1:
-                        brailleDots.setDotVisibility(1, true);
-                        brailleDots.setDotVisibility(4, true);
-                        break;
-                    case 2:
-                        brailleDots.setDotVisibility(2,true);
-                        brailleDots.setDotVisibility(5, true);
-                        break;
-                }
-                Log.d("SERIAL", "DOUBLE TAP");
-
-                // Move to next Serial Line
-                incrementSerialLine();
-            }
-
-            @Override
-            public void onSerialSingleTap(boolean isRightSide) {
-
-                if (isRightSide) {
-                    switch (serialLine) {
-                        case 0:
-                            brailleDots.setDotVisibility(3, true);
-                            break;
+            public void onPerkinsDoubleTap(int line) {
+                if (perkinsColumnLeft) {
+                    switch (line) {
                         case 1:
-                            brailleDots.setDotVisibility(4, true);
-                            break;
-                        case 2:
-                            brailleDots.setDotVisibility(5,true);
-                            break;
-                    }
-                    Log.d("SERIAL", "SINGLE TAP RIGHT");
-                } else {
-                    switch (serialLine) {
-                        case 0:
-                            brailleDots.setDotVisibility(0,true);
-                            break;
-                        case 1:
+                            brailleDots.setDotVisibility(0, true);
                             brailleDots.setDotVisibility(1, true);
                             break;
                         case 2:
-                            brailleDots.setDotVisibility(2,true);
+                            brailleDots.setDotVisibility(0, true);
+                            brailleDots.setDotVisibility(2, true);
+                            break;
+                        case 3:
+                            brailleDots.setDotVisibility(1, true);
+                            brailleDots.setDotVisibility(2, true);
                             break;
                     }
-                    Log.d("SERIAL", "SINGLE TAP LEFT");
+                    Log.d("PERKINS", "DOUBLE TAP LEFT");
+                } else {
+                    switch (line) {
+                        case 1:
+                            brailleDots.setDotVisibility(3, true);
+                            brailleDots.setDotVisibility(4, true);
+                            break;
+                        case 2:
+                            brailleDots.setDotVisibility(3, true);
+                            brailleDots.setDotVisibility(5, true);
+                            break;
+                        case 3:
+                            brailleDots.setDotVisibility(4, true);
+                            brailleDots.setDotVisibility(5, true);
+                            break;
+                    }
+                    Log.d("PERKINS", "DOUBLE TAP RIGHT");
+                }
+
+
+                // Move to next Serial Line
+                switchPerkinsColumn();
+            }
+
+            @Override
+            public void onPerkinsSingleTap(int line) {
+
+                switch (line) {
+                    case 1:
+                        if (perkinsColumnLeft) {
+                            brailleDots.setDotVisibility(0,true);
+                        } else {
+                            brailleDots.setDotVisibility(3,true);
+                        }
+                        Log.d("PERKINS", "SINGLE TAP TOP");
+                        break;
+
+                    case 2:
+                        if (perkinsColumnLeft) {
+                            brailleDots.setDotVisibility(1,true);
+                        } else {
+                            brailleDots.setDotVisibility(4,true);
+                        }
+                        Log.d("PERKINS", "SINGLE TAP MIDDLE");
+                        break;
+
+                    case 3:
+                        if (perkinsColumnLeft) {
+                            brailleDots.setDotVisibility(2,true);
+                        } else {
+                            brailleDots.setDotVisibility(5,true);
+                        }
+                        Log.d("PERKINS", "SINGLE TAP BOTTOM");
+                        break;
                 }
                 // Move to next Serial Line
-                incrementSerialLine();
+                switchPerkinsColumn();
+            }
+
+            @Override
+            public void onPerkinsSwipe(boolean isUp) {
+                // Swipe on Perkins activates (up) or skips (down) all buttons in column
+                if (isUp) {
+                    if (perkinsColumnLeft) {
+                        brailleDots.setDotVisibility(0,true);
+                        brailleDots.setDotVisibility(1,true);
+                        brailleDots.setDotVisibility(2,true);
+                    } else {
+                        brailleDots.setDotVisibility(3,true);
+                        brailleDots.setDotVisibility(4,true);
+                        brailleDots.setDotVisibility(5,true);
+                    }
+                }
+
+                // Move to next Serial Line
+                switchPerkinsColumn();
             }
         };
     }
@@ -241,47 +276,37 @@ public class ActivityTechSerial extends WearableActivity{
             public boolean onTouch(View v, MotionEvent event) {
                 twoFingersListener.onTouchEvent(event);
                 if (!gestureDetector.onTouchEvent(event))
-                    serialTapDetector.onTouchEvent(event);
+                    perkinsTapDetector.onTouchEvent(event);
                 return true;
             }
         });
     }
 
-    void incrementSerialLine() {
+    void switchPerkinsColumn() {
 
-        serialLine = (serialLine + 1) % 3;
+        perkinsColumnLeft = !perkinsColumnLeft;
 
-        switch (serialLine){
-            case 0:
-                activity.findViewById(R.id.serial_line_1).setBackground(null);
-                activity.findViewById(R.id.serial_line_2).setBackground(null);
-                activity.findViewById(R.id.serial_line_3).setBackground(null);
+        if (perkinsColumnLeft) {
+            activity.findViewById(R.id.perkins_column_1).setBackgroundResource(R.drawable.braille_ecran_button);
+            activity.findViewById(R.id.perkins_column_2).setBackground(null);
 
-                //Processes Braille Character
-                resultLetter.setText(brailleDots.checkCurrentCharacter(false, false, false, false));
+            //Processes Braille Character
+            resultLetter.setText(brailleDots.checkCurrentCharacter(false, false, false, false));
 
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        activity.findViewById(R.id.serial_line_1).setBackgroundResource(R.drawable.braille_ecran_button);
-                        activity.findViewById(R.id.serial_line_2).setBackground(null);
-                        activity.findViewById(R.id.serial_line_3).setBackground(null);
-                        brailleDots.toggleAllDotsOff();
-                        resultLetter.setText("");
-                    }
-                }, 1500);
-                break;
-            case 1:
-                activity.findViewById(R.id.serial_line_2).setBackgroundResource(R.drawable.braille_ecran_button);
-                activity.findViewById(R.id.serial_line_1).setBackground(null);
-                activity.findViewById(R.id.serial_line_3).setBackground(null);
-                break;
-            case 2:
-                activity.findViewById(R.id.serial_line_3).setBackgroundResource(R.drawable.braille_ecran_button);
-                activity.findViewById(R.id.serial_line_2).setBackground(null);
-                activity.findViewById(R.id.serial_line_1).setBackground(null);
-                break;
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    brailleDots.toggleAllDotsOff();
+                    resultLetter.setText("");
+                }
+            }, 1500);
+
+        } else {
+            activity.findViewById(R.id.perkins_column_2).setBackgroundResource(R.drawable.braille_ecran_button);
+            activity.findViewById(R.id.perkins_column_1).setBackground(null);
+            activity.findViewById(R.id.perkins_column_2).setBackgroundResource(R.drawable.braille_ecran_button);
         }
     }
 

@@ -3,17 +3,24 @@ package mateuswetah.wearablebraille;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Vibrator;
+import android.speech.tts.TextToSpeech;
 import android.support.wearable.activity.WearableActivity;
 import android.support.wearable.view.BoxInsetLayout;
 import android.support.wearable.view.WatchViewStub;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
 
@@ -26,7 +33,7 @@ public class ActivityTechSwipe extends WearableActivity{
     // View Components
     private BoxInsetLayout mContainerView;
     private BrailleDots brailleDots;
-    private TextView tv1, tv2, tv3;
+    private TextView tv1, tv2, tv3, resultLetter;
     private WearableActivity activity;
 
     // Touch Listeners
@@ -34,14 +41,17 @@ public class ActivityTechSwipe extends WearableActivity{
     private GestureDetector gestureDetector;
     private View.OnClickListener dotClickListener;
 
-    // Vibrations generator for feedbacks
+    // Feedback Tools
     private Vibrator vibrator;
+    private TextToSpeech tts;
+    private ToneGenerator toneGenerator;
 
     //Flags
     boolean started = false;
     boolean stopped = true;
     boolean isStudy = false;
     boolean isScreenRotated = false;
+    boolean swiped = false;
     boolean reset = false;
 
     // Test related
@@ -54,8 +64,16 @@ public class ActivityTechSwipe extends WearableActivity{
         setContentView(R.layout.activity_braille_core_stub);
         this.activity = this;
 
-        // Sets the Vibrator
+        // Sets the Vibrator, TextToSpeech and ToneGenerator for Feedback
         vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                Log.d("TTS", "TextToSpeech Service Initialized");
+                //tts.setLanguage(Locale.ENGLISH);
+            }
+        });
+        toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, ToneGenerator.MAX_VOLUME);
 
         // Checks if view is in test mode
         Bundle extras = getIntent().getExtras();
@@ -96,36 +114,42 @@ public class ActivityTechSwipe extends WearableActivity{
                     public void onTopLeftSwipe() {
                         vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(0);
+                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_0, 100);
                     }
 
                     @Override
                     public void onTopRightSwipe() {
                         vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(3);
+                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_3, 100);
                     }
 
                     @Override
                     public void onMiddleLeftSwipe() {
                         vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(1);
+                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100);
                     }
 
                     @Override
                     public void onMiddleRightSwipe() {
                         vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(4);
+                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_4, 100);
                     }
 
                     @Override
                     public void onBottomLeftSwipe() {
                         vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(2);
+                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_2, 100);
                     }
 
                     @Override
                     public void onBottomRightSwipe() {
                         vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(5);
+                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_5, 100);
                     }
                 });
 
@@ -134,6 +158,7 @@ public class ActivityTechSwipe extends WearableActivity{
                 tv1 = (TextView) findViewById(R.id.tv1);
                 tv2 = (TextView) findViewById(R.id.tv2);
                 tv3 = (TextView) findViewById(R.id.tv3);
+                resultLetter = (TextView) findViewById(R.id.resultLetter);
 
                 if (!isStudy) {
                     tv1.setText("");
@@ -178,10 +203,42 @@ public class ActivityTechSwipe extends WearableActivity{
         mContainerView.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 twoFingersListener.onTouchEvent(event);
-                gestureDetector.onTouchEvent(event);
+                if (gestureDetector.onTouchEvent(event)) {
+                    swiped = true;
+                }
+                swiped = false;
+                return false;
+            }
+        });
+        mContainerView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if (!swiped) {
+
+                    final String latinChar = brailleDots.checkCurrentCharacter(false, false, false, false);
+                    Log.d("CHAR OUTPUT: ", latinChar);
+                    tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                    resultLetter.setText(latinChar);
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            resultLetter.setText("");
+                            brailleDots.toggleAllDotsOff();
+                        }
+                    }, 1200);
+
+                }
                 return true;
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        tts.shutdown();
     }
 
 }

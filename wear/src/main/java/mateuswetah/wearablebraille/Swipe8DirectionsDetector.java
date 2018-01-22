@@ -42,8 +42,9 @@ public abstract class Swipe8DirectionsDetector extends GestureDetector.SimpleOnG
                 Log.d(LOGTAG, "middle right");
                 this.onMiddleRightSwipe();
                 return true;
+            default:
+                return false;
         }
-        return false;
     }
 
     private int getSlope(float x1, float y1, float x2, float y2) {
@@ -55,6 +56,7 @@ public abstract class Swipe8DirectionsDetector extends GestureDetector.SimpleOnG
 
         // Uses angle to determine swipe direction
         Double angle = Math.toDegrees(Math.atan2(y1 - y2, x2 - x1));
+
         if (angle > (45/2) && angle <= 45 + (45/2))
             // top right
             return 1;
@@ -83,5 +85,5 @@ public abstract class Swipe8DirectionsDetector extends GestureDetector.SimpleOnG
     public abstract void onMiddleRightSwipe();
     public abstract void onBottomLeftSwipe();
     public abstract void onBottomRightSwipe();
-
+    // Implement remaining two sides?
 }

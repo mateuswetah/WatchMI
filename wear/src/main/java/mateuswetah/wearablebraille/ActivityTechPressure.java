@@ -8,13 +8,18 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Vibrator;
+import android.speech.tts.TextToSpeech;
 import android.support.wearable.activity.WearableActivity;
 import android.support.wearable.view.BoxInsetLayout;
 import android.support.wearable.view.WatchViewStub;
 import android.util.Log;
 import android.util.Pair;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
@@ -24,6 +29,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
@@ -35,7 +41,7 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
     private BoxInsetLayout mContainerView;
     private DrawView drawView;
     private BrailleDots brailleDots;
-    private TextView tv1, tv2, tv3;
+    private TextView tv1, tv2, tv3, resultLetter;
     private WearableActivity activity;
 
     // Touch Listeners
@@ -48,6 +54,8 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
 
     // Vibrations generator for feedbacks
     private Vibrator vibrator;
+    private TextToSpeech tts;
+    private ToneGenerator toneGenerator;
 
     //Flags
     boolean started = false;
@@ -69,6 +77,8 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
     float startX, startY, startZ;
     float diffX, diffY, diffZ;
 
+    // Gesture detector for implementing Swipe gestures
+    private GestureDetector gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +104,17 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
 
         this.activity = this;
 
-        // Sets the Vibrator
+        // Sets the Vibrator, TextToSpeech and ToneGenerator for Feedback
         vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                Log.d("TTS", "TextToSpeech Service Initialized");
+                //tts.setLanguage(Locale.ENGLISH);
+            }
+        });
+        tts.setLanguage(Locale.ENGLISH);
+        toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, ToneGenerator.MAX_VOLUME);
 
         WatchViewStub stub = (WatchViewStub) findViewById(R.id.stub);
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
@@ -114,11 +133,49 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
                         return insets;
                     }
                 });
+
+                // Swipe Gesture Detection
+                gestureDetector = new GestureDetector(activity, new Swipe4DirectionsDetector() {
+
+                    @Override
+                    public void onTopSwipe() {
+                        final String latinChar = brailleDots.checkCurrentCharacter(false, false, false, false);
+                        Log.d("CHAR OUTPUT: ", latinChar);
+                        tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                        resultLetter.setText(latinChar);
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                resultLetter.setText("");
+                                brailleDots.toggleAllDotsOff();
+                            }
+                        }, 1200);
+                    }
+
+                    @Override
+                    public void onLeftSwipe() {
+
+                    }
+
+                    @Override
+                    public void onRightSwipe() {
+
+                    }
+
+                    @Override
+                    public void onBottomSwipe() {
+
+                    }
+                });
                 setTouchListener();
 
                 tv1 = (TextView) findViewById(R.id.tv1);
                 tv2 = (TextView) findViewById(R.id.tv2);
                 tv3 = (TextView) findViewById(R.id.tv3);
+                resultLetter = (TextView) findViewById(R.id.resultLetter);
+
                 if (!isStudy) {
                     tv1.setText("PRESS on any side of screen (near the edge) with varying pressure!");
                     tv3.setText("double tap with 2 fingers to exit");
@@ -175,6 +232,7 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
         mContainerView.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 twoFingersListener.onTouchEvent(event);
+                gestureDetector.onTouchEvent(event);
 
                 float x = event.getX();
                 float y = event.getY();
@@ -264,6 +322,7 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
                     if (this.isActivated == false) {
                         vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(0);
+                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_0, 100);
                         this.brailleDots.ButtonDots[0].callOnClick();
                         this.isActivated = true;
                     }
@@ -272,6 +331,7 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
                     if (this.isActivated == false) {
                         vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(1);
+                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100);
                         this.brailleDots.ButtonDots[1].callOnClick();
                         this.isActivated = true;
                     }
@@ -280,6 +340,7 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
                     if (this.isActivated == false) {
                         vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(2);
+                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_2, 100);
                         this.brailleDots.ButtonDots[2].callOnClick();
                         this.isActivated = true;
                     }
@@ -288,6 +349,7 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
                     if (this.isActivated == false) {
                         vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(3);
+                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_3, 100);
                         this.brailleDots.ButtonDots[3].callOnClick();
                         this.isActivated = true;
                     }
@@ -296,6 +358,7 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
                     if (this.isActivated == false) {
                         vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(4);
+                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_4, 100);
                         this.brailleDots.ButtonDots[4].callOnClick();
                         this.isActivated = true;
                     }
@@ -304,6 +367,7 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
                     if (this.isActivated == false) {
                         vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(5);
+                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_5, 100);
                         this.brailleDots.ButtonDots[5].callOnClick();
                         this.isActivated = true;
                     }
@@ -448,5 +512,11 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
         }
 
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        tts.shutdown();
     }
 }

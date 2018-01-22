@@ -5,7 +5,7 @@
             <solid
                 android:color="#fff" />
             <stroke
-                android:width="3dp"
+                android:width="4dp"
                 android:color="#000" />
         </shape>
     </item>
@@ -14,7 +14,7 @@
             <solid
                 android:color="#fff" />
             <stroke
-                android:width="2dp"
+                android:width="3dp"
                 android:color="#000" />
         </shape>
     </item>
@@ -23,7 +23,7 @@
             <solid
                 android:color="#fff" />
             <stroke
-                android:width="2dp"
+                android:width="3dp"
                 android:color="#666" />
         </shape>
     </item>

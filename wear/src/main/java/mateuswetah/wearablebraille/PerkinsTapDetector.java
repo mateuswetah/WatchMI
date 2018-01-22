@@ -76,11 +76,6 @@ public abstract class PerkinsTapDetector {
                 }
                 return true;
 
-            case MotionEvent.ACTION_MOVE:
-                onPerkinsSwipe(true);
-                Log.d("MOTION_EVENT", "ACTION_MOVE");
-                break;
-
             case MotionEvent.ACTION_CANCEL:
                 break;
         }
@@ -90,6 +85,5 @@ public abstract class PerkinsTapDetector {
 
     public abstract void onPerkinsDoubleTap(int line);
     public abstract void onPerkinsSingleTap(int line);
-    public abstract void onPerkinsSwipe(boolean isUp);
 
 }

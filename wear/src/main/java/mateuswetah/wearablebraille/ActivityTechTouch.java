@@ -8,6 +8,7 @@ import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
@@ -15,11 +16,14 @@ import android.support.wearable.activity.WearableActivity;
 import android.support.wearable.view.BoxInsetLayout;
 import android.support.wearable.view.WatchViewStub;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
 
@@ -32,7 +36,7 @@ public class ActivityTechTouch extends WearableActivity {
     // View Components
     private BoxInsetLayout mContainerView;
     private BrailleDots brailleDots;
-    private TextView tv1, tv2, tv3;
+    private TextView tv1, tv2, tv3, resultLetter;
     private WearableActivity activity;
 
     // Touch Listeners
@@ -50,10 +54,14 @@ public class ActivityTechTouch extends WearableActivity {
     boolean isStudy = false;
     boolean isScreenRotated = false;
     boolean reset = false;
+    boolean isTTSInitialized = false;
 
     // Test related
     int trialCount = 0;
     Util util;
+
+    // Gesture detector for implementing Swipe gestures
+    private GestureDetector gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +73,12 @@ public class ActivityTechTouch extends WearableActivity {
         vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
-            public void onInit(int i) {
-                Log.d("TTS", "TextToSpeech Service Initialized");
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    Log.d("TTS", "TextToSpeech Service Initialized");
+                    isTTSInitialized = true;
+                    //tts.setLanguage(Locale.ENGLISH);
+                }
             }
         });
         toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, ToneGenerator.MAX_VOLUME);
@@ -79,7 +91,7 @@ public class ActivityTechTouch extends WearableActivity {
                 Toast.makeText(getApplicationContext(), "User study mode", Toast.LENGTH_SHORT).show();
             } else isStudy = false;
 
-            if (extras.getBoolean("isScreenRotated") == true) {
+            if (extras.getBoolean("isScreenRotated")) {
                 isScreenRotated = true;
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
             } else {
@@ -103,11 +115,50 @@ public class ActivityTechTouch extends WearableActivity {
                         return insets;
                     }
                 });
+
+                // Swipe Gesture Detection
+                gestureDetector = new GestureDetector(activity, new Swipe4DirectionsDetector() {
+
+                    @Override
+                    public void onTopSwipe() {
+                        final String latinChar = brailleDots.checkCurrentCharacter(false, false, false, false);
+                        Log.d("CHAR OUTPUT: ", latinChar);
+                        if (isTTSInitialized){
+                            tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                        }
+                        resultLetter.setText(latinChar);
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                resultLetter.setText("");
+                                brailleDots.toggleAllDotsOff();
+                            }
+                        }, 1200);
+                    }
+
+                    @Override
+                    public void onLeftSwipe() {
+
+                    }
+
+                    @Override
+                    public void onRightSwipe() {
+
+                    }
+
+                    @Override
+                    public void onBottomSwipe() {
+
+                    }
+                });
                 setTouchListener();
 
                 tv1 = (TextView) findViewById(R.id.tv1);
                 tv2 = (TextView) findViewById(R.id.tv2);
                 tv3 = (TextView) findViewById(R.id.tv3);
+                resultLetter = (TextView) findViewById(R.id.resultLetter);
 
                 if (!isStudy) {
                     tv1.setText("");
@@ -200,19 +251,22 @@ public class ActivityTechTouch extends WearableActivity {
 
     void setTouchListener() {
         mContainerView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
             public boolean onTouch(View v, MotionEvent event) {
                 twoFingersListener.onTouchEvent(event);
-
-                if (event.getActionMasked() == MotionEvent.ACTION_UP) {
-                    Log.d("CHAR OUTPUT: ", brailleDots.checkCurrentCharacter(false, false, false, false));
-                    tts.speak(brailleDots.checkCurrentCharacter(false, false, false, false), TextToSpeech.QUEUE_FLUSH, null, "Output");
-                    brailleDots.toggleAllDotsOff();
-                }
-
+                gestureDetector.onTouchEvent(event);
                 return true;
             }
         });
-
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+    }
 }

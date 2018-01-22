@@ -81,11 +81,13 @@ public class BrailleDots {
     }
 
     // Change dot visibility, regardless of it's current state.
-    public void setDotVisibility(int i, boolean value){
+    public void setDotVisibility(int i, boolean value) {
 
-        if (value == false)
-            ButtonDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
-        else {
+        if (value == false) {
+            ButtonDots[i].setTag(new Boolean(false));
+        ButtonDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
+        } else {
+            ButtonDots[i].setTag(new Boolean(true));
             ButtonDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_active));
         }
     }

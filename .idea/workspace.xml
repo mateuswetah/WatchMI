@@ -19,18 +19,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4ce1f277-6be9-47e3-8ba5-bca95ff8083d" name="Default" comment="initial commit">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechConnect.java" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechConnect.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPerkins.java" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPerkins.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPressure.java" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPressure.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSerial.java" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSerial.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSwipe.java" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSwipe.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechTouch.java" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechTouch.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/BrailleÉcran/BrailleDots.java" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/BrailleÉcran/BrailleDots.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/PerkinsTapDetector.java" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/PerkinsTapDetector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/Swipe8DirectionsDetector.java" afterPath="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/Swipe8DirectionsDetector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/res/drawable/braille_ecran_button.xml" afterPath="$PROJECT_DIR$/wear/src/main/res/drawable/braille_ecran_button.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/res/layout/activity_braille_core_square.xml" afterPath="$PROJECT_DIR$/wear/src/main/res/layout/activity_braille_core_square.xml" />
     </list>
     <ignored path="WatchMI.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,17 +55,9 @@
       <file leaf-file-name="ActivityTechTouch.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechTouch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
+            <state relative-caret-position="2538">
               <caret line="79" column="22" lean-forward="false" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2217#2585#0" expanded="true" />
-                <element signature="e#2584#2585#0" expanded="true" />
-                <element signature="e#4918#5198#0" expanded="true" />
-                <element signature="e#5197#5198#0" expanded="true" />
-                <element signature="e#10269#10545#0" expanded="true" />
-                <element signature="e#10544#10545#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -83,25 +65,10 @@
       <file leaf-file-name="ActivityTechConnect.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechConnect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
+            <state relative-caret-position="2397">
               <caret line="75" column="18" lean-forward="false" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
               <folding>
-                <element signature="e#2126#2364#0" expanded="true" />
-                <element signature="e#2363#2364#0" expanded="true" />
-                <element signature="e#3336#7818#0" expanded="true" />
-                <element signature="e#3611#3983#0" expanded="true" />
-                <element signature="e#3982#3983#0" expanded="true" />
-                <element signature="e#4740#7555#0" expanded="true" />
-                <element signature="e#7554#7555#0" expanded="true" />
-                <element signature="e#7817#7818#0" expanded="true" />
-                <element signature="e#7898#8594#0" expanded="true" />
-                <element signature="e#8593#8594#0" expanded="true" />
-                <element signature="e#8675#9518#0" expanded="true" />
-                <element signature="e#9517#9518#0" expanded="true" />
-                <element signature="e#15112#15967#0" expanded="true" />
-                <element signature="e#15619#15875#0" expanded="true" />
-                <element signature="e#15874#15875#0" expanded="true" />
-                <element signature="e#15966#15967#0" expanded="true" />
+                <element signature="imports" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -110,11 +77,9 @@
       <file leaf-file-name="ActivityTechSwipe.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSwipe.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
+            <state relative-caret-position="2350">
               <caret line="72" column="18" lean-forward="false" selection-start-line="72" selection-start-column="18" selection-end-line="72" selection-end-column="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -122,11 +87,10 @@
       <file leaf-file-name="ActivityTechSerial.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSerial.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
+            <state relative-caret-position="2538">
               <caret line="81" column="18" lean-forward="false" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="18" />
               <folding>
-                <element signature="e#2330#2568#0" expanded="true" />
-                <element signature="e#2567#2568#0" expanded="true" />
+                <element signature="imports" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -135,9 +99,13 @@
       <file leaf-file-name="ActivityTechPressure.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPressure.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
+            <state relative-caret-position="3760">
               <caret line="112" column="18" lean-forward="false" selection-start-line="112" selection-start-column="18" selection-end-line="112" selection-end-column="18" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#19194#19195#0" expanded="false" />
+                <element signature="e#19258#19259#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -145,11 +113,21 @@
       <file leaf-file-name="ActivityTechPerkins.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPerkins.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="78" column="18" lean-forward="false" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
+            <state relative-caret-position="284">
+              <caret line="336" column="32" lean-forward="true" selection-start-line="336" selection-start-column="32" selection-end-line="336" selection-end-column="32" />
               <folding>
                 <element signature="e#2191#2429#0" expanded="true" />
                 <element signature="e#2428#2429#0" expanded="true" />
+                <element signature="e#3435#7604#0" expanded="true" />
+                <element signature="e#3710#4082#0" expanded="true" />
+                <element signature="e#4081#4082#0" expanded="true" />
+                <element signature="e#7603#7604#0" expanded="true" />
+                <element signature="e#7684#8307#0" expanded="true" />
+                <element signature="e#8306#8307#0" expanded="true" />
+                <element signature="e#13152#13471#0" expanded="true" />
+                <element signature="e#13470#13471#0" expanded="true" />
+                <element signature="e#14254#14463#0" expanded="true" />
+                <element signature="e#14462#14463#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -158,8 +136,8 @@
       <file leaf-file-name="PerkinsTapDetector.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/PerkinsTapDetector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2790">
-              <caret line="86" column="54" lean-forward="false" selection-start-line="86" selection-start-column="54" selection-end-line="86" selection-end-column="54" />
+            <state relative-caret-position="-686">
+              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -167,14 +145,14 @@
       </file>
       <file leaf-file-name="activity_braille_core_square.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_braille_core_square.xml">
-          <provider selected="true" editor-type-id="android-designer2">
-            <state />
-          </provider>
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="4050">
+            <state relative-caret-position="4230">
               <caret line="90" column="8" lean-forward="false" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
               <folding />
             </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
           </provider>
         </entry>
       </file>
@@ -2749,13 +2727,13 @@
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/Swipe8DirectionsDetector.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/BrailleÉcran/BrailleDots.java" />
         <option value="$PROJECT_DIR$/wear/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/PerkinsTapDetector.java" />
         <option value="$PROJECT_DIR$/wear/src/main/res/drawable/braille_ecran_button.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechTouch.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechConnect.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSwipe.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSerial.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPressure.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/PerkinsTapDetector.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPerkins.java" />
       </list>
     </option>
@@ -2781,125 +2759,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WearableBraille" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wear" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WearableBraille" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wear" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WearableBraille" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wear" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WearableBraille" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wear" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WearableBraille" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wear" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wearablebraille" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WearableBraille" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wear" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wearablebraille" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BrailleÉcran" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WearableBraille" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wear" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manifests" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidManifestsGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2924,6 +2783,49 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="wear" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WearableBraille" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wear" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WearableBraille" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wear" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wearablebraille" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WearableBraille" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mobile" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -2960,18 +2862,18 @@
     <property name="sync.plugin.last.upgrade.timestamp" value="1516293183074" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="mateuswetah.wearablebraille" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="mateuswetah.wearablebraille" />
-      <recent name="hsyeo.watchmi" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille" />
       <recent name="$PROJECT_DIR$/wear/src/main/res/drawable" />
       <recent name="C:\Users\TcBoY-6900\Desktop\WatchMI\wear\src\main\res\layout" />
       <recent name="C:\Users\TcBoY-6900\Desktop\WatchMI\wear\src\main\res\layout-notround" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="mateuswetah.wearablebraille" />
+      <recent name="hsyeo.watchmi" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="mateuswetah.wearablebraille" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -3057,7 +2959,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516586145594" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516751713658" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -3105,7 +3007,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516586145594" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516751713658" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -3288,7 +3190,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516586145596" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516751713668" />
       </method>
     </configuration>
     <configuration default="false" name="wear" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
@@ -3337,7 +3239,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516586145596" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516751713668" />
       </method>
     </configuration>
     <list size="2">
@@ -3401,29 +3303,27 @@
     <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32841823" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.51970184" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41018766" sideWeight="0.49201277" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34517425" sideWeight="0.4958632" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20218228" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32951483" sideWeight="0.4958632" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.51970184" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3558981" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32951483" sideWeight="0.4958632" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32841823" sideWeight="0.4802982" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41018766" sideWeight="0.49201277" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.50165325" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20346598" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.4958632" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17522465" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -3433,6 +3333,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20218228" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.4958632" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3519,23 +3421,23 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/custom_item.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="18" column="35" lean-forward="false" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_demo_file_explorer.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_demo_file_explorer.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="750">
           <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/Constants.java">
@@ -3560,23 +3462,23 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mobile/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="6" column="45" lean-forward="false" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
+      <provider editor-type-id="android-designer2">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
         </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityAppsClock.java">
@@ -3629,14 +3531,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_select_apps.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="623">
           <caret line="34" column="36" lean-forward="false" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/BrailleÉcran/Dots.java">
@@ -3691,24 +3593,24 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_select_tech.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1054">
           <caret line="92" column="38" lean-forward="false" selection-start-line="92" selection-start-column="37" selection-end-line="92" selection-end-column="38" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_braille_core_stub.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_braille_core_stub.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/SerialTapDetector.java">
@@ -3772,19 +3674,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-472">
           <caret line="6" column="45" lean-forward="false" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_braille_core_circle.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="6435">
           <caret line="143" column="19" lean-forward="false" selection-start-line="143" selection-start-column="19" selection-end-line="143" selection-end-column="19" />
           <folding />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/Swipe8DirectionsDetector.java">
@@ -3796,14 +3697,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_braille_core_square.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="4050">
+        <state relative-caret-position="4230">
           <caret line="90" column="8" lean-forward="false" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
           <folding />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/BrailleÉcran/BrailleDots.java">
@@ -3815,31 +3716,28 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/res/drawable/braille_ecran_button.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="638">
           <caret line="25" column="32" lean-forward="false" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer2">
+      <provider editor-type-id="android-designer2">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="2790">
           <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
+      <provider selected="true" editor-type-id="android-designer2">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
@@ -3848,92 +3746,83 @@
           </folding>
         </state>
       </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechTouch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
+        <state relative-caret-position="2538">
           <caret line="79" column="22" lean-forward="false" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2217#2585#0" expanded="true" />
-            <element signature="e#2584#2585#0" expanded="true" />
-            <element signature="e#4918#5198#0" expanded="true" />
-            <element signature="e#5197#5198#0" expanded="true" />
-            <element signature="e#10269#10545#0" expanded="true" />
-            <element signature="e#10544#10545#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechConnect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
+        <state relative-caret-position="2397">
           <caret line="75" column="18" lean-forward="false" selection-start-line="75" selection-start-column="18" selection-end-line="75" selection-end-column="18" />
           <folding>
-            <element signature="e#2126#2364#0" expanded="true" />
-            <element signature="e#2363#2364#0" expanded="true" />
-            <element signature="e#3336#7818#0" expanded="true" />
-            <element signature="e#3611#3983#0" expanded="true" />
-            <element signature="e#3982#3983#0" expanded="true" />
-            <element signature="e#4740#7555#0" expanded="true" />
-            <element signature="e#7554#7555#0" expanded="true" />
-            <element signature="e#7817#7818#0" expanded="true" />
-            <element signature="e#7898#8594#0" expanded="true" />
-            <element signature="e#8593#8594#0" expanded="true" />
-            <element signature="e#8675#9518#0" expanded="true" />
-            <element signature="e#9517#9518#0" expanded="true" />
-            <element signature="e#15112#15967#0" expanded="true" />
-            <element signature="e#15619#15875#0" expanded="true" />
-            <element signature="e#15874#15875#0" expanded="true" />
-            <element signature="e#15966#15967#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSwipe.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
+        <state relative-caret-position="2350">
           <caret line="72" column="18" lean-forward="false" selection-start-line="72" selection-start-column="18" selection-end-line="72" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechSerial.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
+        <state relative-caret-position="2538">
           <caret line="81" column="18" lean-forward="false" selection-start-line="81" selection-start-column="18" selection-end-line="81" selection-end-column="18" />
           <folding>
-            <element signature="e#2330#2568#0" expanded="true" />
-            <element signature="e#2567#2568#0" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPressure.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
+        <state relative-caret-position="3760">
           <caret line="112" column="18" lean-forward="false" selection-start-line="112" selection-start-column="18" selection-end-line="112" selection-end-column="18" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#19194#19195#0" expanded="false" />
+            <element signature="e#19258#19259#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/PerkinsTapDetector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2790">
-          <caret line="86" column="54" lean-forward="false" selection-start-line="86" selection-start-column="54" selection-end-line="86" selection-end-column="54" />
+        <state relative-caret-position="-686">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/mateuswetah/wearablebraille/ActivityTechPerkins.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="78" column="18" lean-forward="false" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
+        <state relative-caret-position="284">
+          <caret line="336" column="32" lean-forward="true" selection-start-line="336" selection-start-column="32" selection-end-line="336" selection-end-column="32" />
           <folding>
             <element signature="e#2191#2429#0" expanded="true" />
             <element signature="e#2428#2429#0" expanded="true" />
+            <element signature="e#3435#7604#0" expanded="true" />
+            <element signature="e#3710#4082#0" expanded="true" />
+            <element signature="e#4081#4082#0" expanded="true" />
+            <element signature="e#7603#7604#0" expanded="true" />
+            <element signature="e#7684#8307#0" expanded="true" />
+            <element signature="e#8306#8307#0" expanded="true" />
+            <element signature="e#13152#13471#0" expanded="true" />
+            <element signature="e#13470#13471#0" expanded="true" />
+            <element signature="e#14254#14463#0" expanded="true" />
+            <element signature="e#14462#14463#0" expanded="true" />
           </folding>
         </state>
       </provider>

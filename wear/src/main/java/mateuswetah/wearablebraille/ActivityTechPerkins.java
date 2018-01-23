@@ -333,8 +333,9 @@ public class ActivityTechPerkins extends WearableActivity{
     void switchPerkinsColumn() {
 
         perkinsColumnLeft = !perkinsColumnLeft;
-
+        toneGenerator.startTone(ToneGenerator.TONE_CDMA_ABBR_REORDER);
         if (perkinsColumnLeft) {
+
             activity.findViewById(R.id.perkins_column_1).setBackgroundResource(R.drawable.braille_ecran_button);
             activity.findViewById(R.id.perkins_column_2).setBackground(null);
 

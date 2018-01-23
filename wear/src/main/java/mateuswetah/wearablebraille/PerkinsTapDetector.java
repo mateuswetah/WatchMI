@@ -22,14 +22,23 @@ public abstract class PerkinsTapDetector {
             case MotionEvent.ACTION_POINTER_UP:
                 if(event.getPointerCount() == 2) {
 
-                    float x = event.getX();
+                    MotionEvent.PointerCoords pointerCoords1 = new MotionEvent.PointerCoords();
+                    MotionEvent.PointerCoords pointerCoords2 = new MotionEvent.PointerCoords();
+                    event.getPointerCoords(0,pointerCoords1);
+                    event.getPointerCoords(1,pointerCoords2);
+
+                    float y1 = pointerCoords1.y;
+                    float y2 = pointerCoords2.y;
+
                     final int line;
-                    if (x < width/3) {
-                        line = 1;
-                    } else if (x > (width/3)*2) {
-                        line = 3;
-                    } else {
+                    if (y2 - y1 > (width/5)*3) { // User has two fingers separate enough
                         line = 2;
+                    } else {
+                        if (y2 < (width/3)*2) {
+                            line = 1;
+                        } else {
+                            line = 3;
+                        }
                     }
 
                     onPerkinsDoubleTap(line);
@@ -47,11 +56,11 @@ public abstract class PerkinsTapDetector {
 
             case MotionEvent.ACTION_UP:
 
-                float x = event.getX();
+                float y = event.getY();
                 final int line;
-                if (x < width/3) {
+                if (y < width/3) {
                     line = 1;
-                } else if (x > (width/3)*2) {
+                } else if (y > (width/3)*2) {
                     line = 3;
                 } else {
                     line = 2;

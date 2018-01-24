@@ -2,9 +2,9 @@
 
 **UNDER DEVELOPMENT**
 
-Wearable Braille input prototypes with different interaction methods. This project holds Braille Input layouts to be tested on a Smartwatch. Only Tech Items are working so far.
+Wearable Braille input prototypes with different interaction methods. This project holds Braille Input layouts to be tested on a Smartwatch.
 
-So far **User Study** and **Demo Apps** sessions are not implemented. In **Just Try** session, 4 input methods can be found:
+So far **User Study** and **Demo Apps** sessions are not implemented. In **Just Try** session, 6 input methods can be found:
  - _Touch_: Simple buttons layout, similar to [BraillÉcran](https://github.com/mateuswetah/BrailleEcran)'s logic.
  - _Swipe_: Directional implementation. Swiping from any point of the screen to a certain direction activates the Button arranged into that direction.
  - _Connect_: Based on IPPITSU and [SwiftBraille](http://en.swiftbraille.com/). Allows connecting dots to compose the braille cell on finger release.

@@ -47,9 +47,6 @@ public class BrailleDots {
     private int nSymbols = 50; // Number of symbols listed in the XML
 
     // Constructor
-    public BrailleDots(WearableActivity activity) {
-        new BrailleDots(activity, false);
-    }
 
     // Constructor
     public BrailleDots(WearableActivity activity, boolean reversedLines) {
@@ -80,6 +77,10 @@ public class BrailleDots {
         for (int i = 0; i < nSymbols; i++) {
             SummedValueDots.add(DotsList.get(i).getSumValue());
         }
+    }
+
+    public BrailleDots(WearableActivity activity) {
+       this(activity, false);
     }
 
     // Appear or disappear with the Dots
@@ -330,7 +331,6 @@ public class BrailleDots {
                     default:
                         latimOutput = "In";
                         break;
-
                 }
             }
 

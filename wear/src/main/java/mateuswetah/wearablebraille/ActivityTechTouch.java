@@ -42,6 +42,7 @@ public class ActivityTechTouch extends WearableActivity {
     // Touch Listeners
     TwoFingersDoubleTapDetector twoFingersListener;
     private View.OnClickListener dotClickListener;
+    private View.OnLongClickListener dotLongClickListener;
 
     // Feedback Tools
     private TextToSpeech tts;
@@ -136,17 +137,14 @@ public class ActivityTechTouch extends WearableActivity {
 
                     @Override
                     public void onLeftSwipe() {
-
                     }
 
                     @Override
                     public void onRightSwipe() {
-
                     }
 
                     @Override
                     public void onBottomSwipe() {
-
                     }
                 });
                 setTouchListener();
@@ -199,9 +197,47 @@ public class ActivityTechTouch extends WearableActivity {
                     }
                 };
 
+                dotLongClickListener = new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+
+                        int currentButton = v.getId();
+
+                        switch (currentButton) {
+
+                            case R.id.dotButton1:
+                                brailleDots.toggleDotVisibility(0);
+                                brailleDots.toggleDotVisibility(3);
+                                break;
+                            case R.id.dotButton4:
+                                brailleDots.toggleDotVisibility(0);
+                                brailleDots.toggleDotVisibility(3);
+                                break;
+                            case R.id.dotButton2:
+                                brailleDots.toggleDotVisibility(1);
+                                brailleDots.toggleDotVisibility(4);
+                                break;
+                            case R.id.dotButton5:
+                                brailleDots.toggleDotVisibility(1);
+                                brailleDots.toggleDotVisibility(4);
+                                break;
+                            case R.id.dotButton3:
+                                brailleDots.toggleDotVisibility(2);
+                                brailleDots.toggleDotVisibility(5);
+                                break;
+                            case R.id.dotButton6:
+                                brailleDots.toggleDotVisibility(2);
+                                brailleDots.toggleDotVisibility(5);
+                                break;
+                        }
+                        return true;
+                    }
+                };
+
                 // Associate OnClick and OnLongClick listeners to ButtonDots.
                 for (int i = 0; i < brailleDots.ButtonDots.length; i++) {
                     brailleDots.ButtonDots[i].setOnClickListener(dotClickListener);
+                    brailleDots.ButtonDots[i].setOnLongClickListener(dotLongClickListener);
                 }
             }
         });

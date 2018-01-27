@@ -56,6 +56,7 @@ public class ActivityTechSerial extends WearableActivity{
     boolean isStudy = false;
     boolean isScreenRotated = false;
     boolean reset = false;
+    boolean onResultExibition = false;
 
     // Serial Input Control
     int serialLine = 0;
@@ -184,6 +185,7 @@ public class ActivityTechSerial extends WearableActivity{
             }
         };
 
+        // Obtain Windows dimensions for SerialTapDetector
         Point dimensions = new Point();
         getWindowManager().getDefaultDisplay().getSize(dimensions);
         windowWidth = dimensions.x;
@@ -251,9 +253,11 @@ public class ActivityTechSerial extends WearableActivity{
     void setTouchListener() {
         mContainerView.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
-                twoFingersListener.onTouchEvent(event);
-                if (!gestureDetector.onTouchEvent(event))
-                    serialTapDetector.onTouchEvent(event);
+                if (!onResultExibition) {
+                    twoFingersListener.onTouchEvent(event);
+                    if (!gestureDetector.onTouchEvent(event))
+                        serialTapDetector.onTouchEvent(event);
+                }
                 return true;
             }
         });
@@ -274,6 +278,7 @@ public class ActivityTechSerial extends WearableActivity{
                 Log.d("CHAR OUTPUT: ", latinChar);
                 resultLetter.setText(latinChar);
                 tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                onResultExibition = true;
 
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -284,8 +289,9 @@ public class ActivityTechSerial extends WearableActivity{
                         activity.findViewById(R.id.serial_line_3).setBackground(null);
                         brailleDots.toggleAllDotsOff();
                         resultLetter.setText("");
+                        onResultExibition = false;
                     }
-                }, 1500);
+                }, 1300);
                 break;
             case 1:
                 activity.findViewById(R.id.serial_line_2).setBackgroundResource(R.drawable.braille_ecran_button);

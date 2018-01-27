@@ -11,7 +11,7 @@ import android.view.MotionEvent;
 public abstract class Swipe8DirectionsDetector extends GestureDetector.SimpleOnGestureListener {
 
     private static final String LOGTAG = "SWIPE";
-    private static final int SWIPE_MIN_DISTANCE = 100;
+    private static final int SWIPE_MIN_DISTANCE = 50;
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2,

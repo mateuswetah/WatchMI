@@ -32,7 +32,7 @@ public abstract class SerialTapDetector {
                         public void run() {
                             doubleTapApplied = false;
                         }
-                    }, 1000);
+                    }, 100);
                     return false;
                 }
                 break;
@@ -46,7 +46,7 @@ public abstract class SerialTapDetector {
 
                     waitForDoubleSingleTap = true;
 
-                    // 800ms of opportunity to perform a double tap composed by two single taps
+                    // 10ms of opportunity to perform a double tap composed by two single taps
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
@@ -56,11 +56,13 @@ public abstract class SerialTapDetector {
                             else
                                 onSerialSingleTap(isRightSide);
                             waitForDoubleSingleTap = false;
+
                         }
-                    }, 800);
+                    }, 10);
                 }
                 return true;
-
+            case MotionEvent.ACTION_MOVE:
+                break;
             case MotionEvent.ACTION_CANCEL:
                 break;
         }

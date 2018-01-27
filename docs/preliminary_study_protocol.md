@@ -11,7 +11,7 @@ Volunteer's information collection
 
 Explanation of project's motivation, hypothesis and ideas
 
-###Prototypes feedback first contact
+### Prototypes feedback first contact
 
 Demonstration of each of the proposed configurations on the Touch prototype:
 
@@ -33,7 +33,8 @@ For each of the six prototypes, allow free interaction/exploration. Identify and
 
 Ask the volunteer to type, for each prototype, the words:
 
-- ?
+- His/her name
+- ? 
 - ?
 - ?
 

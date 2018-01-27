@@ -52,10 +52,8 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
     private SensorManager mSensorManager;
     private Sensor mSensor;
 
-    // Vibrations generator for feedbacks
-    private Vibrator vibrator;
+    // TextToSpeech for Feedbacks
     private TextToSpeech tts;
-    private ToneGenerator toneGenerator;
 
     //Flags
     boolean started = false;
@@ -104,8 +102,7 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
 
         this.activity = this;
 
-        // Sets the Vibrator, TextToSpeech and ToneGenerator for Feedback
-        vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+        // Sets TextToSpeech for Feedback
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int i) {
@@ -113,8 +110,6 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
                 //tts.setLanguage(Locale.ENGLISH);
             }
         });
-        tts.setLanguage(Locale.ENGLISH);
-        toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, ToneGenerator.MAX_VOLUME);
 
         WatchViewStub stub = (WatchViewStub) findViewById(R.id.stub);
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
@@ -177,8 +172,8 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
                 resultLetter = (TextView) findViewById(R.id.resultLetter);
 
                 if (!isStudy) {
-                    tv1.setText("PRESS on any side of screen (near the edge) with varying pressure!");
-                    tv3.setText("double tap with 2 fingers to exit");
+                    //tv1.setText("PRESS on any side of screen (near the edge) with varying pressure!");
+                    //tv3.setText("double tap with 2 fingers to exit");
                 } else {
                     InitTrials();
                     SetNextTrial();
@@ -320,54 +315,42 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
                 if (this.isViewContains(brailleDots.ButtonDots[0], diffX*Constants.MAGIC_XY + drawView.halfScreen, diffY*Constants.MAGIC_XY + drawView.halfScreen)) {
                     Log.d("BUTTON 0", "ENTER REGION!");
                     if (this.isActivated == false) {
-                        vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(0);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_0, 100);
                         this.brailleDots.ButtonDots[0].callOnClick();
                         this.isActivated = true;
                     }
                 } else if (this.isViewContains(brailleDots.ButtonDots[1], diffX*Constants.MAGIC_XY + drawView.halfScreen, diffY*Constants.MAGIC_XY + drawView.halfScreen)) {
                     Log.d("BUTTON 1", "ENTER REGION!");
                     if (this.isActivated == false) {
-                        vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(1);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100);
                         this.brailleDots.ButtonDots[1].callOnClick();
                         this.isActivated = true;
                     }
                 } else if (this.isViewContains(brailleDots.ButtonDots[2], diffX*Constants.MAGIC_XY + drawView.halfScreen, diffY*Constants.MAGIC_XY + drawView.halfScreen)) {
                     Log.d("BUTTON 2", "ENTER REGION!");
                     if (this.isActivated == false) {
-                        vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(2);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_2, 100);
                         this.brailleDots.ButtonDots[2].callOnClick();
                         this.isActivated = true;
                     }
                 } else if (this.isViewContains(brailleDots.ButtonDots[3], diffX*Constants.MAGIC_XY + drawView.halfScreen, diffY*Constants.MAGIC_XY + drawView.halfScreen)) {
                     Log.d("BUTTON 3", "ENTER REGION!");
                     if (this.isActivated == false) {
-                        vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(3);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_3, 100);
                         this.brailleDots.ButtonDots[3].callOnClick();
                         this.isActivated = true;
                     }
                 } else if (this.isViewContains(brailleDots.ButtonDots[4], diffX*Constants.MAGIC_XY + drawView.halfScreen, diffY*Constants.MAGIC_XY + drawView.halfScreen)) {
                     Log.d("BUTTON 4", "ENTER REGION!");
                     if (this.isActivated == false) {
-                        vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(4);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_4, 100);
                         this.brailleDots.ButtonDots[4].callOnClick();
                         this.isActivated = true;
                     }
                 } else if (this.isViewContains(brailleDots.ButtonDots[5], diffX*Constants.MAGIC_XY + drawView.halfScreen, diffY*Constants.MAGIC_XY + drawView.halfScreen)) {
                     Log.d("BUTTON 5", "ENTER REGION!");
                     if (this.isActivated == false) {
-                        vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(5);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_5, 100);
                         this.brailleDots.ButtonDots[5].callOnClick();
                         this.isActivated = true;
                     }
@@ -517,6 +500,7 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        this.brailleDots.freeTTSService();
         tts.shutdown();
     }
 }

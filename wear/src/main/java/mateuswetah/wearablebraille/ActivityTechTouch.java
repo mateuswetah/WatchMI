@@ -44,9 +44,7 @@ public class ActivityTechTouch extends WearableActivity {
     private View.OnClickListener dotClickListener;
 
     // Feedback Tools
-    private Vibrator vibrator;
     private TextToSpeech tts;
-    private ToneGenerator toneGenerator;
 
     //Flags
     boolean started = false;
@@ -69,8 +67,7 @@ public class ActivityTechTouch extends WearableActivity {
         setContentView(R.layout.activity_braille_core_stub);
         this.activity = this;
 
-        // Sets the Vibrator, TextToSpeech and ToneGenerator for Feedback
-        vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+        // Sets TextToSpeech for feedback
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -81,7 +78,6 @@ public class ActivityTechTouch extends WearableActivity {
                 }
             }
         });
-        toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, ToneGenerator.MAX_VOLUME);
 
         // Checks if view is in test mode
         Bundle extras = getIntent().getExtras();
@@ -183,43 +179,23 @@ public class ActivityTechTouch extends WearableActivity {
 
                             case R.id.dotButton1:
                                 brailleDots.toggleDotVisibility(0);
-                                vibrator.vibrate(new long[]{0,50}, -1);
-                                toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100);
-//                            tts.speak("1", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 1");
                                 break;
                             case R.id.dotButton4:
-                                vibrator.vibrate(new long[]{0,50,30,50,30,50,30,50},-1);
                                 brailleDots.toggleDotVisibility(3);
-                                toneGenerator.startTone(ToneGenerator.TONE_DTMF_4, 100);
-//                        tts.speak("4", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 4");
                                 break;
                             case R.id.dotButton2:
-                                vibrator.vibrate(new long[]{0,50,30,50},-1);
                                 brailleDots.toggleDotVisibility(1);
-                                toneGenerator.startTone(ToneGenerator.TONE_DTMF_2, 100);
-//                        tts.speak("2", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 2");
                                 break;
                             case R.id.dotButton5:
-                                vibrator.vibrate(new long[]{0,50,30,50,30,50,30,50,30,50},-1);
                                 brailleDots.toggleDotVisibility(4);
-                                toneGenerator.startTone(ToneGenerator.TONE_DTMF_5, 100);
-//                        tts.speak("5", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 5");
                                 break;
                             case R.id.dotButton3:
-                                vibrator.vibrate(new long[]{0,50,30,50,30,50},-1);
                                 brailleDots.toggleDotVisibility(2);
-                                toneGenerator.startTone(ToneGenerator.TONE_DTMF_3, 100);
-//                        tts.speak("3", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 3");
                                 break;
                             case R.id.dotButton6:
-                                vibrator.vibrate(new long[]{0,50,25,50,25,50,25,50,25,50},-1);
                                 brailleDots.toggleDotVisibility(5);
-                                toneGenerator.startTone(ToneGenerator.TONE_DTMF_6, 100);
-//                        tts.speak("6", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 6");
                                 break;
                         }
-
-
                     }
                 };
 
@@ -263,7 +239,7 @@ public class ActivityTechTouch extends WearableActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        this.brailleDots.freeTTSService();
         if (tts != null) {
             tts.stop();
             tts.shutdown();

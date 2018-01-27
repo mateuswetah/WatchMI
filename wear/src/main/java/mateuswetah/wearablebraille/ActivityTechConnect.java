@@ -45,10 +45,8 @@ public class ActivityTechConnect extends WearableActivity {
     TwoFingersDoubleTapDetector twoFingersListener;
     private View.OnClickListener dotClickListener;
 
-    // Vibrations generator for feedbacks
-    private Vibrator vibrator;
+    // TextToSpeech for feedback
     private TextToSpeech tts;
-    private ToneGenerator toneGenerator;
 
     //Flags
     boolean started = false;
@@ -67,8 +65,7 @@ public class ActivityTechConnect extends WearableActivity {
         setContentView(R.layout.activity_braille_core_stub);
         this.activity = this;
 
-        // Sets the Vibrator, TextToSpeech and ToneGenerator for Feedback
-        vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+        // Sets TextToSpeech for Feedback
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int i) {
@@ -76,8 +73,6 @@ public class ActivityTechConnect extends WearableActivity {
                 //tts.setLanguage(Locale.ENGLISH);
             }
         });
-
-        toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, ToneGenerator.MAX_VOLUME);
 
         // Checks if view is in test mode
         Bundle extras = getIntent().getExtras();
@@ -141,42 +136,23 @@ public class ActivityTechConnect extends WearableActivity {
 
                             case R.id.dotButton1:
                                 brailleDots.toggleDotVisibility(0);
-                                vibrator.vibrate(new long[]{0,50}, -1);
-                                toneGenerator.startTone(ToneGenerator.TONE_DTMF_0, 100);
-//                        tts.speak("1", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 1");
                                 break;
                             case R.id.dotButton4:
-                                vibrator.vibrate(new long[]{0,50,30,50,30,50,30,50},-1);
                                 brailleDots.toggleDotVisibility(3);
-                                toneGenerator.startTone(ToneGenerator.TONE_DTMF_3, 100);
-//                        tts.speak("4", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 4");
                                 break;
                             case R.id.dotButton2:
-                                vibrator.vibrate(new long[]{0,50,30,50},-1);
                                 brailleDots.toggleDotVisibility(1);
-                                toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100);
-//                        tts.speak("2", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 2");
                                 break;
                             case R.id.dotButton5:
-                                vibrator.vibrate(new long[]{0,50,30,50,30,50,30,50,30,50},-1);
                                 brailleDots.toggleDotVisibility(4);
-                                toneGenerator.startTone(ToneGenerator.TONE_DTMF_4, 100);
-//                        tts.speak("5", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 5");
                                 break;
                             case R.id.dotButton3:
-                                vibrator.vibrate(new long[]{0,50,30,50,30,50},-1);
                                 brailleDots.toggleDotVisibility(2);
-                                toneGenerator.startTone(ToneGenerator.TONE_DTMF_2, 100);
-//                        tts.speak("3", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 3");
                                 break;
                             case R.id.dotButton6:
-                                vibrator.vibrate(new long[]{0,50,25,50,25,50,25,50,25,50},-1);
                                 brailleDots.toggleDotVisibility(5);
-                                toneGenerator.startTone(ToneGenerator.TONE_DTMF_5, 100);
-//                        tts.speak("6", TextToSpeech.QUEUE_FLUSH, "Mensagem do botão 6");
                                 break;
                         }
-
                     }
                 };
 
@@ -239,52 +215,40 @@ public class ActivityTechConnect extends WearableActivity {
         checkOutput = false;
 
         if (this.isViewContains(brailleDots.ButtonDots[0], x, y)) {
-            //Log.d("BUTTON 0", "ENTER REGION!");
             if ((Boolean)(brailleDots.ButtonDots[0].getTag()) == false) {
-                vibrator.vibrate(100);
                 brailleDots.toggleDotVisibility(0);
-                toneGenerator.startTone(ToneGenerator.TONE_DTMF_0, 100);
                 this.brailleDots.ButtonDots[0].callOnClick();
             }
         } else if (this.isViewContains(brailleDots.ButtonDots[1], x, y)) {
             //Log.d("BUTTON 1", "ENTER REGION!");
             if ((Boolean)(brailleDots.ButtonDots[1].getTag()) == false) {
-                vibrator.vibrate(100);
                 brailleDots.toggleDotVisibility(1);
-                toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100);
                 this.brailleDots.ButtonDots[1].callOnClick();
             }
         } else if (this.isViewContains(brailleDots.ButtonDots[2], x, y)) {
             //Log.d("BUTTON 2", "ENTER REGION!");
             if ((Boolean)(brailleDots.ButtonDots[2].getTag()) == false) {
-                vibrator.vibrate(100);
                 brailleDots.toggleDotVisibility(2);
                 this.brailleDots.ButtonDots[2].callOnClick();
             }
         } else if (this.isViewContains(brailleDots.ButtonDots[3], x, y)) {
             //Log.d("BUTTON 3", "ENTER REGION!");
             if ((Boolean)(brailleDots.ButtonDots[3].getTag()) == false) {
-                vibrator.vibrate(100);
                 brailleDots.toggleDotVisibility(3);
-                toneGenerator.startTone(ToneGenerator.TONE_DTMF_3, 100);
                 this.brailleDots.ButtonDots[3].callOnClick();
             }
 
         } else if (this.isViewContains(brailleDots.ButtonDots[4], x, y)) {
             //Log.d("BUTTON 4", "ENTER REGION!");
             if ((Boolean)(brailleDots.ButtonDots[4].getTag()) == false) {
-                vibrator.vibrate(100);
                 brailleDots.toggleDotVisibility(4);
-                toneGenerator.startTone(ToneGenerator.TONE_DTMF_4, 100);
                 this.brailleDots.ButtonDots[4].callOnClick();
             }
 
         } else if (this.isViewContains(brailleDots.ButtonDots[5], x, y)) {
             //Log.d("BUTTON 5", "ENTER REGION!");
             if ((Boolean)(brailleDots.ButtonDots[5].getTag()) == false) {
-                vibrator.vibrate(100);
                 brailleDots.toggleDotVisibility(5);
-                toneGenerator.startTone(ToneGenerator.TONE_DTMF_5, 100);
                 this.brailleDots.ButtonDots[5].callOnClick();
             }
 
@@ -293,57 +257,45 @@ public class ActivityTechConnect extends WearableActivity {
     }
     private void touch_move(float x, float y)
     {
-        Log.d("MOVE", "MOVING");
+        //Log.d("MOVE", "MOVING");
         checkOutput = false;
 
         if (this.isViewContains(brailleDots.ButtonDots[0], x, y)) {
             //Log.d("BUTTON 0", "ENTER REGION!");
             if ((Boolean)(brailleDots.ButtonDots[0].getTag()) == false) {
-                vibrator.vibrate(100);
                 brailleDots.toggleDotVisibility(0);
-                toneGenerator.startTone(ToneGenerator.TONE_DTMF_0, 100);
                 this.brailleDots.ButtonDots[0].callOnClick();
             }
         } else if (this.isViewContains(brailleDots.ButtonDots[1], x, y)) {
             //Log.d("BUTTON 1", "ENTER REGION!");
             if ((Boolean)(brailleDots.ButtonDots[1].getTag()) == false) {
-                vibrator.vibrate(100);
                 brailleDots.toggleDotVisibility(1);
-                toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100);
                 this.brailleDots.ButtonDots[1].callOnClick();
             }
         } else if (this.isViewContains(brailleDots.ButtonDots[2], x, y)) {
             //Log.d("BUTTON 2", "ENTER REGION!");
             if ((Boolean)(brailleDots.ButtonDots[2].getTag()) == false) {
-                vibrator.vibrate(100);
                 brailleDots.toggleDotVisibility(2);
-                toneGenerator.startTone(ToneGenerator.TONE_DTMF_2, 100);
                 this.brailleDots.ButtonDots[2].callOnClick();
             }
         } else if (this.isViewContains(brailleDots.ButtonDots[3], x, y)) {
             //Log.d("BUTTON 3", "ENTER REGION!");
             if ((Boolean)(brailleDots.ButtonDots[3].getTag()) == false) {
-                vibrator.vibrate(100);
                 brailleDots.toggleDotVisibility(3);
-                toneGenerator.startTone(ToneGenerator.TONE_DTMF_3, 100);
                 this.brailleDots.ButtonDots[3].callOnClick();
             }
 
         } else if (this.isViewContains(brailleDots.ButtonDots[4], x, y)) {
             //Log.d("BUTTON 4", "ENTER REGION!");
             if ((Boolean)(brailleDots.ButtonDots[4].getTag()) == false) {
-                vibrator.vibrate(100);
                 brailleDots.toggleDotVisibility(4);
-                toneGenerator.startTone(ToneGenerator.TONE_DTMF_4, 100);
                 this.brailleDots.ButtonDots[4].callOnClick();
             }
 
         } else if (this.isViewContains(brailleDots.ButtonDots[5], x, y)) {
             //Log.d("BUTTON 5", "ENTER REGION!");
             if ((Boolean)(brailleDots.ButtonDots[5].getTag()) == false) {
-                vibrator.vibrate(100);
                 brailleDots.toggleDotVisibility(5);
-                toneGenerator.startTone(ToneGenerator.TONE_DTMF_5, 100);
                 this.brailleDots.ButtonDots[5].callOnClick();
             }
 
@@ -351,7 +303,7 @@ public class ActivityTechConnect extends WearableActivity {
     }
     private void touch_up()
     {
-        Log.d("MOVE", "DONE");
+        //Log.d("MOVE", "DONE");
         checkOutput = true;
 
         final Handler handler = new Handler();
@@ -435,6 +387,7 @@ public class ActivityTechConnect extends WearableActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        this.brailleDots.freeTTSService();
         tts.shutdown();
     }
 

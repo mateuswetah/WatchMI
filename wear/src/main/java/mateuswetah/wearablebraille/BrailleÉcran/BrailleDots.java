@@ -1,5 +1,11 @@
 package mateuswetah.wearablebraille.BrailleÉcran;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
+import android.os.Vibrator;
+import android.speech.tts.TextToSpeech;
 import android.support.wearable.activity.WearableActivity;
 import android.util.Log;
 import android.widget.ImageButton;
@@ -23,14 +29,49 @@ public class BrailleDots {
     // List of 44 Dots Objects, that hold the information read from XML
     private List<Dots> DotsList;
 
-    private WearableActivity activity;
+    // Tone Generator, Vibrator and TextToSpeech for feedback
+    private ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, ToneGenerator.MAX_VOLUME);
+    private Vibrator vibrator = null;
+    private TextToSpeech dotTTS;
 
+    // Access to database for loading settings
+    public static final String PREFS_NAME = "SettingsFile";
+    public SharedPreferences settings;
+
+    // Flags to deal with feedback
+    boolean useVibrationPatterns = true;
+    boolean useToneGenerator = true;
+    boolean useDotNumberSpeaker = false;
+
+    private WearableActivity activity;
     private int nSymbols = 50; // Number of symbols listed in the XML
 
     // Constructor
     public BrailleDots(WearableActivity activity) {
+        new BrailleDots(activity, false);
+    }
+
+    // Constructor
+    public BrailleDots(WearableActivity activity, boolean reversedLines) {
 
         this.activity = activity;
+
+        // Associate view elements
+        this.createDotButtons(reversedLines);
+
+        // Sets tts and vibration service
+        vibrator = (Vibrator) this.activity.getSystemService(Context.VIBRATOR_SERVICE);
+        dotTTS = new TextToSpeech(this.activity, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int i) {
+                Log.d("TTS", "TextToSpeech Service Initialized");
+                //tts.setLanguage(Locale.ENGLISH);
+            }
+        });
+
+        // Sets Data Storage
+        settings = activity.getSharedPreferences(PREFS_NAME, 0);
+        this.loadSettings();
 
         // Uses the XMLPullParser to fill the Dots list with Dots Objects
         DotsList = DotsXMLPullParser.getStaticDotsFromFile(activity);
@@ -39,43 +80,16 @@ public class BrailleDots {
         for (int i = 0; i < nSymbols; i++) {
             SummedValueDots.add(DotsList.get(i).getSumValue());
         }
-
-        ButtonDots[0] = (ImageButton) activity.findViewById(R.id.dotButton1);
-        ButtonDots[0].setTag(new Boolean(false));
-        ButtonDots[0].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
-
-        ButtonDots[1] = (ImageButton) activity.findViewById(R.id.dotButton2);
-        ButtonDots[1].setTag(new Boolean(false));
-        ButtonDots[1].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
-
-        ButtonDots[2] = (ImageButton) activity.findViewById(R.id.dotButton3);
-        ButtonDots[2].setTag(new Boolean(false));
-        ButtonDots[2].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
-
-        ButtonDots[3] = (ImageButton) activity.findViewById(R.id.dotButton4);
-        ButtonDots[3].setTag(new Boolean(false));
-        ButtonDots[3].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
-
-        ButtonDots[4] = (ImageButton) activity.findViewById(R.id.dotButton5);
-        ButtonDots[4].setTag(new Boolean(false));
-        ButtonDots[4].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
-
-        ButtonDots[5] = (ImageButton) activity.findViewById(R.id.dotButton6);
-        ButtonDots[5].setTag(new Boolean(false));
-        ButtonDots[5].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
-
     }
 
     // Appear or disappear with the Dots
     public boolean toggleDotVisibility(int i){
 
         if (((Boolean)ButtonDots[i].getTag()) == false) {
-            ButtonDots[i].setTag(new Boolean(true));
-            ButtonDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_active));
+            this.setDotVisibility(i,true);
             return true;
         } else {
-            ButtonDots[i].setTag(new Boolean(false));
-            ButtonDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
+            this.setDotVisibility(i,false);
             return false;
         }
     }
@@ -85,10 +99,87 @@ public class BrailleDots {
 
         if (value == false) {
             ButtonDots[i].setTag(new Boolean(false));
-        ButtonDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
+            ButtonDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
+            switch (i) {
+                case 0:
+                    if (useToneGenerator) toneGenerator.startTone(ToneGenerator.TONE_CDMA_SIGNAL_OFF, 100);
+                    if (useVibrationPatterns) this.vibrator.vibrate(new long[]{0,50}, -1);
+                    else this.vibrator.vibrate(100);
+                    //if (useDotNumberSpeaker) this.dotTTS.speak("1", TextToSpeech.QUEUE_FLUSH, null, "Dot 1");
+                    break;
+                case 1:
+                    if (useToneGenerator) toneGenerator.startTone(ToneGenerator.TONE_CDMA_SIGNAL_OFF, 100);
+                    if (useVibrationPatterns) this.vibrator.vibrate(new long[]{0,50,30,50},-1);
+                    else this.vibrator.vibrate(100);
+                    //if (useDotNumberSpeaker) this.dotTTS.speak("2", TextToSpeech.QUEUE_FLUSH, null, "Dot 2");
+                    break;
+                case 2:
+                    if (useToneGenerator) toneGenerator.startTone(ToneGenerator.TONE_CDMA_SIGNAL_OFF, 100);
+                    if (useVibrationPatterns) this.vibrator.vibrate(new long[]{0,50,30,50,30,50},-1);
+                    else this.vibrator.vibrate(100);
+                    //if (useDotNumberSpeaker) this.dotTTS.speak("3", TextToSpeech.QUEUE_FLUSH, null, "Dot 3");
+                    break;
+                case 3:
+                    if (useToneGenerator) toneGenerator.startTone(ToneGenerator.TONE_CDMA_SIGNAL_OFF, 100);
+                    if (useVibrationPatterns) this.vibrator.vibrate(new long[]{0,50,30,50,30,50,30,50},-1);
+                    else this.vibrator.vibrate(100);
+                    //if (useDotNumberSpeaker) this.dotTTS.speak("4", TextToSpeech.QUEUE_FLUSH, null, "Dot 4");
+                    break;
+                case 4:
+                    if (useToneGenerator) toneGenerator.startTone(ToneGenerator.TONE_CDMA_SIGNAL_OFF, 100);
+                    if (useVibrationPatterns) this.vibrator.vibrate(new long[]{0,50,30,50,30,50,30,50,30,50},-1);
+                    else this.vibrator.vibrate(100);
+                    //if (useDotNumberSpeaker) this.dotTTS.speak("5", TextToSpeech.QUEUE_FLUSH, null, "Dot 5");
+                    break;
+                case 5:
+                    if (useToneGenerator) toneGenerator.startTone(ToneGenerator.TONE_CDMA_SIGNAL_OFF, 100);
+                    if (useVibrationPatterns) this.vibrator.vibrate(new long[]{0,50,25,50,25,50,25,50,25,50},-1);
+                    else this.vibrator.vibrate(100);
+                    //if (useDotNumberSpeaker) this.dotTTS.speak("6", TextToSpeech.QUEUE_FLUSH, null, "Dot 6");
+                    break;
+            }
+
         } else {
             ButtonDots[i].setTag(new Boolean(true));
             ButtonDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_active));
+            switch (i) {
+                case 0:
+                    if (useToneGenerator) toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100);
+                    if (useVibrationPatterns) this.vibrator.vibrate(new long[]{0,50}, -1);
+                    else this.vibrator.vibrate(100);
+                    if (useDotNumberSpeaker) this.dotTTS.speak("1", TextToSpeech.QUEUE_ADD, null, "Dot 1");
+                    break;
+                case 1:
+                    if (useToneGenerator) toneGenerator.startTone(ToneGenerator.TONE_DTMF_2, 100);
+                    if (useVibrationPatterns) this.vibrator.vibrate(new long[]{0,50,30,50},-1);
+                    else this.vibrator.vibrate(100);
+                    if (useDotNumberSpeaker) this.dotTTS.speak("2", TextToSpeech.QUEUE_ADD, null, "Dot 2");
+                    break;
+                case 2:
+                    if (useToneGenerator) toneGenerator.startTone(ToneGenerator.TONE_DTMF_3, 100);
+                    if (useVibrationPatterns) this.vibrator.vibrate(new long[]{0,50,30,50,30,50},-1);
+                    else this.vibrator.vibrate(100);
+                    if (useDotNumberSpeaker) this.dotTTS.speak("3", TextToSpeech.QUEUE_ADD, null, "Dot 3");
+                    break;
+                case 3:
+                    if (useToneGenerator) toneGenerator.startTone(ToneGenerator.TONE_DTMF_4, 100);
+                    if (useVibrationPatterns) this.vibrator.vibrate(new long[]{0,50,30,50,30,50,30,50},-1);
+                    else this.vibrator.vibrate(100);
+                    if (useDotNumberSpeaker) this.dotTTS.speak("4", TextToSpeech.QUEUE_ADD, null, "Dot 4");
+                    break;
+                case 4:
+                    if (useToneGenerator) toneGenerator.startTone(ToneGenerator.TONE_DTMF_5, 100);
+                    if (useVibrationPatterns) this.vibrator.vibrate(new long[]{0,50,30,50,30,50,30,50,30,50},-1);
+                    else this.vibrator.vibrate(100);
+                    if (useDotNumberSpeaker) this.dotTTS.speak("5", TextToSpeech.QUEUE_ADD, null, "Dot 5");
+                    break;
+                case 5:
+                    if (useToneGenerator) toneGenerator.startTone(ToneGenerator.TONE_DTMF_6, 100);
+                    if (useVibrationPatterns) this.vibrator.vibrate(new long[]{0,50,25,50,25,50,25,50,25,50},-1);
+                    else this.vibrator.vibrate(100);
+                    if (useDotNumberSpeaker) this.dotTTS.speak("6", TextToSpeech.QUEUE_ADD, null, "Dot 6");
+                    break;
+            }
         }
     }
 
@@ -249,4 +340,41 @@ public class BrailleDots {
         return latimOutput;
     }
 
+    // Instantiate dot buttons
+    public void createDotButtons (boolean isLineReversed) {
+        // To be used in Orientation-landscape mode for layouts such as Perkins
+        if (isLineReversed) {
+            ButtonDots[2] = (ImageButton) activity.findViewById(R.id.dotButton1);
+            ButtonDots[1] = (ImageButton) activity.findViewById(R.id.dotButton2);
+            ButtonDots[0] = (ImageButton) activity.findViewById(R.id.dotButton3);
+            ButtonDots[5] = (ImageButton) activity.findViewById(R.id.dotButton4);
+            ButtonDots[4] = (ImageButton) activity.findViewById(R.id.dotButton5);
+            ButtonDots[3] = (ImageButton) activity.findViewById(R.id.dotButton6);
+        } else {
+            ButtonDots[0] = (ImageButton) activity.findViewById(R.id.dotButton1);
+            ButtonDots[1] = (ImageButton) activity.findViewById(R.id.dotButton2);
+            ButtonDots[2] = (ImageButton) activity.findViewById(R.id.dotButton3);
+            ButtonDots[3] = (ImageButton) activity.findViewById(R.id.dotButton4);
+            ButtonDots[4] = (ImageButton) activity.findViewById(R.id.dotButton5);
+            ButtonDots[5] = (ImageButton) activity.findViewById(R.id.dotButton6);
+
+        }
+        for (int i = 0; i < 6; i++) {
+            ButtonDots[i].setTag(new Boolean(false));
+            ButtonDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
+        }
+    }
+
+    // Load settings from database
+    public void loadSettings() {
+        this.useDotNumberSpeaker = settings.getBoolean("useDotNumberSpeaking", false);
+        this.useVibrationPatterns = settings.getBoolean("useVibrationPatterns", false);
+        this.useToneGenerator = settings.getBoolean("useToneGenerator", false);
+    }
+
+    // To be used on activitie's onDestroy()
+    public void freeTTSService() {
+        this.dotTTS.stop();
+        this.dotTTS.shutdown();
+    }
 }

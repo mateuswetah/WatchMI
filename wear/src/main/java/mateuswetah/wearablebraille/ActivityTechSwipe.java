@@ -42,9 +42,7 @@ public class ActivityTechSwipe extends WearableActivity{
     private View.OnClickListener dotClickListener;
 
     // Feedback Tools
-    private Vibrator vibrator;
     private TextToSpeech tts;
-    private ToneGenerator toneGenerator;
 
     //Flags
     boolean started = false;
@@ -64,8 +62,7 @@ public class ActivityTechSwipe extends WearableActivity{
         setContentView(R.layout.activity_braille_core_stub);
         this.activity = this;
 
-        // Sets the Vibrator, TextToSpeech and ToneGenerator for Feedback
-        vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+        // Sets TextToSpeech for Feedback
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int i) {
@@ -73,7 +70,6 @@ public class ActivityTechSwipe extends WearableActivity{
                 //tts.setLanguage(Locale.ENGLISH);
             }
         });
-        toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, ToneGenerator.MAX_VOLUME);
 
         // Checks if view is in test mode
         Bundle extras = getIntent().getExtras();
@@ -112,44 +108,32 @@ public class ActivityTechSwipe extends WearableActivity{
                 gestureDetector = new GestureDetector(activity, new Swipe8DirectionsDetector() {
                     @Override
                     public void onTopLeftSwipe() {
-                        vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(0);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_0, 100);
                     }
 
                     @Override
                     public void onTopRightSwipe() {
-                        vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(3);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_3, 100);
                     }
 
                     @Override
                     public void onMiddleLeftSwipe() {
-                        vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(1);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100);
                     }
 
                     @Override
                     public void onMiddleRightSwipe() {
-                        vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(4);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_4, 100);
                     }
 
                     @Override
                     public void onBottomLeftSwipe() {
-                        vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(2);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_2, 100);
                     }
 
                     @Override
                     public void onBottomRightSwipe() {
-                        vibrator.vibrate(100);
                         brailleDots.toggleDotVisibility(5);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_5, 100);
                     }
                 });
 
@@ -238,7 +222,7 @@ public class ActivityTechSwipe extends WearableActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        this.brailleDots.freeTTSService();
         tts.shutdown();
     }
-
 }

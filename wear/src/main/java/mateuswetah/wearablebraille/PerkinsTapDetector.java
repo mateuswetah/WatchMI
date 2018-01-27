@@ -10,10 +10,12 @@ public abstract class PerkinsTapDetector {
     private float width;
     private boolean doubleTapApplied = false;
     private boolean waitForDoubleSingleTap = false;
+    private boolean isScreenReversed = false;
 
-    public PerkinsTapDetector(float screenWidth) {
+    public PerkinsTapDetector(float screenWidth, boolean isScreenReversed) {
         super();
         this.width = screenWidth;
+        this.isScreenReversed = isScreenReversed;
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -31,13 +33,26 @@ public abstract class PerkinsTapDetector {
                     float y2 = pointerCoords2.y;
 
                     final int line;
-                    if (y2 - y1 > (width/5)*3) { // User has two fingers separate enough
-                        line = 2;
-                    } else {
-                        if (y2 < (width/3)*2) {
-                            line = 1;
+
+                    if (isScreenReversed) {
+                        if (y1 - y2 > (width / 5) * 3) { // User has two fingers separate enough
+                            line = 2;
                         } else {
-                            line = 3;
+                            if (y1 < (width / 3) * 2) {
+                                line = 3;
+                            } else {
+                                line = 1;
+                            }
+                        }
+                    } else {
+                        if (y2 - y1 > (width / 5) * 3) { // User has two fingers separate enough
+                            line = 2;
+                        } else {
+                            if (y2 < (width / 3) * 2) {
+                                line = 1;
+                            } else {
+                                line = 3;
+                            }
                         }
                     }
 
@@ -59,9 +74,9 @@ public abstract class PerkinsTapDetector {
                 float y = event.getY();
                 final int line;
                 if (y < width/3) {
-                    line = 1;
+                    line = isScreenReversed ? 3 : 1;
                 } else if (y > (width/3)*2) {
-                    line = 3;
+                    line = isScreenReversed ? 1 : 3;
                 } else {
                     line = 2;
                 }

@@ -13,7 +13,7 @@
     <RelativeLayout
         android:id="@+id/relative"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="180dp"
         android:gravity="center"
         app:layout_box="all">
 
@@ -32,34 +32,64 @@
             android:text="@string/btn1"
             android:textSize="12sp" />
 
-        <Button
-            android:id="@+id/btn2"
-            android:layout_width="120dp"
-            android:layout_height="45dp"
-            android:layout_below="@id/btn1"
-            android:layout_marginBottom="-5dp"
-            android:text="@string/btn2"
-            android:textSize="12sp" />
+        <!--<Button-->
+        <!--android:id="@+id/btn2"-->
+        <!--android:layout_width="120dp"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:layout_below="@id/btn1"-->
+        <!--android:layout_marginBottom="-5dp"-->
+        <!--android:text="@string/btn2"-->
+        <!--android:textSize="12sp" />-->
 
-        <Button
-            android:id="@+id/btn3"
-            android:layout_width="120dp"
-            android:layout_height="45dp"
-            android:layout_below="@id/btn2"
-            android:layout_marginBottom="-5dp"
-            android:text="@string/btn3"
-            android:textSize="12sp" />
+        <!--<Button-->
+        <!--android:id="@+id/btn3"-->
+        <!--android:layout_width="120dp"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:layout_below="@id/btn2"-->
+        <!--android:layout_marginBottom="-5dp"-->
+        <!--android:text="@string/btn3"-->
+        <!--android:textSize="12sp" />-->
 
         <Switch
             android:id="@+id/screenRotateSwitch"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_alignEnd="@+id/btn3"
-            android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/btn3"
-            android:layout_below="@+id/btn3"
+            android:layout_height="30dp"
+            android:layout_alignEnd="@+id/btn1"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/btn1"
             android:text="Rotate Screen"
             android:textSize="12sp" />
+
+        <Switch
+            android:id="@+id/toneGeneratorSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignEnd="@+id/screenRotateSwitch"
+            android:layout_alignStart="@+id/screenRotateSwitch"
+            android:layout_below="@+id/screenRotateSwitch"
+            android:text="Tone Generator"
+            android:textSize="12sp"></Switch>
+
+        <Switch
+            android:id="@+id/vibrationPatternsSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignEnd="@+id/toneGeneratorSwitch"
+            android:layout_alignStart="@+id/toneGeneratorSwitch"
+            android:layout_below="@+id/toneGeneratorSwitch"
+            android:text="Vibration Pattern"
+            android:textSize="12sp"></Switch>
+
+        <Switch
+            android:id="@+id/dotSpeakerSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignEnd="@+id/vibrationPatternsSwitch"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/vibrationPatternsSwitch"
+            android:layout_below="@+id/vibrationPatternsSwitch"
+            android:text="Dot Speaker"
+            android:textSize="12sp"></Switch>
 
     </RelativeLayout>
 

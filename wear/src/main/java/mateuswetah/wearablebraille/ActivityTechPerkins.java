@@ -15,6 +15,7 @@ import android.support.wearable.view.BoxInsetLayout;
 import android.support.wearable.view.WatchViewStub;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
@@ -44,9 +45,7 @@ public class ActivityTechPerkins extends WearableActivity{
     private PerkinsTapDetector perkinsTapDetector;
 
     // Feedback Tools
-    private Vibrator vibrator;
     private TextToSpeech tts;
-    private ToneGenerator toneGenerator;
 
     //Flags
     boolean started = false;
@@ -69,9 +68,7 @@ public class ActivityTechPerkins extends WearableActivity{
         setContentView(R.layout.activity_braille_core_stub);
         this.activity = this;
 
-
-        // Sets the Vibrator, TextToSpeech and ToneGenerator for Feedback
-        vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+        // Sets TextToSpeech Feedback
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int i) {
@@ -79,8 +76,6 @@ public class ActivityTechPerkins extends WearableActivity{
                 //tts.setLanguage(Locale.ENGLISH);
             }
         });
-        tts.setLanguage(Locale.ENGLISH);
-        toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, ToneGenerator.MAX_VOLUME);
 
         // Checks if view is in test mode
         Bundle extras = getIntent().getExtras();
@@ -92,7 +87,7 @@ public class ActivityTechPerkins extends WearableActivity{
 
             if (extras.getBoolean("isScreenRotated") == true) {
                 isScreenRotated = true;
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             } else {
                 isScreenRotated = false;
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -123,15 +118,26 @@ public class ActivityTechPerkins extends WearableActivity{
                 gestureDetector = new GestureDetector(activity, new Swipe4DirectionsDetector() {
                     @Override
                     public void onTopSwipe() {
-
-                        if (perkinsColumnLeft) {
-                            brailleDots.setDotVisibility(0,false);
-                            brailleDots.setDotVisibility(1, false);
-                            brailleDots.setDotVisibility(2,false);
+                        if (isScreenRotated) {
+                            if (perkinsColumnLeft) {
+                                brailleDots.setDotVisibility(0, true);
+                                brailleDots.setDotVisibility(1, true);
+                                brailleDots.setDotVisibility(2, true);
+                            } else {
+                                brailleDots.setDotVisibility(3, true);
+                                brailleDots.setDotVisibility(4, true);
+                                brailleDots.setDotVisibility(5, true);
+                            }
                         } else {
-                            brailleDots.setDotVisibility(3,false);
-                            brailleDots.setDotVisibility(4,false);
-                            brailleDots.setDotVisibility(5,false);
+                            if (perkinsColumnLeft) {
+                                brailleDots.setDotVisibility(0, false);
+                                brailleDots.setDotVisibility(1, false);
+                                brailleDots.setDotVisibility(2, false);
+                            } else {
+                                brailleDots.setDotVisibility(3, false);
+                                brailleDots.setDotVisibility(4, false);
+                                brailleDots.setDotVisibility(5, false);
+                            }
                         }
 
                         // Move to next Serial Line
@@ -145,20 +151,26 @@ public class ActivityTechPerkins extends WearableActivity{
                     @Override
                     public void onBottomSwipe() {
 
-                        if (perkinsColumnLeft) {
-                            brailleDots.setDotVisibility(0,true);
-                            brailleDots.setDotVisibility(1,true);
-                            brailleDots.setDotVisibility(2,true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_0, 100);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_2, 100);
+                        if (isScreenRotated) {
+                            if (perkinsColumnLeft) {
+                                brailleDots.setDotVisibility(0,false);
+                                brailleDots.setDotVisibility(1,false);
+                                brailleDots.setDotVisibility(2,false);
+                            } else {
+                                brailleDots.setDotVisibility(3,false);
+                                brailleDots.setDotVisibility(4,false);
+                                brailleDots.setDotVisibility(5,false);
+                            }
                         } else {
-                            brailleDots.setDotVisibility(3,true);
-                            brailleDots.setDotVisibility(4,true);
-                            brailleDots.setDotVisibility(5,true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_3, 100);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_4, 100);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_5, 100);
+                            if (perkinsColumnLeft) {
+                                brailleDots.setDotVisibility(0, true);
+                                brailleDots.setDotVisibility(1, true);
+                                brailleDots.setDotVisibility(2, true);
+                            } else {
+                                brailleDots.setDotVisibility(3, true);
+                                brailleDots.setDotVisibility(4, true);
+                                brailleDots.setDotVisibility(5, true);
+                            }
                         }
 
                         // Move to next Serial Line
@@ -189,7 +201,7 @@ public class ActivityTechPerkins extends WearableActivity{
                 }
 
                 // Instantiate braille buttons
-                brailleDots = new BrailleDots(activity);
+                brailleDots = new BrailleDots(activity, isScreenRotated);
 
                 // Associate OnClick and OnLongClick listeners to ButtonDots.
                 for (int i = 0; i < brailleDots.ButtonDots.length; i++) {
@@ -220,7 +232,7 @@ public class ActivityTechPerkins extends WearableActivity{
         getWindowManager().getDefaultDisplay().getSize(dimensions);
         windowWidth = dimensions.x;
 
-        perkinsTapDetector = new PerkinsTapDetector(windowWidth) {
+        perkinsTapDetector = new PerkinsTapDetector(windowWidth, isScreenRotated) {
 
             @Override
             public void onPerkinsDoubleTap(int line) {
@@ -229,20 +241,14 @@ public class ActivityTechPerkins extends WearableActivity{
                         case 1:
                             brailleDots.setDotVisibility(0, true);
                             brailleDots.setDotVisibility(1, true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_0, 100);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100);
                             break;
                         case 2:
                             brailleDots.setDotVisibility(0, true);
                             brailleDots.setDotVisibility(2, true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_0, 100);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_2, 100);
                             break;
                         case 3:
                             brailleDots.setDotVisibility(1, true);
                             brailleDots.setDotVisibility(2, true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_2, 100);
                             break;
                     }
                     Log.d("PERKINS", "DOUBLE TAP LEFT");
@@ -251,20 +257,14 @@ public class ActivityTechPerkins extends WearableActivity{
                         case 1:
                             brailleDots.setDotVisibility(3, true);
                             brailleDots.setDotVisibility(4, true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_3, 100);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_4, 100);
                             break;
                         case 2:
                             brailleDots.setDotVisibility(3, true);
                             brailleDots.setDotVisibility(5, true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_3, 100);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_5, 100);
                             break;
                         case 3:
                             brailleDots.setDotVisibility(4, true);
                             brailleDots.setDotVisibility(5, true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_4, 100);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_5, 100);
                             break;
                     }
                     Log.d("PERKINS", "DOUBLE TAP RIGHT");
@@ -282,10 +282,8 @@ public class ActivityTechPerkins extends WearableActivity{
                     case 1:
                         if (perkinsColumnLeft) {
                             brailleDots.setDotVisibility(0,true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_0, 100);
                         } else {
                             brailleDots.setDotVisibility(3,true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100);
                         }
                         Log.d("PERKINS", "SINGLE TAP TOP");
                         break;
@@ -293,10 +291,8 @@ public class ActivityTechPerkins extends WearableActivity{
                     case 2:
                         if (perkinsColumnLeft) {
                             brailleDots.setDotVisibility(1,true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100);
                         } else {
                             brailleDots.setDotVisibility(4,true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_4, 100);
                         }
                         Log.d("PERKINS", "SINGLE TAP MIDDLE");
                         break;
@@ -304,10 +300,8 @@ public class ActivityTechPerkins extends WearableActivity{
                     case 3:
                         if (perkinsColumnLeft) {
                             brailleDots.setDotVisibility(2,true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_2, 100);
                         } else {
                             brailleDots.setDotVisibility(5,true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_5, 100);
                         }
                         Log.d("PERKINS", "SINGLE TAP BOTTOM");
                         break;
@@ -333,7 +327,7 @@ public class ActivityTechPerkins extends WearableActivity{
     void switchPerkinsColumn() {
 
         perkinsColumnLeft = !perkinsColumnLeft;
-        toneGenerator.startTone(ToneGenerator.TONE_CDMA_ABBR_REORDER);
+
         if (perkinsColumnLeft) {
 
             activity.findViewById(R.id.perkins_column_1).setBackgroundResource(R.drawable.braille_ecran_button);
@@ -349,7 +343,6 @@ public class ActivityTechPerkins extends WearableActivity{
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-
                     brailleDots.toggleAllDotsOff();
                     resultLetter.setText("");
                 }
@@ -362,9 +355,9 @@ public class ActivityTechPerkins extends WearableActivity{
         }
     }
 
-
     @Override
     protected void onDestroy() {
+        this.brailleDots.freeTTSService();
         super.onDestroy();
         tts.shutdown();
     }

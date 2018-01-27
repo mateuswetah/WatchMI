@@ -48,9 +48,7 @@ public class ActivityTechSerial extends WearableActivity{
     private SerialTapDetector serialTapDetector;
 
     // Feedback Tools
-    private Vibrator vibrator;
     private TextToSpeech tts;
-    private ToneGenerator toneGenerator;
 
     //Flags
     boolean started = false;
@@ -73,8 +71,7 @@ public class ActivityTechSerial extends WearableActivity{
         setContentView(R.layout.activity_braille_core_stub);
         this.activity = this;
 
-        // Sets the Vibrator, TextToSpeech and ToneGenerator for Feedback
-        vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+        // Sets TextToSpeech for Feedback
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int i) {
@@ -82,7 +79,6 @@ public class ActivityTechSerial extends WearableActivity{
                 //tts.setLanguage(Locale.ENGLISH);
             }
         });
-        toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, ToneGenerator.MAX_VOLUME);
 
         // Checks if view is in test mode
         Bundle extras = getIntent().getExtras();
@@ -200,20 +196,14 @@ public class ActivityTechSerial extends WearableActivity{
                     case 0:
                         brailleDots.setDotVisibility(0, true);
                         brailleDots.setDotVisibility(3, true);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_0, 100);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_3, 100);
                         break;
                     case 1:
                         brailleDots.setDotVisibility(1, true);
                         brailleDots.setDotVisibility(4, true);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_4, 100);
                         break;
                     case 2:
                         brailleDots.setDotVisibility(2,true);
                         brailleDots.setDotVisibility(5, true);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_2, 100);
-                        toneGenerator.startTone(ToneGenerator.TONE_DTMF_5, 100);
                         break;
                 }
                 Log.d("SERIAL", "DOUBLE TAP");
@@ -229,15 +219,12 @@ public class ActivityTechSerial extends WearableActivity{
                     switch (serialLine) {
                         case 0:
                             brailleDots.setDotVisibility(3, true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_3, 100);
                             break;
                         case 1:
                             brailleDots.setDotVisibility(4, true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_4, 100);
                             break;
                         case 2:
                             brailleDots.setDotVisibility(5,true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_5, 100);
                             break;
                     }
                     Log.d("SERIAL", "SINGLE TAP RIGHT");
@@ -245,15 +232,12 @@ public class ActivityTechSerial extends WearableActivity{
                     switch (serialLine) {
                         case 0:
                             brailleDots.setDotVisibility(0,true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_0, 100);
                             break;
                         case 1:
                             brailleDots.setDotVisibility(1, true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100);
                             break;
                         case 2:
                             brailleDots.setDotVisibility(2,true);
-                            toneGenerator.startTone(ToneGenerator.TONE_DTMF_2, 100);
                             break;
                     }
                     Log.d("SERIAL", "SINGLE TAP LEFT");
@@ -319,6 +303,7 @@ public class ActivityTechSerial extends WearableActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        this.brailleDots.freeTTSService();
         tts.shutdown();
     }
 }

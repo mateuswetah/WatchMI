@@ -31,20 +31,15 @@ Explanation and demonstration of each of the other five prototypes, speaking out
 
 For each of the six prototypes, allow free interaction/exploration. Identify and observe difficulties and errors.
 
-Ask the volunteer to type, for each prototype, the words:
-
-- His/her name
-- ? 
-- ?
-- ?
-
 Ask to volunteer, regarding each of the six prototypes:
 
-* How would you rank easiness of method comprehension? (Likert 5) *Did you had a clear understanding on how Braille cells are composed?*
-* How would you rank easiness of dot identification? (Likert 5) *Were you certain, did you feel secure on targeting each dot?*
-* How would you rank method's typing speed? (Likert 5)
-* How would you rank method as being error prone? (Likert 5)
-* How would you rank method in learn-ability? (Likert 5) *Do you believe that having more practice your performance with this method would be better?*
+1 - Totally disagree; 2 - Partially disagree; 3 - Neutral; 4 - Partially agree; Partially disagree;
+
+* I understood clearly how the method works (Likert 5) 
+* I fount the method easy to learn? (Likert 5)
+* I was able to clearly identify which dot I was working with. (Likert 5) 
+* I feel that I could type fast with this method. (Likert 5)
+* I feel that I could type without errors in this method. (Likert 5)
 
 Ask volunteer to rank prototypes, order them in terms of preference and offer final thoughts on  positive and negative aspects of each one. 
 

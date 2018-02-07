@@ -33,7 +33,7 @@ For each of the six prototypes, allow free interaction/exploration. Identify and
 
 Ask to volunteer, regarding each of the six prototypes:
 
-1 - Totally disagree; 2 - Partially disagree; 3 - Neutral; 4 - Partially agree; Partially disagree;
+1 - Totally disagree; 2 - Partially disagree; 3 - Neutral; 4 - Partially agree; Totally disagree;
 
 * I understood clearly how the method works (Likert 5) 
 * I fount the method easy to learn? (Likert 5)

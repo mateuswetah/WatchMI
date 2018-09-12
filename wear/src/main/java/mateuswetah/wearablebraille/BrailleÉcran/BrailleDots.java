@@ -227,9 +227,10 @@ public class BrailleDots {
                 latimOutput = "";
 
             // Apply the flags changes:
-            if (CapsOn || tmpCapsOn)
+            if (CapsOn || tmpCapsOn) {
                 if (latimOutput != " ") // workaround, uoUpperCase() seems to remove white space
                     latimOutput = latimOutput.toUpperCase();
+            }
 
             if (NumOn || tmpNumOn) {
 
@@ -336,7 +337,7 @@ public class BrailleDots {
 
         }
 
-        Log.d("BRAILLE_DOTS", "Output: " + latimOutput);
+        Log.d("BRAILLE_DOTS", "Output:" + latimOutput + ".");
         return latimOutput;
     }
 

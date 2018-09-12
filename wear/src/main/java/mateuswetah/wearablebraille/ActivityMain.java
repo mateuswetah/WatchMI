@@ -15,8 +15,13 @@ import java.util.prefs.Preferences;
 public class ActivityMain extends WearableActivity {
 
     private Button btn1, btn2, btn3;
-    private Switch screenRotateSwitch, toneGeneratorSwitch, vibrationPatternSwitch, dotSpeakerSwitch;
+    private Switch  screenRotateSwitch,
+                    toneGeneratorSwitch,
+//                    vibrationPatternSwitch,
+                    wordReadingSwitch,
+                    dotSpeakerSwitch;
     private Boolean isScreenRotated = false;
+    private Boolean isUsingWordReading = false;
     public static final String PREFS_NAME = "SettingsFile";
     public SharedPreferences settings;
 
@@ -58,16 +63,29 @@ public class ActivityMain extends WearableActivity {
             }
         });
         toneGeneratorSwitch.setChecked(settings.getBoolean("useToneGenerator", false));
+//
+//        vibrationPatternSwitch = (Switch) findViewById(R.id.vibrationPatternsSwitch);
+//        vibrationPatternSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                editor.putBoolean("useVibrationPatterns", b);
+//                editor.commit();
+//            }
+//        });
+//        vibrationPatternSwitch.setChecked(settings.getBoolean("useVibrationPatterns", false));
 
-        vibrationPatternSwitch = (Switch) findViewById(R.id.vibrationPatternsSwitch);
-        vibrationPatternSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        wordReadingSwitch = (Switch) findViewById(R.id.wordReadingSwitch);
+        wordReadingSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                editor.putBoolean("useVibrationPatterns", b);
+
+                isUsingWordReading = b;
+
+                editor.putBoolean("useWordReading", b);
                 editor.commit();
             }
         });
-        vibrationPatternSwitch.setChecked(settings.getBoolean("useVibrationPatterns", false));
+        wordReadingSwitch.setChecked(settings.getBoolean("useWordReading", false));
 
         dotSpeakerSwitch = (Switch) findViewById(R.id.dotSpeakerSwitch);
         dotSpeakerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -79,7 +97,7 @@ public class ActivityMain extends WearableActivity {
         });
         dotSpeakerSwitch.setChecked(settings.getBoolean("useDotNumberSpeaking", false));
 
-        // Checks if screen is rotated
+        // Checks if screen is rotated and is using word reading
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
 
@@ -90,9 +108,15 @@ public class ActivityMain extends WearableActivity {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 isScreenRotated = false;
             }
+            if (extras.getBoolean("useWordReading") == true) {
+                isUsingWordReading = true;
+            } else {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                isUsingWordReading = false;
+            }
         }
         this.screenRotateSwitch.setChecked(isScreenRotated);
-
+        this.wordReadingSwitch.setChecked(isUsingWordReading);
     }
 
     Button.OnClickListener button1ClickListener = new Button.OnClickListener() {
@@ -100,6 +124,7 @@ public class ActivityMain extends WearableActivity {
             Bundle b = new Bundle();
             b.putBoolean("study", false);
             b.putBoolean("isScreenRotated", isScreenRotated);
+            b.putBoolean("useWordReading", isUsingWordReading);
             Intent i = new Intent(getApplicationContext(),  ActivitySelectTech.class);
             i.putExtras(b);
             startActivity(i);
@@ -111,6 +136,7 @@ public class ActivityMain extends WearableActivity {
             Bundle b = new Bundle();
             b.putBoolean("study", true);
             b.putBoolean("isScreenRotated", isScreenRotated);
+            b.putBoolean("useWordReading", isUsingWordReading);
             Intent i = new Intent(getApplicationContext(),  ActivitySelectTech.class);
             i.putExtras(b);
             startActivity(i);
@@ -121,6 +147,7 @@ public class ActivityMain extends WearableActivity {
         public void onClick(View arg0) {
             Bundle b = new Bundle();
             b.putBoolean("isScreenRotated", isScreenRotated);
+            b.putBoolean("useWordReading", isUsingWordReading);
             Intent i = new Intent(getApplicationContext(),  ActivitySelectApps.class);
             i.putExtras(b);
             startActivity(i);

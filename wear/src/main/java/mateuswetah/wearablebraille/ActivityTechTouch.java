@@ -17,11 +17,15 @@ import android.support.wearable.view.BoxInsetLayout;
 import android.support.wearable.view.WatchViewStub;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.GestureDetector.OnDoubleTapListener;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.Locale;
 
@@ -39,8 +43,12 @@ public class ActivityTechTouch extends WearableActivity {
     private TextView tv1, tv2, tv3, resultLetter;
     private WearableActivity activity;
 
+    // Final Text
+    private String message;
+
     // Touch Listeners
     TwoFingersDoubleTapDetector twoFingersListener;
+    OneFingerDoubleTapDetector oneFingerListener;
     private View.OnClickListener dotClickListener;
     private View.OnLongClickListener dotLongClickListener;
 
@@ -53,6 +61,7 @@ public class ActivityTechTouch extends WearableActivity {
     boolean isStudy = false;
     boolean isScreenRotated = false;
     boolean reset = false;
+    boolean isUsingWordReading = false;
     boolean isTTSInitialized = false;
 
     // Test related
@@ -80,6 +89,9 @@ public class ActivityTechTouch extends WearableActivity {
             }
         });
 
+        // Initializes message
+        message = new String();
+
         // Checks if view is in test mode
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -95,6 +107,11 @@ public class ActivityTechTouch extends WearableActivity {
                 isScreenRotated = false;
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
+
+            if (extras.getBoolean("useWordReading") == true)
+                isUsingWordReading = true;
+            else
+                isUsingWordReading = false;
         }
 
         // Build and set view components
@@ -118,21 +135,6 @@ public class ActivityTechTouch extends WearableActivity {
 
                     @Override
                     public void onTopSwipe() {
-                        final String latinChar = brailleDots.checkCurrentCharacter(false, false, false, false);
-                        Log.d("CHAR OUTPUT: ", latinChar);
-                        if (isTTSInitialized){
-                            tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
-                        }
-                        resultLetter.setText(latinChar);
-
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                resultLetter.setText("");
-                                brailleDots.toggleAllDotsOff();
-                            }
-                        }, 1200);
                     }
 
                     @Override
@@ -242,6 +244,35 @@ public class ActivityTechTouch extends WearableActivity {
             }
         });
 
+        // Sets one finger double tap detector
+        oneFingerListener = new OneFingerDoubleTapDetector() {
+            @Override
+            public void onOneFingerDoubleTap() {
+                final String latinChar = brailleDots.checkCurrentCharacter(false, false, false, false);
+                Log.d("CHAR OUTPUT: ", latinChar);
+
+                resultLetter.setText(latinChar);
+
+                message = message.concat(latinChar);
+                Log.d("MESSAGE OUTPUT: ", message);
+                if (isTTSInitialized) {
+                    if (isUsingWordReading || latinChar.equals(" "))
+                        tts.speak(message, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                    else
+                        tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                }
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        resultLetter.setText("");
+                        brailleDots.toggleAllDotsOff();
+                    }
+                }, 1200);
+            }
+        };
+
         // Sets two finger double tap detector
         twoFingersListener = new TwoFingersDoubleTapDetector() {
             @Override
@@ -254,6 +285,7 @@ public class ActivityTechTouch extends WearableActivity {
                     b.putBoolean("study", isStudy);
                 Log.d("SCREEN ROTATED", String.valueOf(isScreenRotated));
                 b.putBoolean("isScreenRotated", isScreenRotated);
+                b.putBoolean("useWordReading", isUsingWordReading);
                 i.putExtras(b);
                 startActivity(i);
                 finish();
@@ -266,11 +298,32 @@ public class ActivityTechTouch extends WearableActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 twoFingersListener.onTouchEvent(event);
+                oneFingerListener.onTouchEvent(event);
                 gestureDetector.onTouchEvent(event);
                 return true;
             }
         });
+
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_NAVIGATE_NEXT:
+                // Do something that advances a user View to the next item in an ordered list.
+                Log.d("FLICK Message", message);
+                tts.speak(message, TextToSpeech.QUEUE_FLUSH, null, "Output");
+
+                return true;
+            case KeyEvent.KEYCODE_NAVIGATE_PREVIOUS:
+                // Do something that advances a user View to the previous item in an ordered list.
+                Log.d("FLICK", "PREV");
+                return true;
+        }
+        // If you did not handle it, let it be handled by the next possible element as deemed by the Activity.
+        return super.onKeyDown(keyCode, event);
+    }
+
 
     @Override
     protected void onDestroy() {
@@ -281,4 +334,5 @@ public class ActivityTechTouch extends WearableActivity {
             tts.shutdown();
         }
     }
+
 }

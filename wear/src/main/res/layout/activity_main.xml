@@ -71,23 +71,32 @@
             android:textSize="12sp"></Switch>
 
         <Switch
-            android:id="@+id/vibrationPatternsSwitch"
+            android:id="@+id/wordReadingSwitch"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_alignEnd="@+id/toneGeneratorSwitch"
             android:layout_alignStart="@+id/toneGeneratorSwitch"
             android:layout_below="@+id/toneGeneratorSwitch"
-            android:text="Vibration Pattern"
+            android:text="Word Reading"
             android:textSize="12sp"></Switch>
+        <!--<Switch-->
+            <!--android:id="@+id/vibrationPatternsSwitch"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_alignEnd="@+id/toneGeneratorSwitch"-->
+            <!--android:layout_alignStart="@+id/toneGeneratorSwitch"-->
+            <!--android:layout_below="@+id/toneGeneratorSwitch"-->
+            <!--android:text="Vibration Pattern"-->
+            <!--android:textSize="12sp"></Switch>-->
 
         <Switch
             android:id="@+id/dotSpeakerSwitch"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_alignEnd="@+id/vibrationPatternsSwitch"
+            android:layout_alignEnd="@+id/wordReadingSwitch"
             android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/vibrationPatternsSwitch"
-            android:layout_below="@+id/vibrationPatternsSwitch"
+            android:layout_alignStart="@+id/wordReadingSwitch"
+            android:layout_below="@+id/wordReadingSwitch"
             android:text="Dot Speaker"
             android:textSize="12sp"></Switch>
 

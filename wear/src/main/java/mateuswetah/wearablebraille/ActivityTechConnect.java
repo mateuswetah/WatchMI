@@ -38,11 +38,15 @@ public class ActivityTechConnect extends WearableActivity {
     private TextView tv1, tv2, tv3, resultLetter;
     private WearableActivity activity;
 
+    // Final Text
+    private String message;
+
     // Connect the Dots components
     private boolean checkOutput = false;
 
     // Touch Listeners
     TwoFingersDoubleTapDetector twoFingersListener;
+    OneFingerDoubleTapDetector doubleTapListener;
     private View.OnClickListener dotClickListener;
 
     // TextToSpeech for feedback
@@ -54,6 +58,8 @@ public class ActivityTechConnect extends WearableActivity {
     boolean isStudy = false;
     boolean isScreenRotated = false;
     boolean reset = false;
+    boolean isUsingWordReading = false;
+    boolean isTTSInitialized = false;
 
     // Test related
     int trialCount = 0;
@@ -70,9 +76,13 @@ public class ActivityTechConnect extends WearableActivity {
             @Override
             public void onInit(int i) {
                 Log.d("TTS", "TextToSpeech Service Initialized");
+                isTTSInitialized = true;
                 //tts.setLanguage(Locale.ENGLISH);
             }
         });
+
+        // Initializes message
+        message = new String();
 
         // Checks if view is in test mode
         Bundle extras = getIntent().getExtras();
@@ -89,6 +99,11 @@ public class ActivityTechConnect extends WearableActivity {
                 isScreenRotated = false;
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
+
+            if (extras.getBoolean("useWordReading") == true)
+                isUsingWordReading = true;
+            else
+                isUsingWordReading = false;
         }
 
         // Build and set view components
@@ -163,6 +178,34 @@ public class ActivityTechConnect extends WearableActivity {
             }
         });
 
+        // Sets one finger double tap detector
+        doubleTapListener = new OneFingerDoubleTapDetector() {
+            @Override
+            public void onOneFingerDoubleTap() {
+                final String latinChar = brailleDots.checkCurrentCharacter(false, false, false, false);
+                Log.d("CHAR OUTPUT:", latinChar+".");
+                if (latinChar.equals(" ")) {
+                    resultLetter.setText(latinChar);
+
+                    message = message.concat(latinChar);
+                    Log.d("MESSAGE OUTPUT: ", message);
+                    if (isTTSInitialized) {
+                        tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                        tts.speak(message, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                    }
+
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            resultLetter.setText("");
+                            brailleDots.toggleAllDotsOff();
+                        }
+                    }, 1200);
+                }
+            }
+        };
+
         // Sets two finger double tap detector
         twoFingersListener = new TwoFingersDoubleTapDetector() {
             @Override
@@ -173,8 +216,9 @@ public class ActivityTechConnect extends WearableActivity {
 
                 if (isStudy)
                     b.putBoolean("study", isStudy);
-                Log.d("SCREEN ROTATED", String.valueOf(isScreenRotated));
+
                 b.putBoolean("isScreenRotated", isScreenRotated);
+                b.putBoolean("useWordReading", isUsingWordReading);
                 i.putExtras(b);
                 startActivity(i);
                 finish();
@@ -185,6 +229,7 @@ public class ActivityTechConnect extends WearableActivity {
     void setTouchListener() {
         mContainerView.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
+                doubleTapListener.onTouchEvent(event);
                 twoFingersListener.onTouchEvent(event);
 
                 float x = event.getX();
@@ -313,19 +358,28 @@ public class ActivityTechConnect extends WearableActivity {
 
                 if (checkOutput) {
                     final String latinChar = brailleDots.checkCurrentCharacter(false, false, false, false);
-                    Log.d("CHAR OUTPUT: ", latinChar);
-                    tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
-                    resultLetter.setText(latinChar);
+                    Log.d("CHAR OUTPUT:", "Char:" + latinChar + ".");
+                    if (!latinChar.isEmpty() && !latinChar.equals(" ")) {
+                        resultLetter.setText(latinChar);
 
-                    final Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            resultLetter.setText("");
-                            brailleDots.toggleAllDotsOff();
-                        }
-                    }, 1200);
+                        message = message.concat(latinChar);
+                        Log.d("MESSAGE OUTPUT: ", message);
 
+                        if (isUsingWordReading)
+                            tts.speak(message, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                        else
+                            tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                resultLetter.setText("");
+                                brailleDots.toggleAllDotsOff();
+                            }
+                        }, 1200);
+
+                    }
                     checkOutput = false;
                 }
             }

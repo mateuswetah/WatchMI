@@ -19,6 +19,8 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
+
 public class ActivityAppsFileExplorer extends WearableActivity implements SensorEventListener {
 
     private BoxInsetLayout mContainerView;

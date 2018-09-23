@@ -1,18 +1,10 @@
 package mateuswetah.wearablebraille;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Point;
-import android.graphics.drawable.Drawable;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
-import android.media.AudioManager;
-import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Vibrator;
-import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.support.wearable.activity.WearableActivity;
 import android.support.wearable.view.BoxInsetLayout;
@@ -25,9 +17,10 @@ import android.view.WindowInsets;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Locale;
-
 import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
+import mateuswetah.wearablebraille.GestureDetectors.SerialTapDetector;
+import mateuswetah.wearablebraille.GestureDetectors.Swipe4DirectionsDetector;
+import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
 
 /**
  * Created by orpheus on 15/11/17.

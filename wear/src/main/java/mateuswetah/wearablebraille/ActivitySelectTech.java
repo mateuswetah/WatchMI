@@ -14,6 +14,7 @@ public class ActivitySelectTech extends WearableActivity {
     private boolean isStudy = false;
     private boolean isScreenRotated = false;
     private boolean isUsingWordReading = false;
+    private boolean isUsingAutoComplete = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,11 @@ public class ActivitySelectTech extends WearableActivity {
                 isUsingWordReading = true;
             else
                 isUsingWordReading = false;
-            Log.d("CREATED", String.valueOf(isUsingWordReading));
+
+            if (extras.getBoolean("useAutoComplete") == true)
+                isUsingAutoComplete = true;
+            else
+                isUsingAutoComplete = false;
 
         }
     }
@@ -66,6 +71,7 @@ public class ActivitySelectTech extends WearableActivity {
             b.putBoolean("study", isStudy);
             b.putBoolean("isScreenRotated", isScreenRotated);
             b.putBoolean("useWordReading", isUsingWordReading);
+            b.putBoolean("useAutoComplete", isUsingAutoComplete);
             Intent i = new Intent(getApplicationContext(),  ActivityTechTouch.class);
             i.putExtras(b);
             startActivity(i);
@@ -89,6 +95,7 @@ public class ActivitySelectTech extends WearableActivity {
             b.putBoolean("study", isStudy);
             b.putBoolean("isScreenRotated", isScreenRotated);
             b.putBoolean("useWordReading", isUsingWordReading);
+            b.putBoolean("useAutoComplete", isUsingAutoComplete);
             Intent i = new Intent(getApplicationContext(),  ActivityTechConnect.class);
             i.putExtras(b);
             startActivity(i);
@@ -123,6 +130,7 @@ public class ActivitySelectTech extends WearableActivity {
             b.putBoolean("study", isStudy);
             b.putBoolean("isScreenRotated", isScreenRotated);
             b.putBoolean("useWordReading", isUsingWordReading);
+            b.putBoolean("useAutoComplete", isUsingAutoComplete);
             Intent i = new Intent(getApplicationContext(),  ActivityTechPerkins.class);
             i.putExtras(b);
             startActivity(i);
@@ -134,6 +142,7 @@ public class ActivitySelectTech extends WearableActivity {
             Bundle b = new Bundle();
             b.putBoolean("isScreenRotated", isScreenRotated);
             b.putBoolean("useWordReading", isUsingWordReading);
+            b.putBoolean("useAutoComplete", isUsingAutoComplete);
             Intent i = new Intent(getApplicationContext(), ActivityMain.class);
             i.putExtras(b);
             startActivity(i);

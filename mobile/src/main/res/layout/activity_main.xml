@@ -15,4 +15,14 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Message"
+        tools:layout_editor_absoluteX="51dp"
+        tools:layout_editor_absoluteY="73dp" />
+
 </android.support.constraint.ConstraintLayout>

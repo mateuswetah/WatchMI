@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="14dp"
+    android:baselineAligned="false"
+    android:id="@+id/gesture_confirmation_fragment">
+
+    <TableRow android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical|center_horizontal">
+        <TextView
+            android:layout_width="160dp"
+            android:layout_height="match_parent"
+            android:text="@string/mobile_not_connected"
+            android:id="@+id/mobile_not_connected_textview"
+            android:textAppearance="@style/TextAppearance.Wearable.Small"
+            android:textSize="18sp"
+            android:paddingStart="8dp"
+            android:paddingEnd="6dp"
+            android:paddingTop="10dp" />
+    </TableRow>
+    <TableRow android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <android.support.wearable.view.DelayedConfirmationView
+            android:layout_height="wrap_content"
+            android:id="@+id/mobile_connected_confirmation"
+            app:circle_border_width="6dp"
+            app:circle_radius="28dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="2"
+            android:padding="8dp"
+            android:layout_gravity="center_vertical"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:layout_width="wrap_content">
+        </android.support.wearable.view.DelayedConfirmationView>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/trying_again"
+            android:id="@+id/trying_again_textview"
+            android:textAppearance="@style/TextAppearance.Wearable.Small"
+            android:layout_gravity="center_vertical"
+            android:padding="4dp" />
+    </TableRow>
+
+
+</TableLayout>

@@ -23,6 +23,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
+
 public class ActivityTechTwist extends WearableActivity implements SensorEventListener {
 
     private BoxInsetLayout mContainerView;

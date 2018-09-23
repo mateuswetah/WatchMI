@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true">
@@ -12,4 +13,18 @@
         android:background="@android:color/white"
         app:rectLayout="@layout/activity_braille_core_square"
         app:roundLayout="@layout/activity_braille_core_circle" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:contentDescription="Message"
+        android:dropDownHeight="wrap_content"
+        android:dropDownWidth="match_parent"
+        android:text="Message"
+        android:textAlignment="center"
+        android:textColor="?android:attr/textColorHintInverse"
+        tools:text="Message" />
+
+
 </FrameLayout>

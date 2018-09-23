@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.WindowInsets;
 import android.widget.TextView;
 
+import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
+
 public class ActivityAppsMap extends WearableActivity implements SensorEventListener {
 
     private BoxInsetLayout mContainerView;

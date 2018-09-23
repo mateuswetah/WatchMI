@@ -8,11 +8,8 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.media.AudioManager;
-import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.support.wearable.activity.WearableActivity;
 import android.support.wearable.view.BoxInsetLayout;
@@ -29,10 +26,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
 
 import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
+import mateuswetah.wearablebraille.GestureDetectors.Swipe4DirectionsDetector;
+import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
 
 public class ActivityTechPressure extends WearableActivity implements SensorEventListener {
 

@@ -19,9 +19,11 @@ public class ActivityMain extends WearableActivity {
                     toneGeneratorSwitch,
 //                    vibrationPatternSwitch,
                     wordReadingSwitch,
+                    autoCompleteSwitch,
                     dotSpeakerSwitch;
     private Boolean isScreenRotated = false;
     private Boolean isUsingWordReading = false;
+    private Boolean isUsingAutoComplete = false;
     public static final String PREFS_NAME = "SettingsFile";
     public SharedPreferences settings;
 
@@ -87,6 +89,19 @@ public class ActivityMain extends WearableActivity {
         });
         wordReadingSwitch.setChecked(settings.getBoolean("useWordReading", false));
 
+        autoCompleteSwitch = (Switch) findViewById(R.id.autoCompleteSwitch);
+        autoCompleteSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                isUsingAutoComplete = b;
+
+                editor.putBoolean("useAutoComplete", b);
+                editor.commit();
+            }
+        });
+        autoCompleteSwitch.setChecked(settings.getBoolean("useAutoComplete", false));
+
         dotSpeakerSwitch = (Switch) findViewById(R.id.dotSpeakerSwitch);
         dotSpeakerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -111,12 +126,17 @@ public class ActivityMain extends WearableActivity {
             if (extras.getBoolean("useWordReading") == true) {
                 isUsingWordReading = true;
             } else {
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                isUsingWordReading = false;
+                   isUsingWordReading = false;
+            }
+            if (extras.getBoolean("useAutoComplete") == true) {
+                isUsingAutoComplete = true;
+            } else {
+                isUsingAutoComplete = false;
             }
         }
         this.screenRotateSwitch.setChecked(isScreenRotated);
         this.wordReadingSwitch.setChecked(isUsingWordReading);
+        this.autoCompleteSwitch.setChecked(isUsingAutoComplete);
     }
 
     Button.OnClickListener button1ClickListener = new Button.OnClickListener() {
@@ -125,6 +145,7 @@ public class ActivityMain extends WearableActivity {
             b.putBoolean("study", false);
             b.putBoolean("isScreenRotated", isScreenRotated);
             b.putBoolean("useWordReading", isUsingWordReading);
+            b.putBoolean("useAutoComplete", isUsingAutoComplete);
             Intent i = new Intent(getApplicationContext(),  ActivitySelectTech.class);
             i.putExtras(b);
             startActivity(i);
@@ -137,6 +158,7 @@ public class ActivityMain extends WearableActivity {
             b.putBoolean("study", true);
             b.putBoolean("isScreenRotated", isScreenRotated);
             b.putBoolean("useWordReading", isUsingWordReading);
+            b.putBoolean("useAutoComplete", isUsingAutoComplete);
             Intent i = new Intent(getApplicationContext(),  ActivitySelectTech.class);
             i.putExtras(b);
             startActivity(i);
@@ -148,6 +170,7 @@ public class ActivityMain extends WearableActivity {
             Bundle b = new Bundle();
             b.putBoolean("isScreenRotated", isScreenRotated);
             b.putBoolean("useWordReading", isUsingWordReading);
+            b.putBoolean("useAutoComplete", isUsingAutoComplete);
             Intent i = new Intent(getApplicationContext(),  ActivitySelectApps.class);
             i.putExtras(b);
             startActivity(i);

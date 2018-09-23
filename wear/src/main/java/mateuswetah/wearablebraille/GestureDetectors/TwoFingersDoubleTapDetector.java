@@ -1,4 +1,4 @@
-package mateuswetah.wearablebraille;
+package mateuswetah.wearablebraille.GestureDetectors;
 
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
@@ -7,14 +7,16 @@ import android.view.ViewConfiguration;
  * http://stackoverflow.com/questions/12414680/how-to-implement-a-two-finger-double-click-in-android
  * */
 
-public abstract class OneFingerDoubleTapDetector {
+public abstract class TwoFingersDoubleTapDetector {
     private static final int TIMEOUT = ViewConfiguration.getDoubleTapTimeout() + 100;
     private long mFirstDownTime = 0;
-    private byte mOneFingerTapCount = 0;
+    private boolean mSeparateTouches = false;
+    private byte mTwoFingerTapCount = 0;
 
     private void reset(long time) {
         mFirstDownTime = time;
-        mOneFingerTapCount = 0;
+        mSeparateTouches = false;
+        mTwoFingerTapCount = 0;
     }
 
     public boolean onTouchEvent(MotionEvent event) {
@@ -22,12 +24,18 @@ public abstract class OneFingerDoubleTapDetector {
             case MotionEvent.ACTION_DOWN:
                 if(mFirstDownTime == 0 || event.getEventTime() - mFirstDownTime > TIMEOUT)
                     reset(event.getDownTime());
+                break;
+            case MotionEvent.ACTION_POINTER_UP:
+                if(event.getPointerCount() == 2)
+                    mTwoFingerTapCount++;
                 else
-                    mOneFingerTapCount++;
+                    mFirstDownTime = 0;
                 break;
             case MotionEvent.ACTION_UP:
-                if(mOneFingerTapCount == 1 && event.getEventTime() - mFirstDownTime < TIMEOUT) {
-                    onOneFingerDoubleTap();
+                if(!mSeparateTouches)
+                    mSeparateTouches = true;
+                else if(mTwoFingerTapCount == 2 && event.getEventTime() - mFirstDownTime < TIMEOUT) {
+                    onTwoFingersDoubleTap();
                     mFirstDownTime = 0;
                     return true;
                 }
@@ -36,5 +44,5 @@ public abstract class OneFingerDoubleTapDetector {
         return false;
     }
 
-    public abstract void onOneFingerDoubleTap();
+    public abstract void onTwoFingersDoubleTap();
 }

@@ -1,14 +1,9 @@
 package mateuswetah.wearablebraille;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.Point;
-import android.media.AudioManager;
-import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.support.wearable.activity.WearableActivity;
 import android.support.wearable.view.BoxInsetLayout;
@@ -17,14 +12,14 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
 import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
+import mateuswetah.wearablebraille.GestureDetectors.OneFingerDoubleTapDetector;
+import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
 
 /**
  * Created by orpheus on 15/11/17.
@@ -60,6 +55,7 @@ public class ActivityTechConnect extends WearableActivity {
     boolean reset = false;
     boolean isUsingWordReading = false;
     boolean isTTSInitialized = false;
+    boolean isComposingLetter = false;
 
     // Test related
     int trialCount = 0;
@@ -77,7 +73,7 @@ public class ActivityTechConnect extends WearableActivity {
             public void onInit(int i) {
                 Log.d("TTS", "TextToSpeech Service Initialized");
                 isTTSInitialized = true;
-                //tts.setLanguage(Locale.ENGLISH);
+                tts.setLanguage(Locale.getDefault());
             }
         });
 
@@ -191,7 +187,10 @@ public class ActivityTechConnect extends WearableActivity {
                     Log.d("MESSAGE OUTPUT: ", message);
                     if (isTTSInitialized) {
                         tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
-                        tts.speak(message, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                        String[] words = message.split(" ");
+                        tts.speak(words[words.length - 1], TextToSpeech.QUEUE_FLUSH, null, "Output");
+                        Log.d("FULL MESSAGE OUTPUT: ", message);
+                        Log.d("LAST MESSAGE OUTPUT: ", words[words.length - 1]);
                     }
 
                     final Handler handler = new Handler();
@@ -202,6 +201,8 @@ public class ActivityTechConnect extends WearableActivity {
                             brailleDots.toggleAllDotsOff();
                         }
                     }, 1200);
+                } else {
+                    touch_up();
                 }
             }
         };
@@ -227,8 +228,19 @@ public class ActivityTechConnect extends WearableActivity {
     }
 
     void setTouchListener() {
+        mContainerView.setOnLongClickListener(new View.OnLongClickListener(){
+            @Override
+            public boolean onLongClick(View view) {
+                if (!isComposingLetter) {
+                    Log.d("FULL MESSAGE OUTPUT: ", message);
+                    tts.speak(getString(R.string.SendingFullSentence) + message, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                }
+                return true;
+            }
+        });
         mContainerView.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
+                mContainerView.onTouchEvent(event);
                 doubleTapListener.onTouchEvent(event);
                 twoFingersListener.onTouchEvent(event);
 
@@ -238,9 +250,11 @@ public class ActivityTechConnect extends WearableActivity {
                 switch (event.getAction())
                 {
                     case MotionEvent.ACTION_DOWN:
+                        isComposingLetter = true;
                         touch_start(x, y);
                         break;
                     case MotionEvent.ACTION_MOVE:
+                        isComposingLetter = true;
                         touch_move(x, y);
                         break;
                     case MotionEvent.ACTION_UP:
@@ -296,7 +310,8 @@ public class ActivityTechConnect extends WearableActivity {
                 brailleDots.toggleDotVisibility(5);
                 this.brailleDots.ButtonDots[5].callOnClick();
             }
-
+        } else {
+            isComposingLetter = false;
         }
 
     }
@@ -344,6 +359,8 @@ public class ActivityTechConnect extends WearableActivity {
                 this.brailleDots.ButtonDots[5].callOnClick();
             }
 
+        } else {
+            isComposingLetter = false;
         }
     }
     private void touch_up()
@@ -365,10 +382,14 @@ public class ActivityTechConnect extends WearableActivity {
                         message = message.concat(latinChar);
                         Log.d("MESSAGE OUTPUT: ", message);
 
-                        if (isUsingWordReading)
-                            tts.speak(message, TextToSpeech.QUEUE_FLUSH, null, "Output");
-                        else
+                        if (isUsingWordReading) {
+                            String[] words = message.split(" ");
+                            tts.speak(words[words.length - 1], TextToSpeech.QUEUE_FLUSH, null, "Output");
+                            Log.d("FULL MESSAGE OUTPUT: ", message);
+                            Log.d("LAST MESSAGE OUTPUT: ", words[words.length - 1]);
+                        } else {
                             tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                        }
 
                         final Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
@@ -381,6 +402,7 @@ public class ActivityTechConnect extends WearableActivity {
 
                     }
                     checkOutput = false;
+                    isComposingLetter = false;
                 }
             }
         }, 1250);

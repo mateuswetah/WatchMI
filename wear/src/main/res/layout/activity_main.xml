@@ -13,24 +13,92 @@
     <RelativeLayout
         android:id="@+id/relative"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:gravity="center"
+        android:layout_height="match_parent"
+        android:gravity="top|fill_vertical|fill_horizontal"
+        android:padding="10dp"
+        android:paddingBottom="0dp"
         app:layout_box="all">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:text="@string/app_name" />
 
         <Button
             android:id="@+id/btn1"
-            android:layout_width="120dp"
-            android:layout_height="45dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_below="@id/textView"
-            android:layout_marginBottom="-5dp"
             android:text="@string/btn1"
             android:textSize="12sp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="0dp"
+            android:layout_marginTop="60dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Switch
+                    android:id="@+id/screenRotateSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_alignEnd="@+id/btn1"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/btn1"
+                    android:text="Rotate Screen"
+                    android:textSize="12sp" />
+
+                <Switch
+                    android:id="@+id/toneGeneratorSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_alignEnd="@+id/screenRotateSwitch"
+                    android:layout_alignStart="@+id/screenRotateSwitch"
+                    android:layout_below="@+id/screenRotateSwitch"
+                    android:text="Tone Generator"
+                    android:textSize="12sp"></Switch>
+
+                <Switch
+                    android:id="@+id/wordReadingSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_alignEnd="@+id/toneGeneratorSwitch"
+                    android:layout_alignStart="@+id/toneGeneratorSwitch"
+                    android:layout_below="@+id/toneGeneratorSwitch"
+                    android:text="Word Reading"
+                    android:textSize="12sp"></Switch>
+
+                <Switch
+                    android:id="@+id/autoCompleteSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_alignEnd="@+id/wordReadingSwitch"
+                    android:layout_alignStart="@+id/wordReadingSwitch"
+                    android:layout_below="@+id/wordReadingSwitch"
+                    android:text="AutoComplete"
+                    android:textSize="12sp"></Switch>
+
+                <Switch
+                    android:id="@+id/dotSpeakerSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_alignEnd="@+id/autoCompleteSwitch"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignStart="@+id/autoCompleteSwitch"
+                    android:layout_below="@+id/autoCompleteSwitch"
+                    android:text="Dot Speaker"
+                    android:textSize="12sp"></Switch>
+            </LinearLayout>
+        </ScrollView>
 
         <!--<Button-->
         <!--android:id="@+id/btn2"-->
@@ -50,55 +118,15 @@
         <!--android:text="@string/btn3"-->
         <!--android:textSize="12sp" />-->
 
-        <Switch
-            android:id="@+id/screenRotateSwitch"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignEnd="@+id/btn1"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/btn1"
-            android:text="Rotate Screen"
-            android:textSize="12sp" />
-
-        <Switch
-            android:id="@+id/toneGeneratorSwitch"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignEnd="@+id/screenRotateSwitch"
-            android:layout_alignStart="@+id/screenRotateSwitch"
-            android:layout_below="@+id/screenRotateSwitch"
-            android:text="Tone Generator"
-            android:textSize="12sp"></Switch>
-
-        <Switch
-            android:id="@+id/wordReadingSwitch"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignEnd="@+id/toneGeneratorSwitch"
-            android:layout_alignStart="@+id/toneGeneratorSwitch"
-            android:layout_below="@+id/toneGeneratorSwitch"
-            android:text="Word Reading"
-            android:textSize="12sp"></Switch>
         <!--<Switch-->
-            <!--android:id="@+id/vibrationPatternsSwitch"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="30dp"-->
-            <!--android:layout_alignEnd="@+id/toneGeneratorSwitch"-->
-            <!--android:layout_alignStart="@+id/toneGeneratorSwitch"-->
-            <!--android:layout_below="@+id/toneGeneratorSwitch"-->
-            <!--android:text="Vibration Pattern"-->
-            <!--android:textSize="12sp"></Switch>-->
-
-        <Switch
-            android:id="@+id/dotSpeakerSwitch"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_alignEnd="@+id/wordReadingSwitch"
-            android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/wordReadingSwitch"
-            android:layout_below="@+id/wordReadingSwitch"
-            android:text="Dot Speaker"
-            android:textSize="12sp"></Switch>
+        <!--android:id="@+id/vibrationPatternsSwitch"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_alignEnd="@+id/toneGeneratorSwitch"-->
+        <!--android:layout_alignStart="@+id/toneGeneratorSwitch"-->
+        <!--android:layout_below="@+id/toneGeneratorSwitch"-->
+        <!--android:text="Vibration Pattern"-->
+        <!--android:textSize="12sp"></Switch>-->
 
     </RelativeLayout>
 

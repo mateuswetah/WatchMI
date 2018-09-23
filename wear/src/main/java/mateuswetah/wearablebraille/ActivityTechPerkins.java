@@ -1,30 +1,31 @@
 package mateuswetah.wearablebraille;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Point;
-import android.media.AudioManager;
-import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.support.wearable.activity.WearableActivity;
 import android.support.wearable.view.BoxInsetLayout;
 import android.support.wearable.view.WatchViewStub;
 import android.util.Log;
 import android.view.GestureDetector;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Locale;
 
 import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
+import mateuswetah.wearablebraille.GestureDetectors.PerkinsTapDetector;
+import mateuswetah.wearablebraille.GestureDetectors.Swipe4DirectionsDetector;
+import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
 
 /**
  * Created by orpheus on 15/11/17.
@@ -47,12 +48,26 @@ public class ActivityTechPerkins extends WearableActivity{
     // Feedback Tools
     private TextToSpeech tts;
 
+    // Autocomplete text field
+    private AutoCompleteTextView autoCompleteTextView;
+    private static final String[] VOCABULARY = new String[] {
+            "Belgium", "France", "Italy", "Germany", "Spain"
+    };
+    private ArrayAdapter<String> autoCompleteSpinnerAdapter;
+
+    // Final Text
+    private String message;
+
     //Flags
     boolean started = false;
     boolean stopped = true;
     boolean isStudy = false;
     boolean isScreenRotated = false;
+    boolean isUsingWordReading = false;
+    boolean isUsingAutoComplete = false;
+    boolean isPerformingLongClick = false;
     boolean reset = false;
+    boolean isTTSInitialized = false;
 
     // Perkins Column Control
     boolean perkinsColumnLeft = true;
@@ -71,9 +86,12 @@ public class ActivityTechPerkins extends WearableActivity{
         // Sets TextToSpeech Feedback
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
-            public void onInit(int i) {
-                Log.d("TTS", "TextToSpeech Service Initialized");
-                //tts.setLanguage(Locale.ENGLISH);
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    Log.d("TTS", "TextToSpeech Service Initialized");
+                    isTTSInitialized = true;
+                    tts.setLanguage(Locale.getDefault());
+                }
             }
         });
 
@@ -92,7 +110,33 @@ public class ActivityTechPerkins extends WearableActivity{
                 isScreenRotated = false;
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
+
+            if (extras.getBoolean("useWordReading") == true)
+                isUsingWordReading = true;
+            else
+                isUsingWordReading = false;
+
+            if (extras.getBoolean("useAutoComplete") == true)
+                isUsingAutoComplete = true;
+            else
+                isUsingAutoComplete = false;
         }
+
+        //Initializes Autocomplete EditText
+        Spinner spinner = (Spinner) findViewById(R.id.spinner1);
+        autoCompleteSpinnerAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, VOCABULARY);
+        autoCompleteTextView = (AutoCompleteTextView)
+                findViewById(R.id.autoCompleteTextView);
+        autoCompleteTextView.setText("");
+        autoCompleteTextView.setClickable(false);
+        autoCompleteTextView.setActivated(false);
+        autoCompleteTextView.setTextIsSelectable(false);
+        autoCompleteTextView.setCursorVisible(false);
+        autoCompleteTextView.setAdapter(autoCompleteSpinnerAdapter);
+
+        // Initializes message
+        message = new String();
 
         // Build and set view components
         WatchViewStub stub = (WatchViewStub) findViewById(R.id.stub);
@@ -236,7 +280,7 @@ public class ActivityTechPerkins extends WearableActivity{
 
             @Override
             public void onPerkinsDoubleTap(int line) {
-                if (perkinsColumnLeft) {
+                if (perkinsColumnLeft && !isPerformingLongClick) {
                     switch (line) {
                         case 1:
                             brailleDots.setDotVisibility(0, true);
@@ -252,7 +296,7 @@ public class ActivityTechPerkins extends WearableActivity{
                             break;
                     }
                     Log.d("PERKINS", "DOUBLE TAP LEFT");
-                } else {
+                } else if (!perkinsColumnLeft && !isPerformingLongClick) {
                     switch (line) {
                         case 1:
                             brailleDots.setDotVisibility(3, true);
@@ -272,53 +316,65 @@ public class ActivityTechPerkins extends WearableActivity{
 
 
                 // Move to next Serial Line
-                switchPerkinsColumn();
+                if (!isPerformingLongClick)
+                    switchPerkinsColumn();
             }
 
             @Override
             public void onPerkinsSingleTap(int line) {
+                if (!isPerformingLongClick) {
+                    switch (line) {
+                        case 1:
+                            if (perkinsColumnLeft) {
+                                brailleDots.setDotVisibility(0,true);
+                            } else {
+                                brailleDots.setDotVisibility(3,true);
+                            }
+                            Log.d("PERKINS", "SINGLE TAP TOP");
+                            break;
 
-                switch (line) {
-                    case 1:
-                        if (perkinsColumnLeft) {
-                            brailleDots.setDotVisibility(0,true);
-                        } else {
-                            brailleDots.setDotVisibility(3,true);
-                        }
-                        Log.d("PERKINS", "SINGLE TAP TOP");
-                        break;
+                        case 2:
+                            if (perkinsColumnLeft) {
+                                brailleDots.setDotVisibility(1,true);
+                            } else {
+                                brailleDots.setDotVisibility(4,true);
+                            }
+                            Log.d("PERKINS", "SINGLE TAP MIDDLE");
+                            break;
 
-                    case 2:
-                        if (perkinsColumnLeft) {
-                            brailleDots.setDotVisibility(1,true);
-                        } else {
-                            brailleDots.setDotVisibility(4,true);
-                        }
-                        Log.d("PERKINS", "SINGLE TAP MIDDLE");
-                        break;
-
-                    case 3:
-                        if (perkinsColumnLeft) {
-                            brailleDots.setDotVisibility(2,true);
-                        } else {
-                            brailleDots.setDotVisibility(5,true);
-                        }
-                        Log.d("PERKINS", "SINGLE TAP BOTTOM");
-                        break;
+                        case 3:
+                            if (perkinsColumnLeft) {
+                                brailleDots.setDotVisibility(2,true);
+                            } else {
+                                brailleDots.setDotVisibility(5,true);
+                            }
+                            Log.d("PERKINS", "SINGLE TAP BOTTOM");
+                            break;
+                    }
+                    // Move to next Serial Line
+                    switchPerkinsColumn();
                 }
-                // Move to next Serial Line
-                switchPerkinsColumn();
             }
 
         };
     }
 
     void setTouchListener() {
+        mContainerView.setOnLongClickListener(new View.OnLongClickListener(){
+            @Override
+            public boolean onLongClick(View view) {
+                Log.d("FULL MESSAGE OUTPUT: ", message);
+                tts.speak(getString(R.string.SendingFullSentence) + message, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                return true;
+            }
+        });
         mContainerView.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
+                mContainerView.onTouchEvent(event);
                 twoFingersListener.onTouchEvent(event);
                 if (!gestureDetector.onTouchEvent(event))
                     perkinsTapDetector.onTouchEvent(event);
+
                 return true;
             }
         });
@@ -336,8 +392,28 @@ public class ActivityTechPerkins extends WearableActivity{
             //Processes Braille Character
             final String latinChar = brailleDots.checkCurrentCharacter(false, false, false, false);
             Log.d("CHAR OUTPUT: ", latinChar);
+
             resultLetter.setText(latinChar);
-            tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
+            message = message.concat(latinChar);
+
+            if (isTTSInitialized) {
+                if (isUsingWordReading || latinChar.equals(" ")) {
+                    // Breaks string into words to speak only last one
+                    String[] words = message.split(" ");
+                    tts.speak(words[words.length - 1], TextToSpeech.QUEUE_FLUSH, null, "Output");
+                    Log.d("FULL MESSAGE OUTPUT: ", message);
+                    Log.d("LAST MESSAGE OUTPUT: ", words[words.length - 1]);
+                }
+                else
+                    tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
+
+                // Updates AutoComplete EditText
+                if (isUsingAutoComplete) {
+                    autoCompleteTextView.setText(message);
+                    if ((String) autoCompleteTextView.getCompletionHint() != null)
+                        Log.d("DICA", (String) autoCompleteTextView.getCompletionHint());
+                }
+            }
 
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {

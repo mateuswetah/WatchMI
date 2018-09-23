@@ -1,4 +1,4 @@
-package mateuswetah.wearablebraille;
+package mateuswetah.wearablebraille.GestureDetectors;
 
 import android.app.Activity;
 import android.os.Handler;

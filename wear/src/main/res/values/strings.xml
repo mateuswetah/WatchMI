@@ -23,4 +23,9 @@
     <string name="app5">app5</string>
     <string name="app6">app6</string>
     <string name="tech6">Perkins</string>
-</resources>
+
+    <string name="mobile_not_connected">Mobile pair is not connected!</string>
+    <string name="trying_again">Trying again...</string>
+
+    <string name="SendingFullSentence">Você digitou: </string>
+ </resources>

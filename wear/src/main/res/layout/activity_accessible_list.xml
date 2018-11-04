@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mateuswetah.wearablebraille.BrailleÉcran.MyScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:id="@+id/options_scroll_view"
+    android:soundEffectsEnabled="true"
+    android:keepScreenOn="true"
+    android:hapticFeedbackEnabled="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/items_list"
+            android:orientation="vertical"
+            android:windowSwipeToDismiss="false">
+
+        </LinearLayout>
+
+</mateuswetah.wearablebraille.BrailleÉcran.MyScrollView>

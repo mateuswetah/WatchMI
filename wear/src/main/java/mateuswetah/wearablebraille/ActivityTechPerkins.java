@@ -23,6 +23,7 @@ import android.widget.Toast;
 import java.util.Locale;
 
 import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
+import mateuswetah.wearablebraille.BrailleÉcran.MyBoxInsetLayout;
 import mateuswetah.wearablebraille.GestureDetectors.PerkinsTapDetector;
 import mateuswetah.wearablebraille.GestureDetectors.Swipe4DirectionsDetector;
 import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
@@ -34,7 +35,7 @@ import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
 public class ActivityTechPerkins extends WearableActivity{
 
     // View Components
-    private BoxInsetLayout mContainerView;
+    private MyBoxInsetLayout mContainerView;
     private BrailleDots brailleDots;
     private TextView tv1, tv2, tv3, resultLetter;
     private WearableActivity activity;
@@ -143,7 +144,7 @@ public class ActivityTechPerkins extends WearableActivity{
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
-                mContainerView = (BoxInsetLayout) findViewById(R.id.container);
+                mContainerView = (MyBoxInsetLayout) findViewById(R.id.container);
 
                 mContainerView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
                     @Override
@@ -266,6 +267,8 @@ public class ActivityTechPerkins extends WearableActivity{
                     b.putBoolean("study", isStudy);
 
                 b.putBoolean("isScreenRotated", isScreenRotated);
+                b.putBoolean("useWordReading", isUsingWordReading);
+                b.putBoolean("useAutoComplete", isUsingAutoComplete);
                 i.putExtras(b);
                 startActivity(i);
                 finish();

@@ -28,4 +28,33 @@
     <string name="trying_again">Trying again...</string>
 
     <string name="SendingFullSentence">Você digitou: </string>
- </resources>
+    <string name="suggestions_intro">Sugestões:</string>
+
+    <!-- Strings related to punctuation -->
+    <string name="WhiteSpaceSpeech">Espaço.</string>
+    <string name="ExclamationSpeech">Exclamação.</string>
+    <string name="InterrogationSpeech">Interrogação.</string>
+    <string name="CommaSpeech">Vírgula.</string>
+    <string name="SemiColonSpeech">Ponto e vírgula.</string>
+    <string name="ColonSpeech">Dois pontos.</string>
+    <string name="PeriodSpeech">Ponto.</string>
+
+    <!-- Strings related to extra symbols-->
+    <string name="HyphenSpeech">Hífen</string>
+    <string name="AtSpeech">Arroba</string>
+    <string name="BackSlashSpeech">Barra invertida</string>
+    <string name="CedillaCSpeech">C cedilha.</string>
+    <string name="AcuteASpeech">A Agudo.</string>
+    <string name="AcuteESpeech">Ê Agudo.</string>
+    <string name="AcuteISpeech">I Agudo.</string>
+    <string name="AcuteOSpeech">O Agudo.</string>
+    <string name="AcuteUSpeech">U Agudo.</string>
+    <string name="CircumflexASpeech">A circunflexo.</string>
+    <string name="CircumflexESpeech">Ê Circunflexo.</string>
+    <string name="CircumflexOSpeech">O Circunflexo.</string>
+    <string name="TildeOSpeech">O til.</string>
+    <string name="TildeASpeech">A til.</string>
+    <string name="CrasisASpeech">A Craseado.</string>
+    <string name="fixedMessage">Corrigido para:</string>
+
+</resources>

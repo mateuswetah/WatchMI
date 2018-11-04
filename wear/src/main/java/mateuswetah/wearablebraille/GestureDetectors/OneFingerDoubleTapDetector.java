@@ -1,6 +1,7 @@
 package mateuswetah.wearablebraille.GestureDetectors;
 
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewConfiguration;
 
 /** source from

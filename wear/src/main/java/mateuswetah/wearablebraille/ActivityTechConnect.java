@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.wearable.activity.WearableActivity;
-import android.support.wearable.view.BoxInsetLayout;
 import android.support.wearable.view.WatchViewStub;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -18,6 +17,7 @@ import android.widget.Toast;
 import java.util.Locale;
 
 import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
+import mateuswetah.wearablebraille.BrailleÉcran.MyBoxInsetLayout;
 import mateuswetah.wearablebraille.GestureDetectors.OneFingerDoubleTapDetector;
 import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
 
@@ -28,7 +28,7 @@ import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
 public class ActivityTechConnect extends WearableActivity {
 
     // View Components
-    private BoxInsetLayout mContainerView;
+    private MyBoxInsetLayout mContainerView;
     private BrailleDots brailleDots;
     private TextView tv1, tv2, tv3, resultLetter;
     private WearableActivity activity;
@@ -54,6 +54,7 @@ public class ActivityTechConnect extends WearableActivity {
     boolean isScreenRotated = false;
     boolean reset = false;
     boolean isUsingWordReading = false;
+    boolean isUsingAutoComplete = false;
     boolean isTTSInitialized = false;
     boolean isComposingLetter = false;
 
@@ -100,6 +101,11 @@ public class ActivityTechConnect extends WearableActivity {
                 isUsingWordReading = true;
             else
                 isUsingWordReading = false;
+
+            if (extras.getBoolean("useAutoComplete") == true)
+                isUsingAutoComplete = true;
+            else
+                isUsingAutoComplete = false;
         }
 
         // Build and set view components
@@ -107,7 +113,7 @@ public class ActivityTechConnect extends WearableActivity {
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
-                mContainerView = (BoxInsetLayout) findViewById(R.id.container);
+                mContainerView = (MyBoxInsetLayout) findViewById(R.id.container);
 
                 mContainerView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
                     @Override
@@ -202,7 +208,7 @@ public class ActivityTechConnect extends WearableActivity {
                         }
                     }, 1200);
                 } else {
-                    touch_up();
+                    touch_up(true);
                 }
             }
         };
@@ -220,6 +226,7 @@ public class ActivityTechConnect extends WearableActivity {
 
                 b.putBoolean("isScreenRotated", isScreenRotated);
                 b.putBoolean("useWordReading", isUsingWordReading);
+                b.putBoolean("useAutoComplete", isUsingAutoComplete);
                 i.putExtras(b);
                 startActivity(i);
                 finish();
@@ -246,7 +253,6 @@ public class ActivityTechConnect extends WearableActivity {
 
                 float x = event.getX();
                 float y = event.getY();
-
                 switch (event.getAction())
                 {
                     case MotionEvent.ACTION_DOWN:
@@ -258,10 +264,10 @@ public class ActivityTechConnect extends WearableActivity {
                         touch_move(x, y);
                         break;
                     case MotionEvent.ACTION_UP:
-                        touch_up();
+                        touch_up(false);
                         break;
                     case MotionEvent.ACTION_CANCEL:
-                        touch_up();
+                        touch_up(false);
                         break;
                 }
                 return true;
@@ -363,7 +369,7 @@ public class ActivityTechConnect extends WearableActivity {
             isComposingLetter = false;
         }
     }
-    private void touch_up()
+    private void touch_up(boolean skipTimeout)
     {
         //Log.d("MOVE", "DONE");
         checkOutput = true;
@@ -405,7 +411,7 @@ public class ActivityTechConnect extends WearableActivity {
                     isComposingLetter = false;
                 }
             }
-        }, 1250);
+        }, skipTimeout ? 0 : 1250);
 
         // commit the path to our offscreen
         //mCanvas.drawPath(points, mPaint);

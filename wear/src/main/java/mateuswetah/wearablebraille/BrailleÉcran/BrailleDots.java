@@ -4,11 +4,16 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.support.wearable.activity.WearableActivity;
 import android.util.Log;
+import android.view.View;
+import android.view.accessibility.AccessibilityEvent;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +26,8 @@ import mateuswetah.wearablebraille.R;
 public class BrailleDots {
 
     // Create an array of six initially invisible OutputDots and associate them with the XML
-    public final ImageButton ButtonDots[] = new ImageButton[6];
+    public final Button ButtonDots[] = new Button[6];
+    public final ImageView ImageDots[] = new ImageView[6];
 
     // An array that stores the 44 possible summations.
     private ArrayList<Integer> SummedValueDots = new ArrayList<Integer>();
@@ -100,7 +106,8 @@ public class BrailleDots {
 
         if (value == false) {
             ButtonDots[i].setTag(new Boolean(false));
-            ButtonDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
+            ImageDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
+
             switch (i) {
                 case 0:
                     if (useToneGenerator) toneGenerator.startTone(ToneGenerator.TONE_CDMA_SIGNAL_OFF, 100);
@@ -142,7 +149,8 @@ public class BrailleDots {
 
         } else {
             ButtonDots[i].setTag(new Boolean(true));
-            ButtonDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_active));
+            ImageDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_active));
+
             switch (i) {
                 case 0:
                     if (useToneGenerator) toneGenerator.startTone(ToneGenerator.TONE_DTMF_1, 100);
@@ -188,10 +196,18 @@ public class BrailleDots {
     public void toggleAllDotsOff() {
 
         for (int i = 0; i < 6; i++) {
-            ButtonDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
+            ImageDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
             ButtonDots[i].setTag(new Boolean(false));
         }
 
+    }
+    public void toggleOnlyDotButtonsOff() {
+        for (int i = 0; i < 6; i++)
+            ButtonDots[i].setTag(new Boolean(false));
+    }
+    public void toggleOnlyDotImagesOff() {
+        for (int i = 0; i < 6; i++)
+            ImageDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
     }
 
     // Called in MainActivity every time a Dot is added or removed.
@@ -334,8 +350,16 @@ public class BrailleDots {
                         break;
                 }
             }
-
         }
+
+        toggleOnlyDotButtonsOff();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                toggleOnlyDotImagesOff();
+            }
+        }, 200);
 
         Log.d("BRAILLE_DOTS", "Output:" + latimOutput + ".");
         return latimOutput;
@@ -345,24 +369,35 @@ public class BrailleDots {
     public void createDotButtons (boolean isLineReversed) {
         // To be used in Orientation-landscape mode for layouts such as Perkins
         if (isLineReversed) {
-            ButtonDots[2] = (ImageButton) activity.findViewById(R.id.dotButton1);
-            ButtonDots[1] = (ImageButton) activity.findViewById(R.id.dotButton2);
-            ButtonDots[0] = (ImageButton) activity.findViewById(R.id.dotButton3);
-            ButtonDots[5] = (ImageButton) activity.findViewById(R.id.dotButton4);
-            ButtonDots[4] = (ImageButton) activity.findViewById(R.id.dotButton5);
-            ButtonDots[3] = (ImageButton) activity.findViewById(R.id.dotButton6);
+            ButtonDots[2] = (Button) activity.findViewById(R.id.dotButton1);
+            ButtonDots[1] = (Button) activity.findViewById(R.id.dotButton2);
+            ButtonDots[0] = (Button) activity.findViewById(R.id.dotButton3);
+            ButtonDots[5] = (Button) activity.findViewById(R.id.dotButton4);
+            ButtonDots[4] = (Button) activity.findViewById(R.id.dotButton5);
+            ButtonDots[3] = (Button) activity.findViewById(R.id.dotButton6);
+            ImageDots[2] = (ImageView) activity.findViewById(R.id.virtualDotButton1);
+            ImageDots[1] = (ImageView) activity.findViewById(R.id.virtualDotButton2);
+            ImageDots[0] = (ImageView) activity.findViewById(R.id.virtualDotButton3);
+            ImageDots[5] = (ImageView) activity.findViewById(R.id.virtualDotButton4);
+            ImageDots[4] = (ImageView) activity.findViewById(R.id.virtualDotButton5);
+            ImageDots[3] = (ImageView) activity.findViewById(R.id.virtualDotButton6);
         } else {
-            ButtonDots[0] = (ImageButton) activity.findViewById(R.id.dotButton1);
-            ButtonDots[1] = (ImageButton) activity.findViewById(R.id.dotButton2);
-            ButtonDots[2] = (ImageButton) activity.findViewById(R.id.dotButton3);
-            ButtonDots[3] = (ImageButton) activity.findViewById(R.id.dotButton4);
-            ButtonDots[4] = (ImageButton) activity.findViewById(R.id.dotButton5);
-            ButtonDots[5] = (ImageButton) activity.findViewById(R.id.dotButton6);
-
+            ButtonDots[0] = (Button) activity.findViewById(R.id.dotButton1);
+            ButtonDots[1] = (Button) activity.findViewById(R.id.dotButton2);
+            ButtonDots[2] = (Button) activity.findViewById(R.id.dotButton3);
+            ButtonDots[3] = (Button) activity.findViewById(R.id.dotButton4);
+            ButtonDots[4] = (Button) activity.findViewById(R.id.dotButton5);
+            ButtonDots[5] = (Button) activity.findViewById(R.id.dotButton6);
+            ImageDots[0] = (ImageView) activity.findViewById(R.id.virtualDotButton1);
+            ImageDots[1] = (ImageView) activity.findViewById(R.id.virtualDotButton2);
+            ImageDots[2] = (ImageView) activity.findViewById(R.id.virtualDotButton3);
+            ImageDots[3] = (ImageView) activity.findViewById(R.id.virtualDotButton4);
+            ImageDots[4] = (ImageView) activity.findViewById(R.id.virtualDotButton5);
+            ImageDots[5] = (ImageView) activity.findViewById(R.id.virtualDotButton6);
         }
         for (int i = 0; i < 6; i++) {
             ButtonDots[i].setTag(new Boolean(false));
-            ButtonDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
+            ImageDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
         }
     }
 

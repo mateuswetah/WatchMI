@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".ActivityMain"
     tools:deviceIds="wear"
+    android:theme="@style/AppTheme"
     android:keepScreenOn="true">
-
 
     <RelativeLayout
         android:id="@+id/relative"
@@ -16,6 +16,7 @@
         android:layout_height="match_parent"
         android:gravity="top|fill_vertical|fill_horizontal"
         android:padding="10dp"
+        android:theme="@style/AppTheme"
         android:paddingBottom="0dp"
         app:layout_box="all">
 

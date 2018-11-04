@@ -1,16 +1,16 @@
 package mateuswetah.wearablebraille;
 
 import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.wearable.activity.WearableActivity;
-import android.support.wearable.view.BoxInsetLayout;
 import android.support.wearable.view.WatchViewStub;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -18,11 +18,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
-import android.view.textservice.SentenceSuggestionsInfo;
 import android.view.textservice.SpellCheckerSession;
-import android.view.textservice.SuggestionsInfo;
-import android.view.textservice.TextInfo;
-import android.view.textservice.TextServicesManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -30,19 +26,23 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.wearable.MessageApi;
+import com.google.android.gms.wearable.MessageClient;
+import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.CompletionException;
+import java.util.concurrent.TimeUnit;
 
+import mateuswetah.wearablebraille.BrailleÉcran.ActivityAccessibleList;
 import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
+import mateuswetah.wearablebraille.BrailleÉcran.MyBoxInsetLayout;
 import mateuswetah.wearablebraille.GestureDetectors.OneFingerDoubleTapDetector;
 import mateuswetah.wearablebraille.GestureDetectors.Swipe4DirectionsDetector;
 import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
@@ -53,20 +53,17 @@ import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
 
 public class ActivityTechTouch
         extends WearableActivity
-        implements GoogleApiClient.ConnectionCallbacks,
-                    GoogleApiClient.OnConnectionFailedListener {
+        implements MessageApi.MessageListener, MessageClient.OnMessageReceivedListener {
 
     // View Components
-    private BoxInsetLayout mContainerView;
+    private MyBoxInsetLayout mContainerView;
     private BrailleDots brailleDots;
     private TextView tv1, tv2, tv3, resultLetter;
     private WearableActivity activity;
 
     // Autocomplete text field
     private AutoCompleteTextView autoCompleteTextView;
-    private static final String[] VOCABULARY = new String[] {
-            "Belgium", "France", "Italy", "Germany", "Spain"
-    };
+    private ArrayList<String> vocabulary = new ArrayList<String>();
     private ArrayAdapter<String> autoCompleteSpinnerAdapter;
 
     // Final Text
@@ -79,6 +76,8 @@ public class ActivityTechTouch
     private View.OnLongClickListener dotLongClickListener;
 
     // Feedback Tools
+    private ToneGenerator toneGenerator = new ToneGenerator(AudioManager.STREAM_MUSIC, ToneGenerator.MAX_VOLUME);
+    private Vibrator vibrator = null;
     private TextToSpeech tts;
 
     //Flags
@@ -97,31 +96,21 @@ public class ActivityTechTouch
 
     // Gesture detector for implementing Swipe gestures
     private GestureDetector gestureDetector;
-
-    //Spell Checker, testing...
+    //Spell Checker
     private SpellCheckerSession spellCheckerSession;
-    private String[] suggestions;
+    private ArrayList<String> suggestions;
 
     // Related to Sending the Message
-    private static final String WEARABLE_MAIN = "WearableMain";
-    private static Node mNode;
+    private List<Node> myNodes = new ArrayList<>();
     private static GoogleApiClient mGoogleApiClient;
-    private static final String SPELLCHECKER_WEAR_PATH = "/gesture-from-wear";
+    private static final String SPELLCHECKER_WEAR_PATH = "/message-to-spellchecker";
+    private static final long CONNECTION_TIME_OUT_MS = 2500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_braille_core_stub);
         this.activity = this;
-
-        // Gets the googleApiClient for communicating with mobile pair
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(Wearable.API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
-
-        mGoogleApiClient.connect();
 
         // Sets TextToSpeech for feedback
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
@@ -134,6 +123,13 @@ public class ActivityTechTouch
                 }
             }
         });
+        vibrator = (Vibrator) this.activity.getSystemService(Context.VIBRATOR_SERVICE);
+
+        // Initializes Google API
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApiIfAvailable(Wearable.API)
+                .build();
+        getNodes();
 
         // Updates settings variables
         Bundle extras = getIntent().getExtras();
@@ -164,8 +160,9 @@ public class ActivityTechTouch
 
         //Initializes Autocomplete EditText
         Spinner spinner = (Spinner) findViewById(R.id.spinner1);
+        vocabulary.add("Belgium");
         autoCompleteSpinnerAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, VOCABULARY);
+                android.R.layout.simple_dropdown_item_1line, vocabulary);
         autoCompleteTextView = (AutoCompleteTextView)
                 findViewById(R.id.autoCompleteTextView);
         autoCompleteTextView.setText("");
@@ -199,7 +196,7 @@ public class ActivityTechTouch
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
-                mContainerView = (BoxInsetLayout) findViewById(R.id.container);
+                mContainerView = (MyBoxInsetLayout) findViewById(R.id.container);
                 mContainerView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
                     @Override
                     public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
@@ -253,6 +250,7 @@ public class ActivityTechTouch
                 brailleDots = new BrailleDots(activity);
 
                 dotClickListener = new View.OnClickListener() {
+
                     @Override
                     public void onClick(View v) {
 
@@ -333,6 +331,7 @@ public class ActivityTechTouch
             public void onOneFingerDoubleTap() {
                 final String latinChar = brailleDots.checkCurrentCharacter(false, false, false, false);
                 Log.d("CHAR OUTPUT: ", latinChar);
+                Log.d("FULL MESSAGE OUTPUT: ", message);
 
                 resultLetter.setText(latinChar);
                 message = message.concat(latinChar);
@@ -341,12 +340,21 @@ public class ActivityTechTouch
                     if (isUsingWordReading || latinChar.equals(" ")) {
                         // Breaks string into words to speak only last one
                         String[] words = message.split(" ");
-                        tts.speak(words[words.length - 1], TextToSpeech.QUEUE_FLUSH, null, "Output");
+                        tts.speak(words[words.length - 1], TextToSpeech.QUEUE_ADD, null, "Output");
                         Log.d("FULL MESSAGE OUTPUT: ", message);
                         Log.d("LAST MESSAGE OUTPUT: ", words[words.length - 1]);
+                        // Used by SpellChecker
+                        fetchSuggestionsFromMobile(words[words.length - 1]);
                     }
-                    else
-                        tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                    else {
+                        speakComposedWord(latinChar);
+
+                        // Automatically adds space after punctuation.
+                        if (latinChar.equals(",") || latinChar.equals(".") || latinChar.equals(":")|| latinChar.equals("!") || latinChar.equals("?")){
+                            brailleDots.toggleAllDotsOff();
+                            onOneFingerDoubleTap();
+                        }
+                    }
 
                     // Updates AutoComplete EditText
                     if (isUsingAutoComplete) {
@@ -354,9 +362,6 @@ public class ActivityTechTouch
                         if ((String) autoCompleteTextView.getCompletionHint() != null)
                             Log.d("DICA", (String) autoCompleteTextView.getCompletionHint());
                     }
-
-                    // Used by SpellChecker
-                    fetchSuggestionsFromMobile(message);
                 }
 
                 final Handler handler = new Handler();
@@ -364,7 +369,6 @@ public class ActivityTechTouch
                     @Override
                     public void run() {
                         resultLetter.setText("");
-                        brailleDots.toggleAllDotsOff();
                     }
                 }, 1200);
             }
@@ -383,6 +387,7 @@ public class ActivityTechTouch
                 Log.d("SCREEN ROTATED", String.valueOf(isScreenRotated));
                 b.putBoolean("isScreenRotated", isScreenRotated);
                 b.putBoolean("useWordReading", isUsingWordReading);
+                b.putBoolean("useAutoComplete", isUsingAutoComplete);
                 i.putExtras(b);
                 startActivity(i);
                 finish();
@@ -410,6 +415,7 @@ public class ActivityTechTouch
                 mContainerView.onTouchEvent(event);
                 return true;
             }
+
         });
     }
 
@@ -420,31 +426,145 @@ public class ActivityTechTouch
             case KeyEvent.KEYCODE_NAVIGATE_NEXT:
                 // Do something that advances a user View to the next item in an ordered list.
                 Log.d("FLICK", "NEXT");
+                launchSuggestions();
                 return true;
             case KeyEvent.KEYCODE_NAVIGATE_PREVIOUS:
                 // Do something that advances a user View to the previous item in an ordered list.
                 Log.d("FLICK", "PREV");
+                launchSuggestions();
                 return true;
         }
         // If you did not handle it, let it be handled by the next possible element as deemed by the Activity.
         return super.onKeyDown(keyCode, event);
     }
 
+    private void launchSuggestions() {
+        if (suggestions != null && suggestions.size() > 0) {
+            Intent intent = new Intent(getApplicationContext(), ActivityAccessibleList.class);
+            intent.putExtra("items", suggestions.toArray(new String[suggestions.size()]));
+            intent.putExtra("introSpeakingSentence", getString(R.string.suggestions_intro));
+            try {
+                this.startActivityForResult(intent,1);
+            } catch (ActivityNotFoundException e) {
+                Log.d("ACTIVITY", "Can't find suggestions activity.");
+            }
+        }
+    }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        this.brailleDots.freeTTSService();
-        if (tts != null) {
-            tts.stop();
-            tts.shutdown();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1 && data != null) {
+            Log.d("SELECIONADO", data.getStringExtra("selectedItem"));
+            applySuggestion(data.getStringExtra("selectedItem"));
+        }
+    }
+
+    private void applySuggestion(String selectedSuggestion) {
+
+        // Clears current suggestions list
+        suggestions.clear();
+
+        //Finds if there is any punctuation, as those are  ignored by spell checker
+        String punctuation = message.substring(message.length() - 2);
+        if (!(punctuation.equals(", ")) && !(punctuation.equals(". ")) && !(punctuation.equals("! ")) && !(punctuation.equals(": ")) && !(punctuation.equals("? ")) && !(punctuation.equals("; "))) {
+            Log.d("PUNCTUATION", message.substring(message.length() - 2));
+            punctuation = "";
+        }
+
+        // Rebuild list with fixed word
+        String[] words = message.split(" ");
+        words[words.length - 1] = selectedSuggestion;
+        message = "";
+        for (int i = 0; i < words.length; i++) {
+            message = message + words[i];
+            if (i < words.length - 1) {
+                message = message + " ";
+            }
+        }
+        message = message + punctuation;
+        if (punctuation.equals("")) {
+            message = message + " ";
+        }
+        Log.d("CORRECTED MESSAGE", message);
+
+        // Speaks out selected suggestion
+        if (isTTSInitialized) {
+            tts.speak(getString(R.string.fixedMessage) + selectedSuggestion, TextToSpeech.QUEUE_FLUSH, null, "suggestion_option");
+        }
+    }
+
+    // WORD SPEAKING
+    private void speakComposedWord(String currentChar) {
+        tts.speak(currentChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
+
+        if (!currentChar.equals("") &&
+                !currentChar.equals("Nu") && !currentChar.equals("Ma") && !currentChar.equals("In") && !currentChar.equals("Cf") && !currentChar.equals("?!") &&
+                !currentChar.equals("NU") && !currentChar.equals("MA") && !currentChar.equals("IN") && !currentChar.equals("CF")) {
+
+            if (currentChar.equals(" ")) {
+                tts.speak(getString(R.string.WhiteSpaceSpeech), TextToSpeech.QUEUE_FLUSH, null, "White Space Character Output");
+            } else if (currentChar.equals("!"))
+                tts.speak(getString(R.string.ExclamationSpeech), TextToSpeech.QUEUE_FLUSH, null, "Exclamation Sign Output");
+            else if (currentChar.equals("?"))
+                tts.speak(getString(R.string.InterrogationSpeech), TextToSpeech.QUEUE_FLUSH, null, "Interrogation Sign Output");
+            else if (currentChar.equals("."))
+                tts.speak(getString(R.string.PeriodSpeech), TextToSpeech.QUEUE_FLUSH, null, "Period Sign Output");
+            else if (currentChar.equals("-"))
+                tts.speak(getString(R.string.HyphenSpeech), TextToSpeech.QUEUE_FLUSH, null, "Hyphen Sign Output");
+            else if (currentChar.equals(","))
+                tts.speak(getString(R.string.CommaSpeech), TextToSpeech.QUEUE_FLUSH, null, "Comma Sign Output");
+            else if (currentChar.equals(":"))
+                tts.speak(getString(R.string.ColonSpeech), TextToSpeech.QUEUE_FLUSH, null, "Colon Sign Output");
+            else if (currentChar.equals(";"))
+                tts.speak(getString(R.string.SemiColonSpeech), TextToSpeech.QUEUE_FLUSH, null, "Semi Colon Sign Output");
+            else if (currentChar.equals("-"))
+                tts.speak(getString(R.string.HyphenSpeech), TextToSpeech.QUEUE_FLUSH, null, "Hyphen Sign Output");
+            else if (currentChar.equals("@"))
+                tts.speak(getString(R.string.AtSpeech), TextToSpeech.QUEUE_FLUSH, null, "AT Sign Output");
+            else if (currentChar.equals("\\"))
+                tts.speak(getString(R.string.BackSlashSpeech), TextToSpeech.QUEUE_FLUSH, null, "Back Slash Sign Output");
+            else if (currentChar.equals("ç"))
+                tts.speak(getString(R.string.CedillaCSpeech), TextToSpeech.QUEUE_FLUSH, null, "Cedille C Sign Output");
+            else if (currentChar.equals("á"))
+                tts.speak(getString(R.string.AcuteASpeech), TextToSpeech.QUEUE_FLUSH, null, "Acute A Sign Output");
+            else if (currentChar.equals("é"))
+                tts.speak(getString(R.string.AcuteESpeech), TextToSpeech.QUEUE_FLUSH, null, "Acute E Sign Output");
+            else if (currentChar.equals("í"))
+                tts.speak(getString(R.string.AcuteISpeech), TextToSpeech.QUEUE_FLUSH, null, "Acute I Sign Output");
+            else if (currentChar.equals("ó"))
+                tts.speak(getString(R.string.AcuteOSpeech), TextToSpeech.QUEUE_FLUSH, null, "Acute O Sign Output");
+            else if (currentChar.equals("ú"))
+                tts.speak(getString(R.string.AcuteUSpeech), TextToSpeech.QUEUE_FLUSH, null, "Acute U Sign Output");
+            else if (currentChar.equals("â"))
+                tts.speak(getString(R.string.CircumflexASpeech), TextToSpeech.QUEUE_FLUSH, null, "Circumflex A Sign Output");
+            else if (currentChar.equals("ê"))
+                tts.speak(getString(R.string.CircumflexESpeech), TextToSpeech.QUEUE_FLUSH, null, "Circumflex E Sign Output");
+            else if (currentChar.equals("ô"))
+                tts.speak(getString(R.string.CircumflexOSpeech), TextToSpeech.QUEUE_FLUSH, null, "Circumflex O Sign Output");
+            else if (currentChar.equals("ã"))
+                tts.speak(getString(R.string.TildeASpeech), TextToSpeech.QUEUE_FLUSH, null, "Tilde A Sign Output");
+            else if (currentChar.equals("õ"))
+                tts.speak(getString(R.string.TildeOSpeech), TextToSpeech.QUEUE_FLUSH, null, "Tilde O Sign Output");
+            else if (currentChar.equals("à"))
+                tts.speak(getString(R.string.CrasisASpeech), TextToSpeech.QUEUE_FLUSH, null, "Crasis A Sign Output");
+            else {
+                tts.speak((CharSequence) currentChar, TextToSpeech.QUEUE_FLUSH, null, "Audio Character Output");
+            }
+
+//            if (tmpCapsOn == true) {
+//                tmpCapsOn = false;
+//                tts.speak(getString(R.string.DeactivatingCapitalLetter), TextToSpeech.QUEUE_FLUSH, null, "Caps Deactivated Message");
+//            } else if (tmpNumOn == true) {
+//                tmpNumOn = false;
+//                tts.speak(getString(R.string.DeactivatingNumbers), TextToSpeech.QUEUE_FLUSH, null, "Numbers Deactivated Message");
+//            }
+
         }
     }
 
     // SPELL CHECKING -----------------------------------------
     private void fetchSuggestionsFromMobile(String input){
 
-        if (mNode != null && mGoogleApiClient != null) {
+        if (myNodes != null && mGoogleApiClient != null) {
 
             byte[] message = new byte[0];
             try {
@@ -452,60 +572,83 @@ public class ActivityTechTouch
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-
-            Wearable.MessageApi.sendMessage(mGoogleApiClient, mNode.getId(),
-                    SPELLCHECKER_WEAR_PATH, message)
-                    .setResultCallback(new ResultCallback<MessageApi.SendMessageResult>() {
-                        @Override
-                        public void onResult(MessageApi.SendMessageResult sendMessageResult) {
-                            if (!sendMessageResult.getStatus().isSuccess()) {
-                                Log.d(WEARABLE_MAIN, "Failed message:" + sendMessageResult.getStatus().getStatusCode());
-                            } else {
-                                Log.d(WEARABLE_MAIN, "Message succeeded");
-                            }
-                        }
-                    });
-        }
-
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-
-        Wearable.NodeApi.getConnectedNodes(mGoogleApiClient)
-                .setResultCallback(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
-                    @Override
-                    public void onResult(NodeApi.GetConnectedNodesResult nodes) {
-                        for (Node node : nodes.getNodes()) {
-                            if (node != null && node.isNearby()) {
-                                mNode = node;
-                                Log.d(WEARABLE_MAIN, "Connected to " + mNode.getDisplayName());
-
-                                String id = mNode.getId();
-                                String name = mNode.getDisplayName();
-
-                                Log.d("WEAR CONNECTION", "Connected peer name & ID: " + name + "|" + id);
-
-                            }
-                        }
-                        if (mNode == null) {
-                            Log.d("WEAR CONNECTION", "Not connected");
-//                            Intent intent = new Intent(getBaseContext(), MobileConnectedConfirmationActivity.class);
-//                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
-                        }
+            final byte[] finalMessage = message;
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for(Node n:myNodes) {
+                        Log.d("GOOGLE API","Sending message to node: " + n.getDisplayName());
+                        Wearable.MessageApi.sendMessage(mGoogleApiClient,n.getId(),SPELLCHECKER_WEAR_PATH, finalMessage);
                     }
-                });
+                }
+            }).run();
+        }
+    }
+
+    /* Handling received suggestions. */
+    @Override
+    public void onMessageReceived(MessageEvent messageEvent) {
+
+        String messageEventString = new String(messageEvent.getData());
+        messageEventString = messageEventString.substring(1, messageEventString.length() - 1);
+        String[] suggestedStrings = messageEventString.split(", ");
+        suggestions = new ArrayList<String>();
+
+        for (String suggestion: suggestedStrings) {
+            suggestions.add(suggestion);
+            Log.d("ON SUGGESTIONS RECEIVED", suggestion);
+//            this.autoCompleteSpinnerAdapter.add(suggestion);
+        }
+//        if (suggestions.size() > 0) {
+//            this.autoCompleteSpinnerAdapter.notifyDataSetChanged();
+//        }
+        toneGenerator.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD);
+
+    }
+
+    private List<Node> getNodes(){
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                Log.d("GOOGLE API","Getting Google API nodes...");
+
+                mGoogleApiClient.blockingConnect(CONNECTION_TIME_OUT_MS, TimeUnit.MILLISECONDS);
+
+                NodeApi.GetConnectedNodesResult result = Wearable.NodeApi.getConnectedNodes(mGoogleApiClient).await();
+                List<Node> nodes = result.getNodes();
+
+                for(Node n:nodes){
+                    Log.d("GOOGLE API","Adding Google API Node: "+n.getDisplayName());
+                    myNodes.add(n);
+                }
+
+                Log.d("GOOGLE API","Getting nodes DONE!");
+            }
+        }).start();
+
+        return null;
     }
 
     @Override
-    public void onConnectionSuspended(int i) {
-        Log.d("WEAR CONNECTION", "Connection suspended");
-//        Intent intent = new Intent(getBaseContext(), MobileConnectedConfirmationActivity.class);
-//        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY));
+    protected void onResume() {
+        super.onResume();
+        Wearable.getMessageClient(this).addListener(this);
     }
 
     @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Log.d("WEAR CONNECTION", "Connection failed");
+    protected void onPause() {
+        Wearable.getMessageClient(this).removeListener(this);
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        this.brailleDots.freeTTSService();
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onDestroy();
     }
 }

@@ -15,7 +15,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +22,7 @@ import android.widget.Toast;
 import java.util.Locale;
 
 import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
+import mateuswetah.wearablebraille.BrailleÉcran.CharacterToSpeech;
 import mateuswetah.wearablebraille.BrailleÉcran.MyBoxInsetLayout;
 import mateuswetah.wearablebraille.GestureDetectors.PerkinsTapDetector;
 import mateuswetah.wearablebraille.GestureDetectors.Swipe4DirectionsDetector;
@@ -47,14 +47,7 @@ public class ActivityTechPerkins extends WearableActivity{
     private PerkinsTapDetector perkinsTapDetector;
 
     // Feedback Tools
-    private TextToSpeech tts;
-
-    // Autocomplete text field
-    private AutoCompleteTextView autoCompleteTextView;
-    private static final String[] VOCABULARY = new String[] {
-            "Belgium", "France", "Italy", "Germany", "Spain"
-    };
-    private ArrayAdapter<String> autoCompleteSpinnerAdapter;
+    private CharacterToSpeech tts;
 
     // Final Text
     private String message;
@@ -65,7 +58,7 @@ public class ActivityTechPerkins extends WearableActivity{
     boolean isStudy = false;
     boolean isScreenRotated = false;
     boolean isUsingWordReading = false;
-    boolean isUsingAutoComplete = false;
+    boolean isSpellChecking = false;
     boolean isPerformingLongClick = false;
     boolean reset = false;
     boolean isTTSInitialized = false;
@@ -85,7 +78,7 @@ public class ActivityTechPerkins extends WearableActivity{
         this.activity = this;
 
         // Sets TextToSpeech Feedback
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+        tts = new CharacterToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS) {
@@ -117,24 +110,11 @@ public class ActivityTechPerkins extends WearableActivity{
             else
                 isUsingWordReading = false;
 
-            if (extras.getBoolean("useAutoComplete") == true)
-                isUsingAutoComplete = true;
+            if (extras.getBoolean("useSpellCheck") == true)
+                isSpellChecking = true;
             else
-                isUsingAutoComplete = false;
+                isSpellChecking = false;
         }
-
-        //Initializes Autocomplete EditText
-        Spinner spinner = (Spinner) findViewById(R.id.spinner1);
-        autoCompleteSpinnerAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, VOCABULARY);
-        autoCompleteTextView = (AutoCompleteTextView)
-                findViewById(R.id.autoCompleteTextView);
-        autoCompleteTextView.setText("");
-        autoCompleteTextView.setClickable(false);
-        autoCompleteTextView.setActivated(false);
-        autoCompleteTextView.setTextIsSelectable(false);
-        autoCompleteTextView.setCursorVisible(false);
-        autoCompleteTextView.setAdapter(autoCompleteSpinnerAdapter);
 
         // Initializes message
         message = new String();
@@ -268,7 +248,7 @@ public class ActivityTechPerkins extends WearableActivity{
 
                 b.putBoolean("isScreenRotated", isScreenRotated);
                 b.putBoolean("useWordReading", isUsingWordReading);
-                b.putBoolean("useAutoComplete", isUsingAutoComplete);
+                b.putBoolean("useSpellCheck", isSpellChecking);
                 i.putExtras(b);
                 startActivity(i);
                 finish();
@@ -409,13 +389,6 @@ public class ActivityTechPerkins extends WearableActivity{
                 }
                 else
                     tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
-
-                // Updates AutoComplete EditText
-                if (isUsingAutoComplete) {
-                    autoCompleteTextView.setText(message);
-                    if ((String) autoCompleteTextView.getCompletionHint() != null)
-                        Log.d("DICA", (String) autoCompleteTextView.getCompletionHint());
-                }
             }
 
             final Handler handler = new Handler();

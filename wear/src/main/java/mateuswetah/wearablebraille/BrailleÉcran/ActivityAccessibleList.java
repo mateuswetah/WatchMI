@@ -2,6 +2,7 @@ package mateuswetah.wearablebraille.BrailleÉcran;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.media.PlaybackParams;
 import android.os.Build;
@@ -16,19 +17,24 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
 import mateuswetah.wearablebraille.GestureDetectors.OneFingerDoubleTapDetector;
 import mateuswetah.wearablebraille.GestureDetectors.Swipe4DirectionsDetector;
+import mateuswetah.wearablebraille.GestureDetectors.TwoFingersSwipeDetector;
 import mateuswetah.wearablebraille.R;
 
 public class ActivityAccessibleList extends WearableActivity {
 
     // View Components
+    RelativeLayout accessibleListContainer;
     MyScrollView scrollView;
     LinearLayout linearLayout;
     ArrayList<Button> itemButtons;
@@ -36,12 +42,13 @@ public class ActivityAccessibleList extends WearableActivity {
     String[] items;
     int selectedIndex = 0;
     GestureDetector gestureDetector;
+    TwoFingersSwipeDetector twoFingersSwipeListener;
     OneFingerDoubleTapDetector doubleTapDetector;
 
     // Feedback Tools
     boolean isTTSInitialized = false;
     private Vibrator vibrator = null;
-    private TextToSpeech tts;
+    private CharacterToSpeech tts;
     MediaPlayer mediaPlayer;
     PlaybackParams mediaParams;
 
@@ -55,6 +62,43 @@ public class ActivityAccessibleList extends WearableActivity {
         setContentView(R.layout.activity_accessible_list);
         this.activity = this;
 
+        // Updates settings variables
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            items = (String[]) extras.get("items");
+            Log.d("RECEBENDO: ", "_" + items[0] + "..." + items[items.length - 1] + "_");
+            introSpeakingSentence = (CharSequence) extras.get("introSpeakingSentence");
+        };
+
+        // Sets up media player feedback
+        mediaParams = new PlaybackParams();
+        mediaParams.setPitch(0.5f);
+
+        // A transparent layer above view to handle some events not related to buttons
+        ImageView img = new ImageView(this);
+        img.setBackgroundColor(Color.TRANSPARENT);
+        img.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean shouldStopPropagation = false;
+
+                if (twoFingersSwipeListener.onTouchEvent(motionEvent))
+                    shouldStopPropagation = true;
+                if (!gestureDetector.onTouchEvent(motionEvent)) {
+                    if (doubleTapDetector.onTouchEvent(motionEvent)) {
+                        shouldStopPropagation = true;
+                    }
+                } else {
+                    shouldStopPropagation = true;
+                }
+                return true;
+            }
+        });
+        accessibleListContainer = (RelativeLayout) findViewById(R.id.accessible_list_container);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        accessibleListContainer.addView(img, params);
+
+        // The ScrollView
         scrollView = (MyScrollView) findViewById(R.id.options_scroll_view);
         scrollView.setSmoothScrollingEnabled(true);
         scrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
@@ -67,10 +111,10 @@ public class ActivityAccessibleList extends WearableActivity {
                         mediaPlayer = MediaPlayer.create(activity, R.raw.scroll_tone);
                         mediaPlayer.setVolume(1.0f,1.0f);
                         try {
-                            mediaParams.setPitch((selectedIndex / 0.35f) + 0.1f);
+                            mediaParams.setPitch((mediaParams.getPitch() + 0.1f));
                             mediaPlayer.setPlaybackParams(mediaParams);
                         } catch (IllegalArgumentException exception) {
-                            Log.d("PITCH", exception.getMessage());
+                            Log.d("PITCH", "Error: " + exception.getMessage());
                         }
                         mediaPlayer.start();
                         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -83,10 +127,12 @@ public class ActivityAccessibleList extends WearableActivity {
                         // Audio feedback for scroll list down navigation
                         mediaPlayer = MediaPlayer.create(activity, R.raw.scroll_tone);
                         try {
-                            mediaParams.setPitch((selectedIndex / 0.35f) - 0.1f);
+                            if (mediaParams.getPitch() > 0.1) {
+                                mediaParams.setPitch(mediaParams.getPitch() - 0.1f);
+                            }
                             mediaPlayer.setPlaybackParams(mediaParams);
                         } catch (IllegalArgumentException exception) {
-                            Log.d("PITCH", exception.getMessage());
+                            Log.d("PITCH", "Error: " + exception.getMessage());
                         }
                         mediaPlayer.start();
                         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -99,20 +145,9 @@ public class ActivityAccessibleList extends WearableActivity {
                 }
             }
         });
+
+        // Dynamically adds and set up buttons
         linearLayout = (LinearLayout) findViewById(R.id.items_list);
-        activity = this;
-
-        // Updates settings variables
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            items = (String[]) extras.get("items");
-            introSpeakingSentence = (CharSequence) extras.get("introSpeakingSentence");
-        };
-
-        // Sets up media player feedback
-        mediaParams = new PlaybackParams();
-
-        // Adds and set up buttons
         itemButtons = new ArrayList<>();
         for (int i = 0; i < items.length; i++) {
             final Button itemButton = new Button(this);
@@ -125,9 +160,9 @@ public class ActivityAccessibleList extends WearableActivity {
             itemButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
+//                    new Handler().postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
                             selectedIndex = currentIndex;
                             if (isTTSInitialized) {
                                 tts.speak(items[selectedIndex], TextToSpeech.QUEUE_ADD, null, "item_option");
@@ -152,24 +187,26 @@ public class ActivityAccessibleList extends WearableActivity {
                             // Scrolls if necessary
                             scrollView.scrollTo((int) itemButton.getX(), (int) itemButton.getY());
                         }
-                    }, ViewConfiguration.getDoubleTapTimeout() + 200);
-                }
+//                    }, ViewConfiguration.getDoubleTapTimeout() + 200);
+//                }
             });
             itemButtons.add(itemButton);
             LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             linearLayout.addView(itemButton, linearParams);
 
-            itemButton.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View view, MotionEvent motionEvent) {
-                    if (!gestureDetector.onTouchEvent(motionEvent)) {
-                        doubleTapDetector.onTouchEvent(motionEvent);
-                        itemButton.onTouchEvent(motionEvent);
-                    }
-                    return true;
-                }
-            });
         }
+
+        twoFingersSwipeListener = new TwoFingersSwipeDetector() {
+            @Override
+            protected void onTwoFingersSwipeLeft() { }
+
+            @Override
+            protected void onTwoFingersSwipeRight() {
+                Intent data = new Intent();
+                setResult(RESULT_CANCELED, data);
+                finish();
+            }
+        };
 
         doubleTapDetector = new OneFingerDoubleTapDetector() {
             @Override
@@ -179,6 +216,7 @@ public class ActivityAccessibleList extends WearableActivity {
                     tts.speak(items[selectedIndex], TextToSpeech.QUEUE_FLUSH, null, "item_option");
                 }
                 Intent data = new Intent();
+                data.putExtra("selectedIndex", selectedIndex);
                 data.putExtra("selectedItem", items[selectedIndex]);
                 setResult(RESULT_OK, data);
                 finish();
@@ -282,7 +320,7 @@ public class ActivityAccessibleList extends WearableActivity {
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         // Sets TextToSpeech for feedback
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+        tts = new CharacterToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS) {

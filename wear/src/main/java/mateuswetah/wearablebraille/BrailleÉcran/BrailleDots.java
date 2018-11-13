@@ -52,7 +52,6 @@ public class BrailleDots {
     private WearableActivity activity;
     private int nSymbols = 50; // Number of symbols listed in the XML
 
-    // Constructor
 
     // Constructor
     public BrailleDots(WearableActivity activity, boolean reversedLines) {

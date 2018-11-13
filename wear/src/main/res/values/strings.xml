@@ -56,5 +56,9 @@
     <string name="TildeASpeech">A til.</string>
     <string name="CrasisASpeech">A Craseado.</string>
     <string name="fixedMessage">Corrigido para:</string>
+    <string name="canceled">Cancelado</string>
+    <string name="navigation_mode_intro">Modo de Navegação</string>
+    <string name="deleted">apagado.</string>
+    <string name="ActivatedDots">Pontos ativados:</string>
 
 </resources>

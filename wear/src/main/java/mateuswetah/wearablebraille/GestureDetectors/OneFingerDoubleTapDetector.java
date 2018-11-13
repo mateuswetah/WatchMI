@@ -23,15 +23,18 @@ public abstract class OneFingerDoubleTapDetector {
             case MotionEvent.ACTION_DOWN:
                 if(mFirstDownTime == 0 || event.getEventTime() - mFirstDownTime > TIMEOUT)
                     reset(event.getDownTime());
-                else
-                    mOneFingerTapCount++;
+                else{
+                    if (event.getPointerCount() == 1)
+                        mOneFingerTapCount++;
+                }
                 break;
             case MotionEvent.ACTION_UP:
-                if(mOneFingerTapCount == 1 && event.getEventTime() - mFirstDownTime < TIMEOUT) {
+                if(event.getPointerCount() == 1 && mOneFingerTapCount == 1 && event.getEventTime() - mFirstDownTime < TIMEOUT) {
                     onOneFingerDoubleTap();
                     mFirstDownTime = 0;
                     return true;
                 }
+                break;
         }
 
         return false;

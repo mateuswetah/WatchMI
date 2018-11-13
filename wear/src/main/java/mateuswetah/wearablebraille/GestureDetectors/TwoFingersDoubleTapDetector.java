@@ -20,6 +20,7 @@ public abstract class TwoFingersDoubleTapDetector {
     }
 
     public boolean onTouchEvent(MotionEvent event) {
+
         switch(event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
                 if(mFirstDownTime == 0 || event.getEventTime() - mFirstDownTime > TIMEOUT)

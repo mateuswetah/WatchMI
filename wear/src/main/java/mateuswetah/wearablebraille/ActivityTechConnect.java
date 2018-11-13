@@ -17,6 +17,7 @@ import android.widget.Toast;
 import java.util.Locale;
 
 import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
+import mateuswetah.wearablebraille.BrailleÉcran.CharacterToSpeech;
 import mateuswetah.wearablebraille.BrailleÉcran.MyBoxInsetLayout;
 import mateuswetah.wearablebraille.GestureDetectors.OneFingerDoubleTapDetector;
 import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
@@ -45,7 +46,7 @@ public class ActivityTechConnect extends WearableActivity {
     private View.OnClickListener dotClickListener;
 
     // TextToSpeech for feedback
-    private TextToSpeech tts;
+    private CharacterToSpeech tts;
 
     //Flags
     boolean started = false;
@@ -54,7 +55,7 @@ public class ActivityTechConnect extends WearableActivity {
     boolean isScreenRotated = false;
     boolean reset = false;
     boolean isUsingWordReading = false;
-    boolean isUsingAutoComplete = false;
+    boolean isSpellChecking = false;
     boolean isTTSInitialized = false;
     boolean isComposingLetter = false;
 
@@ -69,7 +70,7 @@ public class ActivityTechConnect extends WearableActivity {
         this.activity = this;
 
         // Sets TextToSpeech for Feedback
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+        tts = new CharacterToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int i) {
                 Log.d("TTS", "TextToSpeech Service Initialized");
@@ -102,10 +103,10 @@ public class ActivityTechConnect extends WearableActivity {
             else
                 isUsingWordReading = false;
 
-            if (extras.getBoolean("useAutoComplete") == true)
-                isUsingAutoComplete = true;
+            if (extras.getBoolean("useSpellCheck") == true)
+                isSpellChecking = true;
             else
-                isUsingAutoComplete = false;
+                isSpellChecking = false;
         }
 
         // Build and set view components
@@ -226,7 +227,7 @@ public class ActivityTechConnect extends WearableActivity {
 
                 b.putBoolean("isScreenRotated", isScreenRotated);
                 b.putBoolean("useWordReading", isUsingWordReading);
-                b.putBoolean("useAutoComplete", isUsingAutoComplete);
+                b.putBoolean("useSpellCheck", isSpellChecking);
                 i.putExtras(b);
                 startActivity(i);
                 finish();

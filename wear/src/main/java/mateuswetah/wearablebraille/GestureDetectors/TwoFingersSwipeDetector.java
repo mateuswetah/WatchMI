@@ -5,7 +5,7 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 
 public abstract class TwoFingersSwipeDetector {
-    private static final int SWIPE_MIN_DISTANCE = 60;
+    private static final int SWIPE_MIN_DISTANCE = 130;
     private static final int NONE = 0;
     private static final int SWIPE = 1;
     public int mode = NONE;
@@ -27,6 +27,7 @@ public abstract class TwoFingersSwipeDetector {
             case MotionEvent.ACTION_POINTER_UP:
                 // This happens when you release the second finger
                 mode = NONE;
+                Log.d("SWIPE DIST", String.valueOf(Math.abs(stopX - startX)));
                 if(Math.abs(stopX - startX) > SWIPE_MIN_DISTANCE) {
                     if(startX <= stopX) {
                         Log.d("TWO FINGERS SWIPE", "RIGHT");

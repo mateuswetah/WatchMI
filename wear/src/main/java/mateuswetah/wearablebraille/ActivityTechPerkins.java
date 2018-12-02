@@ -59,6 +59,8 @@ public class ActivityTechPerkins extends WearableActivity{
     boolean isScreenRotated = false;
     boolean isUsingWordReading = false;
     boolean isSpellChecking = false;
+    boolean speakWordAtSpace = false;
+    boolean infoOnLongPress = false;
     boolean isPerformingLongClick = false;
     boolean reset = false;
     boolean isTTSInitialized = false;
@@ -114,6 +116,16 @@ public class ActivityTechPerkins extends WearableActivity{
                 isSpellChecking = true;
             else
                 isSpellChecking = false;
+
+            if (extras.getBoolean("speakWordAtSpace") == true)
+                speakWordAtSpace = true;
+            else
+                speakWordAtSpace = false;
+
+            if (extras.getBoolean("infoOnLongPress") == true)
+                infoOnLongPress = true;
+            else
+                infoOnLongPress = false;
         }
 
         // Initializes message
@@ -343,11 +355,16 @@ public class ActivityTechPerkins extends WearableActivity{
     }
 
     void setTouchListener() {
+        if (infoOnLongPress)
+            mContainerView.setLongClickable(true);
+
         mContainerView.setOnLongClickListener(new View.OnLongClickListener(){
             @Override
             public boolean onLongClick(View view) {
-                Log.d("FULL MESSAGE OUTPUT: ", message);
-                tts.speak(getString(R.string.SendingFullSentence) + message, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                if (infoOnLongPress) {
+                    Log.d("FULL MESSAGE OUTPUT: ", message);
+                    tts.speak(getString(R.string.SendingFullSentence) + message, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                }
                 return true;
             }
         });
@@ -380,7 +397,7 @@ public class ActivityTechPerkins extends WearableActivity{
             message = message.concat(latinChar);
 
             if (isTTSInitialized) {
-                if (isUsingWordReading || latinChar.equals(" ")) {
+                if (isUsingWordReading || (speakWordAtSpace && latinChar.equals(" "))) {
                     // Breaks string into words to speak only last one
                     String[] words = message.split(" ");
                     tts.speak(words[words.length - 1], TextToSpeech.QUEUE_FLUSH, null, "Output");
@@ -410,8 +427,11 @@ public class ActivityTechPerkins extends WearableActivity{
     @Override
     protected void onDestroy() {
         this.brailleDots.freeTTSService();
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
         super.onDestroy();
-        tts.shutdown();
     }
 
 }

@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Random;
 
 import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
+import mateuswetah.wearablebraille.BrailleÉcran.CharacterToSpeech;
 import mateuswetah.wearablebraille.GestureDetectors.Swipe4DirectionsDetector;
 import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
 
@@ -51,13 +52,14 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
     private Sensor mSensor;
 
     // TextToSpeech for Feedbacks
-    private TextToSpeech tts;
+    private CharacterToSpeech tts;
 
     //Flags
     boolean started = false;
     boolean stopped = true;
     boolean isStudy = false;
     boolean isScreenRotated = false;
+    boolean speakWordAtSpace = false;
     boolean reset = false;
     boolean isActivated = false;
 
@@ -96,12 +98,17 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
                 isScreenRotated = false;
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
+
+            if (extras.getBoolean("speakWordAtSpace") == true)
+                speakWordAtSpace = true;
+            else
+                speakWordAtSpace = false;
         }
 
         this.activity = this;
 
         // Sets TextToSpeech for Feedback
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+        tts = new CharacterToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int i) {
                 Log.d("TTS", "TextToSpeech Service Initialized");
@@ -132,19 +139,6 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
 
                     @Override
                     public void onTopSwipe() {
-                        final String latinChar = brailleDots.checkCurrentCharacter(false, false, false, false);
-                        Log.d("CHAR OUTPUT: ", latinChar);
-                        tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
-                        resultLetter.setText(latinChar);
-
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                resultLetter.setText("");
-                                brailleDots.toggleAllDotsOff();
-                            }
-                        }, 1200);
                     }
 
                     @Override
@@ -160,6 +154,24 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
                     @Override
                     public void onBottomSwipe() {
 
+                    }
+
+                    @Override
+                    public boolean onDoubleTap(MotionEvent e) {
+                        final String latinChar = brailleDots.checkCurrentCharacter(false, false, false, false);
+                        Log.d("CHAR OUTPUT: ", latinChar);
+                        tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                        resultLetter.setText(latinChar);
+
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                resultLetter.setText("");
+                                brailleDots.toggleAllDotsOff();
+                            }
+                        }, 1200);
+                        return super.onDoubleTap(e);
                     }
                 });
                 setTouchListener();
@@ -401,7 +413,7 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
         double angle = (Math.toDegrees(Math.atan2(y, x)) + 360 + 90) % 360;
         pos = (int)((angle + 22.5)/ 45) + 1;
         if (pos == 9) pos = 1; // quick hack
-        lvl = util.DetermineLevel(x, y, 20, 20);
+        lvl = util.DetermineLevel(x, y, 40, 200);
 
         if (pos == currentTrialPos && lvl == currentTrialLvl && pos == touchPos)
             drawView.paintHighlightTask.setColor(Color.argb(150, 0, 255, 0));
@@ -497,8 +509,11 @@ public class ActivityTechPressure extends WearableActivity implements SensorEven
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         this.brailleDots.freeTTSService();
-        tts.shutdown();
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onDestroy();
     }
 }

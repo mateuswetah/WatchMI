@@ -66,6 +66,8 @@ public abstract class PerkinsTapDetector {
                         }
                     }, 100);
                     return false;
+                } else if (event.getPointerCount() == 3) {
+                    Log.d("PERKINS", "3 FINGERS TAP!");
                 }
                 break;
 

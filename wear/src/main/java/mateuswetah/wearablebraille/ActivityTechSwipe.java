@@ -2,6 +2,7 @@ package mateuswetah.wearablebraille;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
+import mateuswetah.wearablebraille.BrailleÉcran.CharacterToSpeech;
 import mateuswetah.wearablebraille.GestureDetectors.Swipe8DirectionsDetector;
 import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
 
@@ -31,6 +33,7 @@ public class ActivityTechSwipe extends WearableActivity{
     private BrailleDots brailleDots;
     private TextView tv1, tv2, tv3, resultLetter;
     private WearableActivity activity;
+    private DrawView drawView;
 
     // Touch Listeners
     TwoFingersDoubleTapDetector twoFingersListener;
@@ -38,13 +41,15 @@ public class ActivityTechSwipe extends WearableActivity{
     private View.OnClickListener dotClickListener;
 
     // Feedback Tools
-    private TextToSpeech tts;
+    private CharacterToSpeech tts;
 
     //Flags
     boolean started = false;
     boolean stopped = true;
     boolean isStudy = false;
     boolean isScreenRotated = false;
+    boolean speakWordAtSpace = false;
+    boolean infoOnLongPress = false;
     boolean swiped = false;
     boolean reset = false;
 
@@ -59,7 +64,7 @@ public class ActivityTechSwipe extends WearableActivity{
         this.activity = this;
 
         // Sets TextToSpeech for Feedback
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+        tts = new CharacterToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int i) {
                 Log.d("TTS", "TextToSpeech Service Initialized");
@@ -82,6 +87,17 @@ public class ActivityTechSwipe extends WearableActivity{
                 isScreenRotated = false;
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
+
+            if (extras.getBoolean("speakWordAtSpace") == true)
+                speakWordAtSpace = true;
+            else
+                speakWordAtSpace = false;
+
+
+            if (extras.getBoolean("infoOnLongPress") == true)
+                infoOnLongPress = true;
+            else
+                infoOnLongPress = false;
         }
 
         // Build and set view components
@@ -99,6 +115,9 @@ public class ActivityTechSwipe extends WearableActivity{
                         return insets;
                     }
                 });
+
+                drawView = (DrawView) findViewById(R.id.draw_view);
+                drawView.setBackgroundColor(Color.TRANSPARENT);
 
                 // Swipe Gesture Detection
                 gestureDetector = new GestureDetector(activity, new Swipe8DirectionsDetector() {
@@ -131,6 +150,34 @@ public class ActivityTechSwipe extends WearableActivity{
                     public void onBottomRightSwipe() {
                         brailleDots.toggleDotVisibility(5);
                     }
+
+                    @Override
+                    public boolean onDoubleTap(MotionEvent event) {
+                        int i;
+                        for (i = 0; i < brailleDots.ButtonDots.length; i++) {
+                            if (isViewContains(brailleDots.ButtonDots[i], event.getX(), event.getY()))
+                                return super.onDoubleTapEvent(event);
+                        }
+                        if (!swiped) {
+
+                            final String latinChar = brailleDots.checkCurrentCharacter(false, false, false, false);
+                            Log.d("CHAR OUTPUT: ", latinChar);
+                            tts.speak(latinChar, TextToSpeech.QUEUE_FLUSH, null, "Output");
+                            resultLetter.setText(latinChar);
+
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    resultLetter.setText("");
+                                    brailleDots.toggleAllDotsOff();
+                                }
+                            }, 1200);
+
+                        }
+                        return super.onDoubleTap(event);
+                    }
+
                 });
 
                 setTouchListener();
@@ -179,21 +226,70 @@ public class ActivityTechSwipe extends WearableActivity{
         };
     }
 
+    private boolean isViewContains(View view, float px, float py) {
+
+        int[] topLeftPoint = new int[2];
+        view.getLocationOnScreen(topLeftPoint);
+        int x = topLeftPoint[0];
+        int y = topLeftPoint[1];
+
+        int w = view.getWidth();
+        int h = view.getHeight();
+
+        if (px >= 0 && py >= 0) {
+            switch (view.getId()) {
+
+                case R.id.dotButton1:
+                    if (px > x + w || py > y + h) {
+                        return false;
+                    }
+                    break;
+                case R.id.dotButton4:
+                    if (px < x || py > y + h) {
+                        return false;
+                    }
+                    break;
+                case R.id.dotButton2:
+                    if (px > x + w || py < y || py > y + h) {
+                        return false;
+                    }
+                    break;
+                case R.id.dotButton5:
+                    if (px < x || py < y || py > y + h) {
+                        return false;
+                    }
+                    break;
+                case R.id.dotButton3:
+                    if (px > x + w || py < y) {
+                        return false;
+                    }
+                    break;
+                case R.id.dotButton6:
+                    if (px < x || py < y) {
+                        return false;
+                    }
+                    break;
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     void setTouchListener() {
-        mContainerView.setOnTouchListener(new View.OnTouchListener() {
+        drawView.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 twoFingersListener.onTouchEvent(event);
-                if (gestureDetector.onTouchEvent(event)) {
-                    swiped = true;
-                }
-                swiped = false;
+                swiped = event.getActionMasked() == MotionEvent.ACTION_MOVE;
+                gestureDetector.onTouchEvent(event);
                 return false;
             }
         });
-        mContainerView.setOnLongClickListener(new View.OnLongClickListener() {
+        drawView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                if (!swiped) {
+                if (!swiped && infoOnLongPress) {
 
                     final String latinChar = brailleDots.checkCurrentCharacter(false, false, false, false);
                     Log.d("CHAR OUTPUT: ", latinChar);
@@ -210,15 +306,18 @@ public class ActivityTechSwipe extends WearableActivity{
                     }, 1200);
 
                 }
-                return true;
+                return false;
             }
         });
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         this.brailleDots.freeTTSService();
-        tts.shutdown();
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onDestroy();
     }
 }

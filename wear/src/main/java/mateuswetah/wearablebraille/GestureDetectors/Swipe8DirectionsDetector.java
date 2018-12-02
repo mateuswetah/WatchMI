@@ -10,13 +10,14 @@ import android.view.MotionEvent;
 
 public abstract class Swipe8DirectionsDetector extends GestureDetector.SimpleOnGestureListener {
 
-    private static final String LOGTAG = "SWIPE";
+    private static final String LOGTAG = "8 DIR SWIPE";
     private static final int SWIPE_MIN_DISTANCE = 50;
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2,
                            float velocityX, float velocityY) {
 
+        Log.d("EVENT", "rolou:" + e1.getActionMasked() +" " + e2.getActionMasked());
         switch (getSlope(e1.getX(), e1.getY(), e2.getX(), e2.getY())) {
             case 1:
                 Log.d(LOGTAG, "top right");

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
+import mateuswetah.wearablebraille.BrailleÉcran.CharacterToSpeech;
 import mateuswetah.wearablebraille.GestureDetectors.SerialTapDetector;
 import mateuswetah.wearablebraille.GestureDetectors.Swipe4DirectionsDetector;
 import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
@@ -41,13 +42,14 @@ public class ActivityTechSerial extends WearableActivity{
     private SerialTapDetector serialTapDetector;
 
     // Feedback Tools
-    private TextToSpeech tts;
+    private CharacterToSpeech tts;
 
     //Flags
     boolean started = false;
     boolean stopped = true;
     boolean isStudy = false;
     boolean isScreenRotated = false;
+    boolean speakWordAtSpace = false;
     boolean reset = false;
     boolean onResultExibition = false;
 
@@ -66,7 +68,7 @@ public class ActivityTechSerial extends WearableActivity{
         this.activity = this;
 
         // Sets TextToSpeech for Feedback
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+        tts = new CharacterToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int i) {
                 Log.d("TTS", "TextToSpeech Service Initialized");
@@ -89,6 +91,11 @@ public class ActivityTechSerial extends WearableActivity{
                 isScreenRotated = false;
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             }
+
+            if (extras.getBoolean("speakWordAtSpace") == true)
+                speakWordAtSpace = true;
+            else
+                speakWordAtSpace = false;
         }
 
         // Build and set view components
@@ -301,8 +308,11 @@ public class ActivityTechSerial extends WearableActivity{
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         this.brailleDots.freeTTSService();
-        tts.shutdown();
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onDestroy();
     }
 }

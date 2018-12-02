@@ -64,6 +64,7 @@ public class ActivityTechTouch
 
     // Final Text
     private String message;
+    private int cursorPosition;
 
     // Touch Listeners
     TwoFingersDoubleTapDetector twoFingersListener;
@@ -85,6 +86,9 @@ public class ActivityTechTouch
     boolean reset = false;
     boolean isUsingWordReading = false;
     boolean isSpellChecking = false;
+    boolean speakWordAtSpace = false;
+    boolean infoOnLongPress = false;
+    boolean spaceAfterPunctuation = false;
     boolean isTTSInitialized = false;
     boolean hasJustTwoFingerSwiped = false;
 
@@ -156,11 +160,29 @@ public class ActivityTechTouch
                 isSpellChecking = true;
             else
                 isSpellChecking = false;
+
+            if (extras.getBoolean("speakWordAtSpace") == true)
+                speakWordAtSpace = true;
+            else
+                speakWordAtSpace = false;
+
+            if (extras.getBoolean("infoOnLongPress") == true)
+                infoOnLongPress = true;
+            else
+                infoOnLongPress = false;
+
+            if (extras.getBoolean("spaceAfterPunctuation") == true)
+                spaceAfterPunctuation = true;
+            else
+                spaceAfterPunctuation = false;
         }
 
+        // Initializes util, to get touch area relation with buttons
         util = new Util();
-        // Initializes message
+
+        // Initializes message and cursor position
         message = new String();
+        cursorPosition = 0;
 
         // Build and set view components
         final WatchViewStub stub = (WatchViewStub) findViewById(R.id.stub);
@@ -225,33 +247,45 @@ public class ActivityTechTouch
                         return false;
                     }
                 });
-                drawView.setLongClickable(true);
+                if (infoOnLongPress)
+                    drawView.setLongClickable(true);
+
                 drawView.setOnLongClickListener(new View.OnLongClickListener(){
                     @Override
                     public boolean onLongClick(View view) {
-                        Log.d("FULL MESSAGE OUTPUT: ", message);
-                        tts.speak(getString(R.string.SendingFullSentence) + message, TextToSpeech.QUEUE_FLUSH, null, "Output info");
-
-                        ArrayList activeButtons = new ArrayList();
-                        for (int i = 0; i < brailleDots.ButtonDots.length; i++) {
-                            if ((Boolean) brailleDots.ButtonDots[i].getTag())
-                                activeButtons.add(i);
-                        }
-                        String activeButtonsMessage = new String();
-                        if (activeButtons.size() > 0) {
-                            for (int i = 0; i < activeButtons.size(); i++) {
-                                activeButtonsMessage = activeButtonsMessage.concat(String.valueOf(activeButtons.get(i)));
-                                if (i <= activeButtons.size() - 3)
-                                    activeButtonsMessage += ", ";
-                                else if (i > activeButtons.size() - 3 && i <= activeButtons.size() - 2)
-                                    activeButtonsMessage += " e ";
-                                else
-                                    activeButtonsMessage += ".";
+                        if (infoOnLongPress) {
+                            Log.d("FULL MESSAGE OUTPUT: ", message);
+                            if (message.length() > 0) {
+                                tts.speak(getString(R.string.SendingFullSentence) + message, TextToSpeech.QUEUE_FLUSH, null, "Output info");
+                            } else {
+                                tts.speak(getString(R.string.EmptyMessage), TextToSpeech.QUEUE_FLUSH, null, "Output empty message info.");
                             }
-                            Log.d("Extra message", activeButtonsMessage);
-                            tts.speak(getString(R.string.ActivatedDots) + activeButtonsMessage, TextToSpeech.QUEUE_ADD, null, "Extra output info");
+
+                            vibrator.vibrate(300);
+
+                            ArrayList activeButtons = new ArrayList();
+                            for (int i = 0; i < brailleDots.ButtonDots.length; i++) {
+                                if ((Boolean) brailleDots.ButtonDots[i].getTag())
+                                    activeButtons.add(i);
+                            }
+                            String activeButtonsMessage = new String();
+                            if (activeButtons.size() > 0) {
+                                for (int i = 0; i < activeButtons.size(); i++) {
+                                    activeButtonsMessage = activeButtonsMessage.concat(String.valueOf(activeButtons.get(i)));
+                                    if (i <= activeButtons.size() - 3)
+                                        activeButtonsMessage += ", ";
+                                    else if (i > activeButtons.size() - 3 && i <= activeButtons.size() - 2)
+                                        activeButtonsMessage += " e ";
+                                    else
+                                        activeButtonsMessage += ".";
+                                }
+                                Log.d("Extra message", activeButtonsMessage);
+                                tts.speak(getString(R.string.ActivatedDots) + activeButtonsMessage, TextToSpeech.QUEUE_ADD, null, "Extra output info");
+                            } else {
+                                tts.speak(getString(R.string.NoActiveDots), TextToSpeech.QUEUE_FLUSH, null, "Output no active dots info.");
+                            }
                         }
-                        return false;
+                        return true;
                     }
                 });
 
@@ -270,52 +304,40 @@ public class ActivityTechTouch
                     @Override
                     public void onBottomSwipe() {
                     }
-
-                    @Override
-                    public boolean onSingleTapConfirmed(MotionEvent event) {
-                        return super.onSingleTapConfirmed(event);
-                    }
-
                     @Override
                     public boolean onDoubleTap(MotionEvent event) {
-                        int i;
-                        for (i = 0; i < brailleDots.ButtonDots.length; i++) {
+                        for (int i = 0; i < brailleDots.ButtonDots.length; i++) {
                             if (isViewContains(brailleDots.ButtonDots[i], event.getX(), event.getY()))
                                 return super.onDoubleTapEvent(event);
                         }
-                        Log.d("DOUBLE", i + "");
                         confirmCharacter();
                         return super.onDoubleTap(event);
                     }
-
-                    @Override
-                    public boolean onDoubleTapEvent(MotionEvent event) {
-                        return super.onDoubleTapEvent(event);
-                    }
                 });
-
-                tv1 = (TextView) findViewById(R.id.tv1);
-                tv2 = (TextView) findViewById(R.id.tv2);
-                tv3 = (TextView) findViewById(R.id.tv3);
-                resultLetter = (TextView) findViewById(R.id.resultLetter);
 
                 // Sets a special font for braille printing
                 //Typeface typeFace = Typeface.createFromAsset(getAssets(),"font/visualbraille.ttf");
                 //resultLetter.setTypeface(typeFace);
 
-                if (!isStudy) {
+                // WatchMI tests related
+                tv1 = (TextView) findViewById(R.id.tv1);
+//                tv2 = (TextView) findViewById(R.id.tv2);
+                tv3 = (TextView) findViewById(R.id.tv3);
+//                if (!isStudy) {
                     tv1.setText("");
                     tv3.setText("");
-                } else {
-                    //InitTrials();
-                    //SetNextTrial();
-                    tv1.setText("Correct/Wrong");
-                    tv3.setText("Trial:" + trialCount);
-                }
+//                } else {
+//                    //InitTrials();
+//                    //SetNextTrial();
+//                    tv1.setText("Correct/Wrong");
+//                    tv3.setText("Trial:" + trialCount);
+//                }
 
-                // Instantiate braille buttons
+                // Output latim letter
+                resultLetter = (TextView) findViewById(R.id.resultLetter);
+
+                // Instantiate braille buttons and dot listeners
                 brailleDots = new BrailleDots(activity);
-
                 dotClickListener = new View.OnClickListener() {
 
                     @Override
@@ -346,7 +368,6 @@ public class ActivityTechTouch
                         }
                     }
                 };
-
                 dotLongClickListener = new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
@@ -393,11 +414,11 @@ public class ActivityTechTouch
         });
 
         // Sets two finger swipe for deleting and accessing navigation mode
-        twoFingersSwipeListener= new TwoFingersSwipeDetector() {
+        twoFingersSwipeListener = new TwoFingersSwipeDetector() {
             @Override
             protected void onTwoFingersSwipeLeft() {
                 if (message.length() > 0)
-                    removeCharacter(message.substring(message.length() - 1), message.length() - 1);
+                    removeCharacter();
             }
 
             @Override
@@ -432,12 +453,20 @@ public class ActivityTechTouch
         Log.d("CHAR OUTPUT: ", latinChar);
 
         resultLetter.setText(latinChar);
-        message = message.concat(latinChar);
+        if (message.length() > 1 && cursorPosition < message.length() - 1) {
+            message = (message.substring(0, cursorPosition + 1).concat(latinChar)).concat(message.substring(cursorPosition + 1));
+        } else {
+            message = message.concat(latinChar);
+        }
+
+        Log.d("MESSAGE OUTPUT: ", "message:" + message);
+
+        cursorPosition++;
 
         if (isTTSInitialized) {
-            if (isUsingWordReading || latinChar.equals(" ")) {
+            if (isUsingWordReading || (speakWordAtSpace && latinChar.equals(" "))) {
                 // Breaks string into words to speak only last one
-                String[] words = message.split(" ");
+                String[] words = message.substring(0,cursorPosition).split(" ");
                 if (words.length > 0) {
                     tts.speak(words[words.length - 1], TextToSpeech.QUEUE_ADD, null, "Output");
                     Log.d("FULL MESSAGE OUTPUT: ", message);
@@ -445,18 +474,18 @@ public class ActivityTechTouch
                     // Used by SpellChecker
                     fetchSuggestionsFromMobile(words[words.length - 1]);
                 }
-            }
-            else {
+            } else {
                 speakComposedWord(latinChar);
 
                 // Automatically adds space after punctuation.
-                if (latinChar.equals(",") || latinChar.equals(".") || latinChar.equals(":")|| latinChar.equals("!") || latinChar.equals("?")){
+                if (spaceAfterPunctuation && (latinChar.equals(",") || latinChar.equals(".") || latinChar.equals(":")|| latinChar.equals("!") || latinChar.equals("?"))){
                     brailleDots.toggleAllDotsOff();
                     confirmCharacter();
                 }
             }
         }
 
+        // Clears result letter on screen
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -522,12 +551,21 @@ public class ActivityTechTouch
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_NAVIGATE_NEXT:
-                Log.d("WRIST FLICK", "NEXT");
-                launchSuggestions();
+                if (isSpellChecking) {
+                    Log.d("WRIST FLICK", "SPELL CHECKING...");
+                    launchSuggestions();
+                } else {
+                    Log.d("WRIST FLICK", "SPELL CHECK DISABLED ON WATCH");
+                }
                 return true;
             case KeyEvent.KEYCODE_NAVIGATE_PREVIOUS:
                 Log.d("WRIST FLICK", "PREV");
-                launchSuggestions();
+                if (isSpellChecking) {
+                    Log.d("WRIST FLICK", "SPELL CHECKING...");
+                    launchSuggestions();
+                } else {
+                    Log.d("WRIST FLICK", "SPELL CHECK DISABLED ON WATCH");
+                }
                 return true;
         }
         // If you did not handle it, let it be handled by the next possible element as deemed by the Activity.
@@ -540,9 +578,9 @@ public class ActivityTechTouch
             Intent intent = new Intent(getApplicationContext(), ActivityAccessibleList.class);
             String[] chars = new StringBuilder(message).reverse().toString().split("");
             String[] charsRelevant = new String[chars.length - 1];
-            for (int i = 1; i < chars.length; i++) {
+            for (int i = 1; i < chars.length; i++)
                 charsRelevant[i-1] = chars[i];
-            }
+
             intent.putExtra("items", charsRelevant);
             intent.putExtra("introSpeakingSentence", getString(R.string.navigation_mode_intro));
             try {
@@ -574,7 +612,9 @@ public class ActivityTechTouch
             applySuggestion(data.getStringExtra("selectedItem"));
         } else if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
             Log.d("SELECTED WORD", "Selecionado: " + data.getStringExtra("selectedItem"));
-            removeCharacter(data.getStringExtra("selectedItem"), data.getIntExtra("selectedIndex", -1));
+//            removeCharacter(data.getStringExtra("selectedItem"), data.getIntExtra("selectedIndex", -1));
+            cursorPosition = Math.abs(data.getIntExtra("selectedIndex", 0) - (message.length() - 1));
+            Log.d("NEW CURSOR POSITION", cursorPosition + "");
         } else if (resultCode == RESULT_CANCELED ){
             Log.d("SUGGESTIONS", "Cancelado");
             if (isTTSInitialized) {
@@ -584,13 +624,14 @@ public class ActivityTechTouch
     }
 
     // CHARACTER DELETING
-    private void removeCharacter(String selectedItem, int selectedIndex) {
-        if (selectedIndex >= 0 && selectedIndex < message.length()) {
-            tts.speak(tts.getAdaptedText(selectedItem) + " " + getString(R.string.deleted), TextToSpeech.QUEUE_FLUSH, null, "character_deleted");
+    private void removeCharacter() {
+        if (cursorPosition <= message.length() && cursorPosition > 0) {
+            tts.speak(tts.getAdaptedText(String.valueOf(message.charAt(cursorPosition -  1))) + " " + getString(R.string.deleted), TextToSpeech.QUEUE_FLUSH, null, "character_deleted");
 
-            StringBuilder stringBuilder = new StringBuilder(message).reverse();
-            stringBuilder.deleteCharAt(selectedIndex);
-            message = stringBuilder.reverse().toString();
+            StringBuilder stringBuilder = new StringBuilder(message);
+            stringBuilder.deleteCharAt(cursorPosition -1);
+            message = stringBuilder.toString();
+            cursorPosition--;
         }
     }
 

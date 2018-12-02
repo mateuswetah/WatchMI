@@ -79,26 +79,61 @@
                     android:textSize="12sp"></Switch>
 
                 <Switch
-                    android:id="@+id/autoCompleteSwitch"
+                    android:id="@+id/spellCheckSwitch"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:layout_alignEnd="@+id/wordReadingSwitch"
                     android:layout_alignStart="@+id/wordReadingSwitch"
                     android:layout_below="@+id/wordReadingSwitch"
-                    android:text="AutoComplete"
+                    android:text="Spell Checking"
                     android:textSize="12sp"></Switch>
 
                 <Switch
                     android:id="@+id/dotSpeakerSwitch"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:layout_alignEnd="@+id/autoCompleteSwitch"
+                    android:layout_alignEnd="@+id/spellCheckSwitch"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignStart="@+id/autoCompleteSwitch"
-                    android:layout_below="@+id/autoCompleteSwitch"
+                    android:layout_alignStart="@+id/spellCheckSwitch"
+                    android:layout_below="@+id/spellCheckSwitch"
                     android:text="Dot Speaker"
                     android:textSize="12sp"></Switch>
-            </LinearLayout>
+
+                <Switch
+                    android:id="@+id/speakWordAtSpaceSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_alignEnd="@+id/dotSpeakerSwitch"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignStart="@+id/dotSpeakerSwitch"
+                    android:layout_below="@+id/dotSpeakerSwitch"
+                    android:text="Speak Word at Space"
+                    android:textSize="12sp"></Switch>
+
+                <Switch
+                    android:id="@+id/infoOnLongPressSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_alignEnd="@+id/speakWordAtSpaceSwitch"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignStart="@+id/speakWordAtSpaceSwitch"
+                    android:layout_below="@+id/speakWordAtSpaceSwitch"
+                    android:text="Info on Long Press"
+                    android:textSize="12sp"></Switch>
+
+
+                <Switch
+                    android:id="@+id/spaceAfterPunctuationSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_alignEnd="@+id/infoOnLongPressSwitch"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignStart="@+id/infoOnLongPressSwitch"
+                    android:layout_below="@+id/infoOnLongPressSwitch"
+                    android:text="Space after Punctuation"
+                    android:textSize="12sp"></Switch>
+
+        </LinearLayout>
         </ScrollView>
 
         <!--<Button-->

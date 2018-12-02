@@ -74,6 +74,8 @@ public class CharacterToSpeech extends TextToSpeech {
                 adaptedText = context.getResources().getString(R.string.TildeOSpeech);
             } else if (text.equals("à")) {
                 adaptedText = context.getResources().getString(R.string.CrasisASpeech);
+            } else if (text.equals("In")) {
+                adaptedText = context.getResources().getString(R.string.InvalidCharacterAlert);
             }
         }
 
@@ -133,6 +135,8 @@ public class CharacterToSpeech extends TextToSpeech {
                 adaptedUtteranceId = "Tilde O Sign Output";
             } else if (text.equals("à")) {
                 adaptedUtteranceId = "Crasis A Sign Output";
+            } else if (text.equals("In")) {
+                adaptedUtteranceId = "Invalid Character Output";
             }
         }
         return adaptedUtteranceId;

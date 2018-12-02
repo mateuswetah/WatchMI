@@ -23,14 +23,14 @@ public class ActivitySelectTech extends WearableActivity {
 //        setAmbientEnabled();
         btn1 = (Button) findViewById(R.id.btn1);
         btn1.setOnClickListener(button1ClickListener);
-//        btn2 = (Button) findViewById(R.id.btn2);
-//        btn2.setOnClickListener(button2ClickListener);
+        btn2 = (Button) findViewById(R.id.btn2);
+        btn2.setOnClickListener(button2ClickListener);
         btn3 = (Button) findViewById(R.id.btn3);
         btn3.setOnClickListener(button3ClickListener);
-//        btn4 = (Button) findViewById(R.id.btn4);
-//        btn4.setOnClickListener(button4ClickListener);
-//        btn5 = (Button) findViewById(R.id.btn5);
-//        btn5.setOnClickListener(button5ClickListener);
+        btn4 = (Button) findViewById(R.id.btn4);
+        btn4.setOnClickListener(button4ClickListener);
+        btn5 = (Button) findViewById(R.id.btn5);
+        btn5.setOnClickListener(button5ClickListener);
         btn6 = (Button) findViewById(R.id.btn6);
         btn6.setOnClickListener(button6ClickListener);
         btnBack = (Button) findViewById(R.id.btnBack);
@@ -57,11 +57,10 @@ public class ActivitySelectTech extends WearableActivity {
             else
                 isUsingWordReading = false;
 
-            if (extras.getBoolean("useAutoComplete") == true)
+            if (extras.getBoolean("useSpellCheck") == true)
                 isUsingAutoComplete = true;
             else
                 isUsingAutoComplete = false;
-
         }
     }
 
@@ -71,66 +70,72 @@ public class ActivitySelectTech extends WearableActivity {
             b.putBoolean("study", isStudy);
             b.putBoolean("isScreenRotated", isScreenRotated);
             b.putBoolean("useWordReading", isUsingWordReading);
-            b.putBoolean("useAutoComplete", isUsingAutoComplete);
+            b.putBoolean("useSpellCheck", isUsingAutoComplete);
             Intent i = new Intent(getApplicationContext(),  ActivityTechTouch.class);
             i.putExtras(b);
             startActivity(i);
             finish();
         }
     };
-//    Button.OnClickListener button2ClickListener = new Button.OnClickListener() {
-//        public void onClick(View arg0) {
-//            Bundle b = new Bundle();
-//            b.putBoolean("study", isStudy);
-//            b.putBoolean("isScreenRotated", isScreenRotated);
-//            Intent i = new Intent(getApplicationContext(),  ActivityTechSwipe.class);
-//            i.putExtras(b);
-//            startActivity(i);
-//            finish();
-//        }
-//    };
+    Button.OnClickListener button2ClickListener = new Button.OnClickListener() {
+        public void onClick(View arg0) {
+            Bundle b = new Bundle();
+            b.putBoolean("study", isStudy);
+            b.putBoolean("isScreenRotated", isScreenRotated);
+            b.putBoolean("useWordReading", isUsingWordReading);
+            b.putBoolean("useSpellCheck", isUsingAutoComplete);
+            Intent i = new Intent(getApplicationContext(),  ActivityTechSwipe.class);
+            i.putExtras(b);
+            startActivity(i);
+            finish();
+        }
+    };
     Button.OnClickListener button3ClickListener = new Button.OnClickListener() {
         public void onClick(View arg0) {
             Bundle b = new Bundle();
             b.putBoolean("study", isStudy);
             b.putBoolean("isScreenRotated", isScreenRotated);
             b.putBoolean("useWordReading", isUsingWordReading);
-            b.putBoolean("useAutoComplete", isUsingAutoComplete);
+            b.putBoolean("useSpellCheck", isUsingAutoComplete);
             Intent i = new Intent(getApplicationContext(),  ActivityTechConnect.class);
             i.putExtras(b);
             startActivity(i);
             finish();
         }
     };
-//    Button.OnClickListener button4ClickListener = new Button.OnClickListener() {
-//        public void onClick(View arg0) {
-//            Bundle b = new Bundle();
-//            b.putBoolean("study", isStudy);
-//            b.putBoolean("isScreenRotated", isScreenRotated);
-//            Intent i = new Intent(getApplicationContext(),  ActivityTechPressure.class);
-//            i.putExtras(b);
-//            startActivity(i);
-//            finish();
-//        }
-//    };
-//    Button.OnClickListener button5ClickListener = new Button.OnClickListener() {
-//        public void onClick(View arg0) {
-//            Bundle b = new Bundle();
-//            b.putBoolean("study", isStudy);
-//            b.putBoolean("isScreenRotated", isScreenRotated);
-//            Intent i = new Intent(getApplicationContext(),  ActivityTechSerial.class);
-//            i.putExtras(b);
-//            startActivity(i);
-//            finish();
-//        }
-//    };
+    Button.OnClickListener button4ClickListener = new Button.OnClickListener() {
+        public void onClick(View arg0) {
+            Bundle b = new Bundle();
+            b.putBoolean("study", isStudy);
+            b.putBoolean("isScreenRotated", isScreenRotated);
+            b.putBoolean("useWordReading", isUsingWordReading);
+            b.putBoolean("useSpellCheck", isUsingAutoComplete);
+            Intent i = new Intent(getApplicationContext(),  ActivityTechPressure.class);
+            i.putExtras(b);
+            startActivity(i);
+            finish();
+        }
+    };
+    Button.OnClickListener button5ClickListener = new Button.OnClickListener() {
+        public void onClick(View arg0) {
+            Bundle b = new Bundle();
+            b.putBoolean("study", isStudy);
+            b.putBoolean("isScreenRotated", isScreenRotated);
+            b.putBoolean("useWordReading", isUsingWordReading);
+            b.putBoolean("useSpellCheck", isUsingAutoComplete);
+            Intent i = new Intent(getApplicationContext(),  ActivityTechSerial.class);
+            i.putExtras(b);
+            startActivity(i);
+            finish();
+        }
+    };
     Button.OnClickListener button6ClickListener = new Button.OnClickListener() {
         public void onClick(View arg0) {
             Bundle b = new Bundle();
             b.putBoolean("study", isStudy);
             b.putBoolean("isScreenRotated", isScreenRotated);
             b.putBoolean("useWordReading", isUsingWordReading);
-            b.putBoolean("useAutoComplete", isUsingAutoComplete);
+            b.putBoolean("useSpellCheck", isUsingAutoComplete);
             Intent i = new Intent(getApplicationContext(),  ActivityTechPerkins.class);
             i.putExtras(b);
             startActivity(i);
@@ -142,7 +147,7 @@ public class ActivitySelectTech extends WearableActivity {
             Bundle b = new Bundle();
             b.putBoolean("isScreenRotated", isScreenRotated);
             b.putBoolean("useWordReading", isUsingWordReading);
-            b.putBoolean("useAutoComplete", isUsingAutoComplete);
+            b.putBoolean("useSpellCheck", isUsingAutoComplete);
             Intent i = new Intent(getApplicationContext(), ActivityMain.class);
             i.putExtras(b);
             startActivity(i);

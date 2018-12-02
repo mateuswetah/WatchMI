@@ -407,7 +407,7 @@ public class BrailleDots {
         this.useToneGenerator = settings.getBoolean("useToneGenerator", false);
     }
 
-    // To be used on activitie's onDestroy()
+    // To be used on activities onDestroy()
     public void freeTTSService() {
         this.dotTTS.stop();
         this.dotTTS.shutdown();

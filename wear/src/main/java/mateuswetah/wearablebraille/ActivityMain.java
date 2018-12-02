@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
-import java.util.prefs.Preferences;
-
 public class ActivityMain extends WearableActivity {
 
     private Button btn1, btn2, btn3;
@@ -19,11 +17,17 @@ public class ActivityMain extends WearableActivity {
                     toneGeneratorSwitch,
 //                    vibrationPatternSwitch,
                     wordReadingSwitch,
-                    autoCompleteSwitch,
-                    dotSpeakerSwitch;
+                    useSpellCheckSwitch,
+                    dotSpeakerSwitch,
+                    speakWordAtSpaceSwitch,
+                    infoOnLongPressSwitch,
+                    spaceAfterPunctuationSwitch;
     private Boolean isScreenRotated = false;
     private Boolean isUsingWordReading = false;
-    private Boolean isUsingAutoComplete = false;
+    private Boolean isUsingSpellCheck = false;
+    private Boolean speakWordAtSpace = false;
+    private Boolean infoOnLongPress = false;
+    private Boolean spaceAfterPunctuation = false;
     public static final String PREFS_NAME = "SettingsFile";
     public SharedPreferences settings;
 
@@ -89,18 +93,18 @@ public class ActivityMain extends WearableActivity {
         });
         wordReadingSwitch.setChecked(settings.getBoolean("useWordReading", false));
 
-        autoCompleteSwitch = (Switch) findViewById(R.id.autoCompleteSwitch);
-        autoCompleteSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        useSpellCheckSwitch = (Switch) findViewById(R.id.spellCheckSwitch);
+        useSpellCheckSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
-                isUsingAutoComplete = b;
+                isUsingSpellCheck = b;
 
-                editor.putBoolean("useAutoComplete", b);
+                editor.putBoolean("useSpellCheck", b);
                 editor.commit();
             }
         });
-        autoCompleteSwitch.setChecked(settings.getBoolean("useAutoComplete", false));
+        useSpellCheckSwitch.setChecked(settings.getBoolean("useSpellCheck", false));
 
         dotSpeakerSwitch = (Switch) findViewById(R.id.dotSpeakerSwitch);
         dotSpeakerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -111,6 +115,36 @@ public class ActivityMain extends WearableActivity {
             }
         });
         dotSpeakerSwitch.setChecked(settings.getBoolean("useDotNumberSpeaking", false));
+
+        speakWordAtSpaceSwitch = (Switch) findViewById(R.id.speakWordAtSpaceSwitch);
+        speakWordAtSpaceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                editor.putBoolean("speakWordAtSpace", b);
+                editor.commit();
+            }
+        });
+        speakWordAtSpaceSwitch.setChecked(settings.getBoolean("speakWordAtSpace", false));
+
+        infoOnLongPressSwitch = (Switch) findViewById(R.id.infoOnLongPressSwitch);
+        infoOnLongPressSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                editor.putBoolean("infoOnLongPress", b);
+                editor.commit();
+            }
+        });
+        infoOnLongPressSwitch.setChecked(settings.getBoolean("infoOnLongPress", false));
+
+        spaceAfterPunctuationSwitch = (Switch) findViewById(R.id.spaceAfterPunctuationSwitch);
+        spaceAfterPunctuationSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                editor.putBoolean("spaceAfterPunctuation", b);
+                editor.commit();
+            }
+        });
+        spaceAfterPunctuationSwitch.setChecked(settings.getBoolean("spaceAfterPunctuation", false));
 
         // Checks if screen is rotated and is using word reading
         Bundle extras = getIntent().getExtras();
@@ -126,17 +160,35 @@ public class ActivityMain extends WearableActivity {
             if (extras.getBoolean("useWordReading") == true) {
                 isUsingWordReading = true;
             } else {
-                   isUsingWordReading = false;
+                isUsingWordReading = false;
             }
-            if (extras.getBoolean("useAutoComplete") == true) {
-                isUsingAutoComplete = true;
+            if (extras.getBoolean("useSpellCheck") == true) {
+                isUsingSpellCheck = true;
             } else {
-                isUsingAutoComplete = false;
+                isUsingSpellCheck = false;
+            }
+            if (extras.getBoolean("speakWordAtSpace") == true) {
+                speakWordAtSpace = true;
+            } else {
+                speakWordAtSpace = false;
+            }
+            if (extras.getBoolean("infoOnLongPress") == true) {
+                infoOnLongPress = true;
+            } else {
+                infoOnLongPress = false;
+            }
+            if (extras.getBoolean("spaceAfterPunctuation") == true) {
+                spaceAfterPunctuation = true;
+            } else {
+                spaceAfterPunctuation = false;
             }
         }
         this.screenRotateSwitch.setChecked(isScreenRotated);
         this.wordReadingSwitch.setChecked(isUsingWordReading);
-        this.autoCompleteSwitch.setChecked(isUsingAutoComplete);
+        this.useSpellCheckSwitch.setChecked(isUsingSpellCheck);
+        this.speakWordAtSpaceSwitch.setChecked(infoOnLongPress);
+        this.infoOnLongPressSwitch.setChecked(infoOnLongPress);
+        this.spaceAfterPunctuationSwitch.setChecked(spaceAfterPunctuation);
     }
 
     Button.OnClickListener button1ClickListener = new Button.OnClickListener() {
@@ -145,7 +197,10 @@ public class ActivityMain extends WearableActivity {
             b.putBoolean("study", false);
             b.putBoolean("isScreenRotated", isScreenRotated);
             b.putBoolean("useWordReading", isUsingWordReading);
-            b.putBoolean("useAutoComplete", isUsingAutoComplete);
+            b.putBoolean("useSpellCheck", isUsingSpellCheck);
+            b.putBoolean("speakWordAtSpace", speakWordAtSpace);
+            b.putBoolean("infoOnLongPress", infoOnLongPress);
+            b.putBoolean("spaceAfterPunctuation", spaceAfterPunctuation);
             Intent i = new Intent(getApplicationContext(),  ActivitySelectTech.class);
             i.putExtras(b);
             startActivity(i);
@@ -158,7 +213,10 @@ public class ActivityMain extends WearableActivity {
             b.putBoolean("study", true);
             b.putBoolean("isScreenRotated", isScreenRotated);
             b.putBoolean("useWordReading", isUsingWordReading);
-            b.putBoolean("useAutoComplete", isUsingAutoComplete);
+            b.putBoolean("useSpellCheck", isUsingSpellCheck);
+            b.putBoolean("speakWordAtSpace", speakWordAtSpace);
+            b.putBoolean("infoOnLongPress", infoOnLongPress);
+            b.putBoolean("spaceAfterPunctuation", spaceAfterPunctuation);
             Intent i = new Intent(getApplicationContext(),  ActivitySelectTech.class);
             i.putExtras(b);
             startActivity(i);
@@ -170,7 +228,10 @@ public class ActivityMain extends WearableActivity {
             Bundle b = new Bundle();
             b.putBoolean("isScreenRotated", isScreenRotated);
             b.putBoolean("useWordReading", isUsingWordReading);
-            b.putBoolean("useAutoComplete", isUsingAutoComplete);
+            b.putBoolean("useSpellCheck", isUsingSpellCheck);
+            b.putBoolean("speakWordAtSpace", speakWordAtSpace);
+            b.putBoolean("infoOnLongPress", infoOnLongPress);
+            b.putBoolean("spaceAfterPunctuation", spaceAfterPunctuation);
             Intent i = new Intent(getApplicationContext(),  ActivitySelectApps.class);
             i.putExtras(b);
             startActivity(i);

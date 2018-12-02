@@ -60,5 +60,8 @@
     <string name="navigation_mode_intro">Modo de Navegação</string>
     <string name="deleted">apagado.</string>
     <string name="ActivatedDots">Pontos ativados:</string>
+    <string name="EmptyMessage">Pontos ativados:</string>
+    <string name="NoActiveDots">Nenhum ponto ativado.</string>
+    <string name="InvalidCharacterAlert">Caractere inválido.</string>
 
 </resources>

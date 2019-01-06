@@ -3,6 +3,7 @@ package mateuswetah.wearablebraille.BrailleÉcran;
 import android.content.Context;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 
 import mateuswetah.wearablebraille.R;
 
@@ -24,9 +25,7 @@ public class CharacterToSpeech extends TextToSpeech {
 
         CharSequence adaptedText = text;
 
-        if (!text.equals("") &&
-                !text.equals("Nu") && !text.equals("Ma") && !text.equals("In") && !text.equals("Cf") && !text.equals("?!") &&
-                !text.equals("NU") && !text.equals("MA") && !text.equals("IN") && !text.equals("CF")) {
+        if (!text.equals("")) {
 
             if (text.equals(" ")) {
                 adaptedText = context.getResources().getString(R.string.WhiteSpaceSpeech);
@@ -74,21 +73,24 @@ public class CharacterToSpeech extends TextToSpeech {
                 adaptedText = context.getResources().getString(R.string.TildeOSpeech);
             } else if (text.equals("à")) {
                 adaptedText = context.getResources().getString(R.string.CrasisASpeech);
-            } else if (text.equals("In")) {
+            } else if (text.equals("Ma") || text.equals("MA")) {
+                adaptedText = context.getResources().getString(R.string.CapitalLetterCharacterAlert);
+            } else if (text.equals("Nu") || text.equals("NU")) {
+                adaptedText = context.getResources().getString(R.string.NumericCharacterAlert);
+            } else if (text.equals("In") || text.equals("IN")) {
                 adaptedText = context.getResources().getString(R.string.InvalidCharacterAlert);
             }
+        } else {
+            adaptedText = context.getResources().getString(R.string.InvalidCharacterAlert);
         }
-
         return adaptedText;
+
     }
 
     public String getAdaptedUtteranceId(CharSequence text, String utteranceId) {
         String adaptedUtteranceId = utteranceId;
 
-        if (!text.equals("") &&
-                !text.equals("Nu") && !text.equals("Ma") && !text.equals("In") && !text.equals("Cf") && !text.equals("?!") &&
-                !text.equals("NU") && !text.equals("MA") && !text.equals("IN") && !text.equals("CF")) {
-
+        if (!text.equals("")) {
             if (text.equals(" ")) {
                 adaptedUtteranceId = "White Space Character Output";
             } else if (text.equals("!")) {
@@ -137,7 +139,13 @@ public class CharacterToSpeech extends TextToSpeech {
                 adaptedUtteranceId = "Crasis A Sign Output";
             } else if (text.equals("In")) {
                 adaptedUtteranceId = "Invalid Character Output";
+            } else if (text.equals("Ma") || text.equals("MA")) {
+                adaptedUtteranceId = "Capital Letters Output";
+            } else if (text.equals("Nu") || text.equals("NU")) {
+                adaptedUtteranceId = "Numeric Output";
             }
+        } else {
+            adaptedUtteranceId = "Invalid Character Output";
         }
         return adaptedUtteranceId;
     }

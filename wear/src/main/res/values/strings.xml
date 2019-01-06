@@ -63,5 +63,7 @@
     <string name="EmptyMessage">Pontos ativados:</string>
     <string name="NoActiveDots">Nenhum ponto ativado.</string>
     <string name="InvalidCharacterAlert">Caractere inválido.</string>
+    <string name="NumericCharacterAlert">Número</string>
+    <string name="CapitalLetterCharacterAlert">Maiúscula</string>
 
 </resources>

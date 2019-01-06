@@ -206,35 +206,21 @@ public class ActivityTechTouch
                         twoFingersListener.onTouchEvent(event);
                         if (!twoFingersSwipeListener.onTouchEvent(event) && !hasJustTwoFingerSwiped) {
 
-                            int position = util.DetermineTouchPos(event.getX(), event.getY(), false);
-                            switch (position) {
-                                case 2:
-                                    if (event.getActionMasked() == MotionEvent.ACTION_UP)
-                                        brailleDots.ButtonDots[3].callOnClick();
-                                    break;
-                                case 3:
-                                    if (event.getActionMasked() == MotionEvent.ACTION_UP)
-                                        brailleDots.ButtonDots[4].callOnClick();
-                                    break;
-                                case 4:
-                                    if (event.getActionMasked() == MotionEvent.ACTION_UP)
-                                        brailleDots.ButtonDots[5].callOnClick();
-                                    break;
-                                case 6:
-                                    if (event.getActionMasked() == MotionEvent.ACTION_UP)
-                                        brailleDots.ButtonDots[2].callOnClick();
-                                    break;
-                                case 7:
-                                    if (event.getActionMasked() == MotionEvent.ACTION_UP)
-                                        brailleDots.ButtonDots[1].callOnClick();
-                                    break;
-                                case 8:
-                                    if (event.getActionMasked() == MotionEvent.ACTION_UP)
-                                        brailleDots.ButtonDots[0].callOnClick();
-                                    break;
-                                default:
-                                    gestureDetector.onTouchEvent(event);
+                            int i;
+                            boolean hasSimpleClicked = false;
+                            if (event.getActionMasked() == MotionEvent.ACTION_UP) {
+                                for (i = 0; i < brailleDots.ButtonDots.length; i++) {
+                                    if (isViewContains(brailleDots.ButtonDots[i], event.getX(), event.getY())) {
+                                        Log.d("AQUI OH", String.valueOf(i));
+                                        brailleDots.toggleDotVisibility(i);
+                                        hasSimpleClicked = true;
+                                        break;
+                                    }
+                                }
                             }
+                            if (!hasSimpleClicked)
+                                gestureDetector.onTouchEvent(event);
+
                         } else {
                             hasJustTwoFingerSwiped = true;
                             new Handler().postDelayed(
@@ -407,7 +393,7 @@ public class ActivityTechTouch
 
                 // Associate OnClick and OnLongClick listeners to ButtonDots.
                 for (int i = 0; i < brailleDots.ButtonDots.length; i++) {
-                    brailleDots.ButtonDots[i].setOnClickListener(dotClickListener);
+//                    brailleDots.ButtonDots[i].setOnClickListener(dotClickListener);
 //                    brailleDots.ButtonDots[i].setOnLongClickListener(dotLongClickListener);
                 }
             }
@@ -417,13 +403,13 @@ public class ActivityTechTouch
         twoFingersSwipeListener = new TwoFingersSwipeDetector() {
             @Override
             protected void onTwoFingersSwipeLeft() {
-                if (message.length() > 0)
-                    removeCharacter();
+//                if (message.length() > 0)
+//                    removeCharacter();
             }
 
             @Override
             protected void onTwoFingersSwipeRight() {
-                enterNavigationMode();
+//                enterNavigationMode();
             }
         };
 
@@ -453,15 +439,20 @@ public class ActivityTechTouch
         Log.d("CHAR OUTPUT: ", latinChar);
 
         resultLetter.setText(latinChar);
-        if (message.length() > 1 && cursorPosition < message.length() - 1) {
-            message = (message.substring(0, cursorPosition + 1).concat(latinChar)).concat(message.substring(cursorPosition + 1));
-        } else {
-            message = message.concat(latinChar);
+        if (!latinChar.equals("Ma") &&
+                !latinChar.equals("MA") &&
+                !latinChar.equals("Nu") &&
+                !latinChar.equals("NU") &&
+                !latinChar.equals("In") &&
+                !latinChar.equals("IN") ) {
+            if (message.length() > 1 && cursorPosition < message.length() - 1) {
+                message = (message.substring(0, cursorPosition + 1).concat(latinChar)).concat(message.substring(cursorPosition + 1));
+            } else {
+                message = message.concat(latinChar);
+            }
+            Log.d("MESSAGE OUTPUT: ", "message:" + message);
+            cursorPosition++;
         }
-
-        Log.d("MESSAGE OUTPUT: ", "message:" + message);
-
-        cursorPosition++;
 
         if (isTTSInitialized) {
             if (isUsingWordReading || (speakWordAtSpace && latinChar.equals(" "))) {

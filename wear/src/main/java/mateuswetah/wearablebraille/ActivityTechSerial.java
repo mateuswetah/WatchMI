@@ -3,9 +3,13 @@ package mateuswetah.wearablebraille;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Point;
+import android.media.MediaPlayer;
+import android.media.PlaybackParams;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
+import android.support.annotation.RequiresApi;
 import android.support.wearable.activity.WearableActivity;
 import android.support.wearable.view.BoxInsetLayout;
 import android.support.wearable.view.WatchViewStub;
@@ -43,6 +47,8 @@ public class ActivityTechSerial extends WearableActivity{
 
     // Feedback Tools
     private CharacterToSpeech tts;
+    MediaPlayer mediaPlayer;
+    PlaybackParams mediaParams;
 
     //Flags
     boolean started = false;
@@ -61,6 +67,7 @@ public class ActivityTechSerial extends WearableActivity{
     int trialCount = 0;
     Util util;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +82,11 @@ public class ActivityTechSerial extends WearableActivity{
                 //tts.setLanguage(Locale.ENGLISH);
             }
         });
+
+
+        // Sets up media player feedback
+        mediaParams = new PlaybackParams();
+        mediaParams.setPitch(0.5f);
 
         // Checks if view is in test mode
         Bundle extras = getIntent().getExtras();
@@ -263,6 +275,7 @@ public class ActivityTechSerial extends WearableActivity{
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     void incrementSerialLine() {
 
         serialLine = (serialLine + 1) % 3;
@@ -304,6 +317,27 @@ public class ActivityTechSerial extends WearableActivity{
                 activity.findViewById(R.id.serial_line_1).setBackground(null);
                 break;
         }
+
+
+        // Audio feedback for scroll list down navigation
+        mediaPlayer = MediaPlayer.create(activity, R.raw.focus_actionable);
+        mediaPlayer.setVolume(1.0f,1.0f);
+
+        if (serialLine == 0)
+            mediaParams.setPitch(1.0f);
+        else if (serialLine == 1)
+            mediaParams.setPitch(0.75f);
+        else
+            mediaParams.setPitch(0.5f);
+
+        mediaPlayer.setPlaybackParams(mediaParams);
+        mediaPlayer.start();
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                mediaPlayer.release();
+            }
+        });
     }
 
     @Override

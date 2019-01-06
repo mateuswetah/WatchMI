@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.wearable.view.BoxInsetLayout
+<mateuswetah.wearablebraille.BrailleÉcran.MyBoxInsetLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityTechPressure"
+    tools:context=".ActivityTechTouch"
     tools:deviceIds="wear"
     android:keepScreenOn="true">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/relative"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="-32dp"
+        android:layout_marginTop="-28dp"
         android:gravity="center"
         app:layout_box="all">
 
@@ -28,131 +31,252 @@
             android:id="@+id/tv2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv1"
+            android:layout_alignParentStart="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/tv3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv2"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
             android:text="@string/app_name"
             android:textColor="@color/black" />
 
+        <TextView
+            android:id="@+id/resultLetter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="96dp"
+            android:layout_marginTop="60dp"
+            android:textColor="@color/black"
+            android:textSize="64sp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/perkins_column_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|fill_vertical"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/virtualDotButton1"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginLeft="34dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="Braille Dot Button 1"
+                    android:padding="20dp"
+                    android:src="@drawable/dot_active" />
+
+                <ImageView
+                    android:id="@+id/virtualDotButton2"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="Braille Dot Button 2"
+                    android:padding="20dp"
+                    android:src="@drawable/dot_active" />
+
+                <ImageView
+                    android:id="@+id/virtualDotButton3"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginLeft="34dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="Braille Dot Button 2"
+                    android:padding="20dp"
+                    android:src="@drawable/dot_active" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/perkins_column_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|fill_vertical"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/virtualDotButton4"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="Braille Dot Button 1"
+                    android:padding="20dp"
+                    android:src="@drawable/dot_active" />
+
+                <ImageView
+                    android:id="@+id/virtualDotButton5"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginLeft="46dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="Braille Dot Button 2"
+                    android:padding="20dp"
+                    android:src="@drawable/dot_active" />
+
+                <ImageView
+                    android:id="@+id/virtualDotButton6"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="Braille Dot Button 2"
+                    android:padding="20dp"
+                    android:src="@drawable/dot_active" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|fill_vertical|center"
+            android:layout_margin="0dp"
+            android:orientation="vertical"
+            android:padding="0dp">
+
+            <LinearLayout
+                android:id="@+id/serial_line_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/dotButton1"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="64dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="top|start"
+                    android:layout_marginRight="12dp"
+                    android:backgroundTint="#00000000"
+                    android:contentDescription="Braille Dot Button 1"
+                    android:fadingEdge="none"
+                    android:singleLine="true"
+                    android:soundEffectsEnabled="true" />
+
+                <Button
+                    android:id="@+id/dotButton4"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="64dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="12dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="Braille Dot Button 4"
+                    android:padding="16dp"
+                    android:singleLine="true"
+                    android:soundEffectsEnabled="true" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/serial_line_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|fill_vertical|center_horizontal|fill_horizontal"
+                android:orientation="horizontal"
+                android:padding="0dp">
+
+                <Button
+                    android:id="@+id/dotButton2"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="64dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="42dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="Braille Dot Button 2"
+                    android:padding="16dp"
+                    android:shadowColor="@android:color/transparent"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="0"
+                    android:singleLine="true"
+                    android:soundEffectsEnabled="true" />
+
+                <Button
+                    android:id="@+id/dotButton5"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="64dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="0dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="Braille Dot Button 5"
+                    android:padding="16dp"
+                    android:singleLine="true"
+                    android:soundEffectsEnabled="true" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/serial_line_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/dotButton3"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="64dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="left"
+                    android:layout_marginRight="12dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="Braille Dot Button 3"
+                    android:singleLine="true"
+                    android:soundEffectsEnabled="true" />
+
+                <Button
+                    android:id="@+id/dotButton6"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="64dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="12dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="Braille Dot Button 6"
+                    android:padding="16dp"
+                    android:singleLine="true"
+                    android:soundEffectsEnabled="true" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <mateuswetah.wearablebraille.DrawView
+            android:id="@+id/draw_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
+
     </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="0dp"
-        android:orientation="vertical"
-        android:padding="0dp">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="top|center_horizontal"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/dotButton1"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_gravity="top|start"
-                android:layout_marginRight="12dp"
-                android:backgroundTint="@android:color/transparent"
-                android:contentDescription="Braille Dot Button 1"
-                android:padding="16dp"
-                android:src="@drawable/dot_active" />
-
-            <ImageButton
-                android:id="@+id/dotButton4"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_gravity="right"
-                android:layout_marginLeft="12dp"
-                android:backgroundTint="@android:color/transparent"
-                android:contentDescription="Braille Dot Button 4"
-                android:padding="16dp"
-                android:src="@drawable/dot_active" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical|fill_vertical|center_horizontal|fill_horizontal"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:id="@+id/dotButton2"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginBottom="6dp"
-                android:layout_marginRight="44dp"
-                android:backgroundTint="@android:color/transparent"
-                android:contentDescription="Braille Dot Button 2"
-                android:padding="16dp"
-                android:src="@drawable/dot_active" />
-
-            <ImageButton
-                android:id="@+id/dotButton5"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginBottom="2dp"
-                android:layout_marginLeft="42dp"
-                android:backgroundTint="@android:color/transparent"
-                android:contentDescription="Braille Dot Button 5"
-                android:padding="16dp"
-                android:src="@drawable/dot_active" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="bottom|center_horizontal"
-            android:orientation="horizontal">
-
-
-            <ImageButton
-                android:id="@+id/dotButton3"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_gravity="left"
-                android:layout_marginRight="12dp"
-                android:backgroundTint="@android:color/transparent"
-                android:contentDescription="Braille Dot Button 3"
-                android:padding="16dp"
-                android:src="@drawable/dot_active" />
-
-            <ImageButton
-                android:id="@+id/dotButton6"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_gravity="right"
-                android:layout_marginLeft="12dp"
-                android:backgroundTint="@android:color/transparent"
-                android:contentDescription="Braille Dot Button 6"
-                android:padding="16dp"
-                android:src="@drawable/dot_active" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <mateuswetah.wearablebraille.DrawView
-        android:id="@+id/draw_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"/>
-
-    <mateuswetah.wearablebraille.DrawViewApps
-        android:id="@+id/draw_view_apps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"/>
-</android.support.wearable.view.BoxInsetLayout>
+</mateuswetah.wearablebraille.BrailleÉcran.MyBoxInsetLayout>

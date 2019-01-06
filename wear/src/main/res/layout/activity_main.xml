@@ -133,6 +133,26 @@
                     android:text="Space after Punctuation"
                     android:textSize="12sp"></Switch>
 
+                <Switch
+                    android:id="@+id/vibrationPatternsSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_alignEnd="@+id/spaceAfterPunctuationSwitch"
+                    android:layout_alignStart="@+id/spaceAfterPunctuationSwitch"
+                    android:layout_below="@+id/spaceAfterPunctuationSwitch"
+                    android:text="Vibration Pattern"
+                    android:textSize="12sp"></Switch>
+
+                <Switch
+                    android:id="@+id/reversedLinesSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_alignEnd="@+id/vibrationPatternsSwitch"
+                    android:layout_alignStart="@+id/vibrationPatternsSwitch"
+                    android:layout_below="@+id/vibrationPatternsSwitch"
+                    android:text="ReversedLines"
+                    android:textSize="12sp"></Switch>
+
         </LinearLayout>
         </ScrollView>
 
@@ -153,16 +173,6 @@
         <!--android:layout_marginBottom="-5dp"-->
         <!--android:text="@string/btn3"-->
         <!--android:textSize="12sp" />-->
-
-        <!--<Switch-->
-        <!--android:id="@+id/vibrationPatternsSwitch"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="30dp"-->
-        <!--android:layout_alignEnd="@+id/toneGeneratorSwitch"-->
-        <!--android:layout_alignStart="@+id/toneGeneratorSwitch"-->
-        <!--android:layout_below="@+id/toneGeneratorSwitch"-->
-        <!--android:text="Vibration Pattern"-->
-        <!--android:textSize="12sp"></Switch>-->
 
     </RelativeLayout>
 

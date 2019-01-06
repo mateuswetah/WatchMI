@@ -432,11 +432,19 @@ public class ActivityTechConnect extends WearableActivity {
         Log.d("CHAR OUTPUT: ", latinChar);
 
         resultLetter.setText(latinChar);
+
+        if (!latinChar.equals("Ma") &&
+                !latinChar.equals("MA") &&
+                !latinChar.equals("Nu") &&
+                !latinChar.equals("NU") &&
+                !latinChar.equals("In") &&
+                !latinChar.equals("IN") ) {
 //        if (message.length() > 1 && cursorPosition < message.length() - 1) {
 //            message = (message.substring(0, cursorPosition + 1).concat(latinChar)).concat(message.substring(cursorPosition + 1));
 //        } else {
             message = message.concat(latinChar);
 //        }
+        }
 
         Log.d("MESSAGE OUTPUT: ", "message:" + message);
 

@@ -15,19 +15,23 @@ public class ActivityMain extends WearableActivity {
     private Button btn1, btn2, btn3;
     private Switch  screenRotateSwitch,
                     toneGeneratorSwitch,
-//                    vibrationPatternSwitch,
+                    vibrationPatternSwitch,
                     wordReadingSwitch,
                     useSpellCheckSwitch,
                     dotSpeakerSwitch,
                     speakWordAtSpaceSwitch,
                     infoOnLongPressSwitch,
-                    spaceAfterPunctuationSwitch;
+                    spaceAfterPunctuationSwitch,
+                    reversedLinesSwitch;
     private Boolean isScreenRotated = false;
     private Boolean isUsingWordReading = false;
     private Boolean isUsingSpellCheck = false;
     private Boolean speakWordAtSpace = false;
     private Boolean infoOnLongPress = false;
+    private Boolean useVibrationPatterns = false;
     private Boolean spaceAfterPunctuation = false;
+    private Boolean useReversedLines = false;
+
     public static final String PREFS_NAME = "SettingsFile";
     public SharedPreferences settings;
 
@@ -69,16 +73,16 @@ public class ActivityMain extends WearableActivity {
             }
         });
         toneGeneratorSwitch.setChecked(settings.getBoolean("useToneGenerator", false));
-//
-//        vibrationPatternSwitch = (Switch) findViewById(R.id.vibrationPatternsSwitch);
-//        vibrationPatternSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                editor.putBoolean("useVibrationPatterns", b);
-//                editor.commit();
-//            }
-//        });
-//        vibrationPatternSwitch.setChecked(settings.getBoolean("useVibrationPatterns", false));
+
+        vibrationPatternSwitch = (Switch) findViewById(R.id.vibrationPatternsSwitch);
+        vibrationPatternSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                editor.putBoolean("useVibrationPatterns", b);
+                editor.commit();
+            }
+        });
+        vibrationPatternSwitch.setChecked(settings.getBoolean("useVibrationPatterns", false));
 
         wordReadingSwitch = (Switch) findViewById(R.id.wordReadingSwitch);
         wordReadingSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -146,6 +150,16 @@ public class ActivityMain extends WearableActivity {
         });
         spaceAfterPunctuationSwitch.setChecked(settings.getBoolean("spaceAfterPunctuation", false));
 
+        reversedLinesSwitch = (Switch) findViewById(R.id.reversedLinesSwitch);
+        reversedLinesSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                editor.putBoolean("useReversedLines", b);
+                editor.commit();
+            }
+        });
+        reversedLinesSwitch.setChecked(settings.getBoolean("useReversedLines", false));
+
         // Checks if screen is rotated and is using word reading
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -182,6 +196,16 @@ public class ActivityMain extends WearableActivity {
             } else {
                 spaceAfterPunctuation = false;
             }
+//            if (extras.getBoolean("useVibrationPatterns") == true) {
+//                useVibrationPatterns = true;
+//            } else {
+//                useVibrationPatterns = false;
+//            }
+//            if (extras.getBoolean("useReversedLines") == true) {
+//                useReversedLines = true;
+//            } else {
+//                useReversedLines = false;
+//            }
         }
         this.screenRotateSwitch.setChecked(isScreenRotated);
         this.wordReadingSwitch.setChecked(isUsingWordReading);
@@ -189,6 +213,8 @@ public class ActivityMain extends WearableActivity {
         this.speakWordAtSpaceSwitch.setChecked(infoOnLongPress);
         this.infoOnLongPressSwitch.setChecked(infoOnLongPress);
         this.spaceAfterPunctuationSwitch.setChecked(spaceAfterPunctuation);
+//        this.vibrationPatternSwitch.setChecked(useVibrationPatterns);
+//        this.reversedLinesSwitch.setChecked(useReversedLines);
     }
 
     Button.OnClickListener button1ClickListener = new Button.OnClickListener() {

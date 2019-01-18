@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dots><symbol>a</symbol><index>3</index></dots>
+    <dots><symbol>b</symbol><index>3</index><index>2</index></dots>
+    <dots><symbol>c</symbol><index>3</index><index>6</index></dots>
+    <dots><symbol>d</symbol><index>3</index><index>6</index><index>5</index></dots>
+    <dots><symbol>e</symbol><index>3</index><index>5</index></dots>
+    <dots><symbol>f</symbol><index>3</index><index>2</index><index>6</index></dots>
+    <dots><symbol>g</symbol><index>3</index><index>2</index><index>6</index><index>5</index></dots>
+    <dots><symbol>h</symbol><index>3</index><index>2</index><index>5</index></dots>
+    <dots><symbol>i</symbol><index>2</index><index>6</index></dots>
+    <dots><symbol>j</symbol><index>2</index><index>6</index><index>5</index></dots>
+    <dots><symbol>k</symbol><index>3</index><index>1</index></dots>
+    <dots><symbol>l</symbol><index>3</index><index>2</index><index>1</index></dots>
+    <dots><symbol>m</symbol><index>3</index><index>1</index><index>6</index></dots>
+    <dots><symbol>n</symbol><index>3</index><index>1</index><index>6</index><index>5</index></dots>
+    <dots><symbol>o</symbol><index>3</index><index>1</index><index>5</index></dots>
+    <dots><symbol>p</symbol><index>3</index><index>2</index><index>1</index><index>6</index></dots>
+    <dots><symbol>q</symbol><index>3</index><index>2</index><index>1</index><index>6</index><index>5</index></dots>
+    <dots><symbol>r</symbol><index>3</index><index>2</index><index>1</index><index>5</index></dots>
+    <dots><symbol>s</symbol><index>2</index><index>1</index><index>6</index></dots>
+    <dots><symbol>t</symbol><index>2</index><index>1</index><index>6</index><index>5</index></dots>
+    <dots><symbol>u</symbol><index>3</index><index>1</index><index>4</index></dots>
+    <dots><symbol>v</symbol><index>3</index><index>2</index><index>1</index><index>4</index></dots>
+    <dots><symbol>w</symbol><index>2</index><index>6</index><index>5</index><index>4</index></dots>
+    <dots><symbol>x</symbol><index>3</index><index>1</index><index>6</index><index>4</index></dots>
+    <dots><symbol>y</symbol><index>3</index><index>1</index><index>6</index><index>5</index><index>4</index></dots>
+    <dots><symbol>z</symbol><index>3</index><index>1</index><index>5</index><index>4</index></dots>
+    <dots><symbol>ç</symbol><index>3</index><index>2</index><index>1</index><index>6</index><index>4</index></dots>
+    <dots><symbol>á</symbol><index>3</index><index>2</index><index>1</index><index>5</index><index>4</index></dots>
+    <dots><symbol>é</symbol><index>3</index><index>2</index><index>1</index><index>6</index><index>5</index><index>4</index></dots>
+    <dots><symbol>í</symbol><index>1</index><index>6</index></dots>
+    <dots><symbol>ó</symbol><index>1</index><index>6</index><index>4</index></dots>
+    <dots><symbol>ú</symbol><index>2</index><index>1</index><index>6</index><index>5</index><index>4</index></dots>
+    <dots><symbol>â</symbol><index>3</index><index>4</index></dots>
+    <dots><symbol>ê</symbol><index>3</index><index>2</index><index>4</index></dots>
+    <dots><symbol>õ</symbol><index>2</index><index>6</index><index>4</index></dots>
+    <dots><symbol>ô</symbol><index>3</index><index>6</index><index>5</index><index>4</index></dots>
+    <dots><symbol>ã</symbol><index>1</index><index>6</index><index>5</index></dots>
+    <dots><symbol>à</symbol><index>3</index><index>2</index><index>6</index><index>4</index></dots>
+    <dots><symbol>.</symbol><index>1</index></dots>
+    <dots><symbol>-</symbol><index>1</index><index>4</index></dots>
+    <dots><symbol>?</symbol><index>2</index><index>4</index></dots>
+    <dots><symbol>!</symbol><index>2</index><index>1</index><index>5</index></dots>
+    <dots><symbol>;</symbol><index>2</index><index>1</index></dots>
+    <dots><symbol>,</symbol><index>2</index></dots>
+    <dots><symbol>:</symbol><index>2</index><index>5</index></dots>
+    <dots><symbol>$</symbol><index>5</index><index>4</index></dots>
+    <dots><symbol>"</symbol><index>2</index><index>1</index><index>4</index></dots>
+    <dots><symbol>*</symbol><index>1</index><index>5</index></dots>
+    <dots><symbol> </symbol><index>0</index></dots>
+    <dots><symbol>Nu</symbol><index>1</index><index>6</index><index>5</index><index>4</index></dots>
+    <dots><symbol>Ma</symbol><index>6</index><index>4</index></dots>
+    <dots><symbol>Cf</symbol><index>4</index></dots>
+    <dots><symbol>?!</symbol><index>5</index></dots>
+</resources>

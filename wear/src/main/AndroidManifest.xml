@@ -119,10 +119,15 @@
 
         <activity android:name="MobileConnectedConfirmationActivity"/>
 
-
         <activity
             android:name="mateuswetah.wearablebraille.BrailleÉcran.ActivityAccessibleList"
             android:theme="@style/AppTheme">
+        </activity>
+
+        <activity
+            android:name="mateuswetah.wearablebraille.ActivitySetLayout"
+            android:label="@string/set_layout_screen"
+            android:theme="@style/AppTheme" >
         </activity>
 
         <service

@@ -73,6 +73,12 @@ public class CharacterToSpeech extends TextToSpeech {
                 adaptedText = context.getResources().getString(R.string.TildeOSpeech);
             } else if (text.equals("à")) {
                 adaptedText = context.getResources().getString(R.string.CrasisASpeech);
+            } else if (text.equals("$")) {
+                adaptedText = context.getResources().getString(R.string.DolarSignSpeech);
+            } else if (text.equals("\"")) {
+                adaptedText = context.getResources().getString(R.string.QuotationMarkSpeech);
+            } else if (text.equals("*")) {
+                adaptedText = context.getResources().getString(R.string.AsteriskSpeech);
             } else if (text.equals("Ma") || text.equals("MA")) {
                 adaptedText = context.getResources().getString(R.string.CapitalLetterCharacterAlert);
             } else if (text.equals("Nu") || text.equals("NU")) {
@@ -137,6 +143,12 @@ public class CharacterToSpeech extends TextToSpeech {
                 adaptedUtteranceId = "Tilde O Sign Output";
             } else if (text.equals("à")) {
                 adaptedUtteranceId = "Crasis A Sign Output";
+            } else if (text.equals("$")){
+                adaptedUtteranceId = "Dolar Sign Output";
+            } else if (text.equals("\"")) {
+                adaptedUtteranceId = "Quotation Mark Output";
+            } else if (text.equals("*")) {
+                adaptedUtteranceId = "Asterisk Speech";
             } else if (text.equals("In")) {
                 adaptedUtteranceId = "Invalid Character Output";
             } else if (text.equals("Ma") || text.equals("MA")) {

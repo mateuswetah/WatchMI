@@ -20,7 +20,7 @@ public class DotsXMLPullParser {
     static final String KEY_SYMBOL = "symbol";
     static final String KEY_INDEX = "index";
 
-    public static List<Dots> getStaticDotsFromFile(Context ctx){
+    public static List<Dots> getStaticDotsFromFile(Context ctx, String layoutOrder){
 
         // Dots objects that will hold the information read from the XML
         List<Dots> dots;
@@ -35,7 +35,8 @@ public class DotsXMLPullParser {
             XmlPullParser parser = factory.newPullParser();
 
             // Buffers, receive the raw XML file.
-            InputStream fis = ctx.getAssets().open("brailleValues.xml");
+            String filename = "brailleValues" + layoutOrder + ".xml";
+            InputStream fis = ctx.getAssets().open(filename);
             BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
 
             // Associates the parser with the read XML string

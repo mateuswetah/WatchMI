@@ -55,6 +55,9 @@
     <string name="TildeOSpeech">O til.</string>
     <string name="TildeASpeech">A til.</string>
     <string name="CrasisASpeech">A Craseado.</string>
+    <string name="DolarSignSpeech">Cifrão.</string>
+    <string name="QuotationMarkSpeech">Aspas.</string>
+    <string name="AsteriskSpeech">Asterisco.</string>
     <string name="fixedMessage">Corrigido para:</string>
     <string name="canceled">Cancelado</string>
     <string name="navigation_mode_intro">Modo de Navegação</string>
@@ -65,5 +68,22 @@
     <string name="InvalidCharacterAlert">Caractere inválido.</string>
     <string name="NumericCharacterAlert">Número</string>
     <string name="CapitalLetterCharacterAlert">Maiúscula</string>
+    <string name="set_layout_screen">Set Layout Scree</string>
+    <string name="topLeftCorner">Canto Superior Esquerdo.</string>
+    <string name="middleLeftCorner">Meio à esquerda.</string>
+    <string name="middleRightCorner">Meio à Direita.</string>
+    <string name="bottomLeftCorner">Canto Inferior Esquerdo</string>
+    <string name="topRightCorner">Canto Superior Direito</string>
+    <string name="bottomRightCorner">Canto Inferior Direito.</string>
+    <string name="regionWithoutDotsSpeech">Região sem pontos. Tente novamente.</string>
+    <string name="alreadyDefinedCornerSpeech">Canto já definido para outro ponto. Tente novamente.</string>
+    <string name="layoutSettingFinishedSpeech">Configuração dos pontos a cela Braille concluída.</string>
+    <string name="setLayoutIntro">Cofiguração da distribuição dos pontos da cela Braille.</string>
+    <string name="setDot1Instruction">Clique em uma região próxima da borda onde deverá ficar o ponto 1.</string>
+    <string name="setDot2Instruction">Ok. Agora clique na região onde deverá ficar o ponto 2.</string>
+    <string name="setDot3Instruction">Em seguida o ponto 3.</string>
+    <string name="setDot4Instruction">Agora, definao ponto 4.</string>
+    <string name="setDot5Instruction">Agora, o ponto 5.</string>
+    <string name="setDot6Instruction">Por fim, o ponto 6.</string>
 
 </resources>

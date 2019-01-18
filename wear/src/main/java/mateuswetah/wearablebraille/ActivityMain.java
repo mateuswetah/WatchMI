@@ -12,7 +12,7 @@ import android.widget.Switch;
 
 public class ActivityMain extends WearableActivity {
 
-    private Button btn1, btn2, btn3;
+    private Button buttonStart, buttonSetLayout;
     private Switch  screenRotateSwitch,
                     toneGeneratorSwitch,
                     vibrationPatternSwitch,
@@ -45,12 +45,12 @@ public class ActivityMain extends WearableActivity {
         settings = getSharedPreferences(PREFS_NAME, 0);
         final SharedPreferences.Editor editor = settings.edit();
 
-        btn1 = (Button) findViewById(R.id.btn1);
-        btn1.setOnClickListener(button1ClickListener);
-        //btn2 = (Button) findViewById(R.id.btn2);
-        //btn2.setOnClickListener(button2ClickListener);
-        //btn3 = (Button) findViewById(R.id.btn3);
-        //btn3.setOnClickListener(button3ClickListener);
+        buttonStart = (Button) findViewById(R.id.buttonStart);
+        buttonStart.setOnClickListener(buttonStartClickListener);
+
+        buttonSetLayout = (Button) findViewById(R.id.buttonSetLayout);
+        buttonSetLayout.setOnClickListener(buttonSetLayoutClickListener);
+
         screenRotateSwitch = (Switch) findViewById(R.id.screenRotateSwitch);
         screenRotateSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -217,7 +217,7 @@ public class ActivityMain extends WearableActivity {
 //        this.reversedLinesSwitch.setChecked(useReversedLines);
     }
 
-    Button.OnClickListener button1ClickListener = new Button.OnClickListener() {
+    Button.OnClickListener buttonStartClickListener = new Button.OnClickListener() {
         public void onClick(View arg0) {
             Bundle b = new Bundle();
             b.putBoolean("study", false);
@@ -233,32 +233,11 @@ public class ActivityMain extends WearableActivity {
             finish();
         }
     };
-    Button.OnClickListener button2ClickListener = new Button.OnClickListener() {
+
+    Button.OnClickListener buttonSetLayoutClickListener = new Button.OnClickListener() {
         public void onClick(View arg0) {
             Bundle b = new Bundle();
-            b.putBoolean("study", true);
-            b.putBoolean("isScreenRotated", isScreenRotated);
-            b.putBoolean("useWordReading", isUsingWordReading);
-            b.putBoolean("useSpellCheck", isUsingSpellCheck);
-            b.putBoolean("speakWordAtSpace", speakWordAtSpace);
-            b.putBoolean("infoOnLongPress", infoOnLongPress);
-            b.putBoolean("spaceAfterPunctuation", spaceAfterPunctuation);
-            Intent i = new Intent(getApplicationContext(),  ActivitySelectTech.class);
-            i.putExtras(b);
-            startActivity(i);
-            finish();
-        }
-    };
-    Button.OnClickListener button3ClickListener = new Button.OnClickListener() {
-        public void onClick(View arg0) {
-            Bundle b = new Bundle();
-            b.putBoolean("isScreenRotated", isScreenRotated);
-            b.putBoolean("useWordReading", isUsingWordReading);
-            b.putBoolean("useSpellCheck", isUsingSpellCheck);
-            b.putBoolean("speakWordAtSpace", speakWordAtSpace);
-            b.putBoolean("infoOnLongPress", infoOnLongPress);
-            b.putBoolean("spaceAfterPunctuation", spaceAfterPunctuation);
-            Intent i = new Intent(getApplicationContext(),  ActivitySelectApps.class);
+            Intent i = new Intent(getApplicationContext(),  ActivitySetLayout.class);
             i.putExtras(b);
             startActivity(i);
             finish();

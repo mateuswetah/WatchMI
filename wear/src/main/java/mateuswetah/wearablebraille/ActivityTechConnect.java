@@ -24,6 +24,7 @@ import java.util.Locale;
 import mateuswetah.wearablebraille.BrailleÉcran.BrailleDots;
 import mateuswetah.wearablebraille.BrailleÉcran.CharacterToSpeech;
 import mateuswetah.wearablebraille.BrailleÉcran.MyBoxInsetLayout;
+import mateuswetah.wearablebraille.BrailleÉcran.WearableTextEditorActivity;
 import mateuswetah.wearablebraille.GestureDetectors.OneFingerDoubleTapDetector;
 import mateuswetah.wearablebraille.GestureDetectors.Swipe4DirectionsDetector;
 import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
@@ -32,42 +33,16 @@ import mateuswetah.wearablebraille.GestureDetectors.TwoFingersDoubleTapDetector;
  * Created by orpheus on 15/11/17.
  */
 
-public class ActivityTechConnect extends WearableActivity {
-
-    // View Components
-    private MyBoxInsetLayout mContainerView;
-    private BrailleDots brailleDots;
-    private TextView tv1, tv2, tv3, resultLetter;
-    private WearableActivity activity;
-
-    // Final Text
-    private String message;
-
-    // Connect the Dots components
-    private boolean checkOutput = false;
+public class ActivityTechConnect extends WearableTextEditorActivity {
 
     // Touch Listeners
     TwoFingersDoubleTapDetector twoFingersListener;
     GestureDetector doubleTapListener;
 
-    // TextToSpeech for feedback
-    private CharacterToSpeech tts;
-    private Vibrator vibrator;
-
     //Flags
-    boolean started = false;
-    boolean stopped = true;
-    boolean isStudy = false;
-    boolean isScreenRotated = false;
-    boolean reset = false;
-    boolean isUsingWordReading = false;
-    boolean isSpellChecking = false;
-    boolean infoOnLongPress = false;
-    boolean speakWordAtSpace = false;
-    boolean spaceAfterPunctuation = false;
-    boolean isTTSInitialized = false;
-    boolean isComposingLetter = false;
-    boolean preventLongPress = false;
+    private boolean checkOutput = false;
+    private boolean isComposingLetter = false;
+    private boolean preventLongPress = false;
 
     int lastTouchDownTime = 0;
 
@@ -78,65 +53,6 @@ public class ActivityTechConnect extends WearableActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_braille_core_stub);
-        this.activity = this;
-
-        // Sets TextToSpeech for Feedback
-        tts = new CharacterToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int i) {
-                Log.d("TTS", "TextToSpeech Service Initialized");
-                isTTSInitialized = true;
-                tts.setLanguage(Locale.getDefault());
-            }
-        });
-
-        vibrator = (Vibrator) this.activity.getSystemService(Context.VIBRATOR_SERVICE);
-
-        // Initializes message
-        message = new String();
-
-        // Checks if view is in test mode
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            if (extras.getBoolean("study") == true) {
-                isStudy = true;
-                Toast.makeText(getApplicationContext(), "User study mode", Toast.LENGTH_SHORT).show();
-            } else isStudy = false;
-
-            if (extras.getBoolean("isScreenRotated") == true) {
-                isScreenRotated = true;
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
-            } else {
-                isScreenRotated = false;
-                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            }
-
-            if (extras.getBoolean("useWordReading") == true)
-                isUsingWordReading = true;
-            else
-                isUsingWordReading = false;
-
-            if (extras.getBoolean("useSpellCheck") == true)
-                isSpellChecking = true;
-            else
-                isSpellChecking = false;
-
-            if (extras.getBoolean("speakWordAtSpace") == true)
-                speakWordAtSpace = true;
-            else
-                speakWordAtSpace = false;
-
-            if (extras.getBoolean("infoOnLongPress") == true)
-                infoOnLongPress = true;
-            else
-                infoOnLongPress = false;
-
-            if (extras.getBoolean("spaceAfterPunctuation") == true)
-                spaceAfterPunctuation = true;
-            else
-                spaceAfterPunctuation = false;
-        }
 
         // Build and set view components
         final WatchViewStub stub = (WatchViewStub) findViewById(R.id.stub);
@@ -144,7 +60,6 @@ public class ActivityTechConnect extends WearableActivity {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
                 mContainerView = (MyBoxInsetLayout) findViewById(R.id.container);
-
                 mContainerView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
                     @Override
                     public WindowInsets onApplyWindowInsets(View v, WindowInsets insets) {
@@ -427,63 +342,6 @@ public class ActivityTechConnect extends WearableActivity {
 
     }
 
-    private void confirmCharacter() {
-        final String latinChar = brailleDots.checkCurrentCharacter(false, false, false, false);
-        Log.d("CHAR OUTPUT: ", latinChar);
-
-        resultLetter.setText(latinChar);
-
-        if (!latinChar.equals("Ma") &&
-                !latinChar.equals("MA") &&
-                !latinChar.equals("Nu") &&
-                !latinChar.equals("NU") &&
-                !latinChar.equals("In") &&
-                !latinChar.equals("IN") ) {
-//        if (message.length() > 1 && cursorPosition < message.length() - 1) {
-//            message = (message.substring(0, cursorPosition + 1).concat(latinChar)).concat(message.substring(cursorPosition + 1));
-//        } else {
-            message = message.concat(latinChar);
-//        }
-        }
-
-        Log.d("MESSAGE OUTPUT: ", "message:" + message);
-
-//        cursorPosition++;
-
-        if (isTTSInitialized) {
-            if (isUsingWordReading || (speakWordAtSpace && latinChar.equals(" "))) {
-                // Breaks string into words to speak only last one
-//                String[] words = message.substring(0,cursorPosition).split(" ");
-                String[] words = message.split(" ");
-                if (words.length > 0) {
-                    tts.speak(words[words.length - 1], TextToSpeech.QUEUE_ADD, null, "Output");
-                    Log.d("FULL MESSAGE OUTPUT: ", message);
-                    Log.d("LAST MESSAGE OUTPUT: ", words[words.length - 1]);
-                    // Used by SpellChecker
-//                    fetchSuggestionsFromMobile(words[words.length - 1]);
-                }
-            } else {
-                tts.speak(latinChar, TextToSpeech.QUEUE_ADD, null, "Audio Character Output");
-
-                // Automatically adds space after punctuation.
-                if (spaceAfterPunctuation && (latinChar.equals(",") || latinChar.equals(".") || latinChar.equals(":") || latinChar.equals("!") || latinChar.equals("?"))) {
-                    brailleDots.toggleAllDotsOff();
-                    confirmCharacter();
-                }
-            }
-        }
-
-        // Clears result letter on screen
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                resultLetter.setText("");
-            }
-        }, 1200);
-
-    }
-
     private boolean isViewContains(View view, float px, float py) {
 
         int[] topLeftPoint = new int[2];
@@ -529,15 +387,4 @@ public class ActivityTechConnect extends WearableActivity {
         }
         return true;
     }
-
-    @Override
-    protected void onDestroy() {
-        this.brailleDots.freeTTSService();
-        if (tts != null) {
-            tts.stop();
-            tts.shutdown();
-        }
-        super.onDestroy();
-    }
-
 }

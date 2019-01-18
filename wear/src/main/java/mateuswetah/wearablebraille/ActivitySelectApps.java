@@ -15,7 +15,7 @@ public class ActivitySelectApps extends WearableActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_apps);
 //        setAmbientEnabled();
-        btn1 = (Button) findViewById(R.id.btn1);
+        btn1 = (Button) findViewById(R.id.buttonStart);
         btn1.setOnClickListener(button1ClickListener);
         btn2 = (Button) findViewById(R.id.btn2);
         btn2.setOnClickListener(button2ClickListener);

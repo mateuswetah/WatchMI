@@ -48,10 +48,12 @@ public class BrailleDots {
     boolean useVibrationPatterns = false;
     boolean useToneGenerator = true;
     boolean useDotNumberSpeaker = false;
-    boolean reversedLines = false;
+
+    // Layout Order string
+    private String layoutOrder;
 
     private WearableActivity activity;
-    private int nSymbols = 50; // Number of symbols listed in the XML
+    private int nSymbols = 53; // Number of symbols listed in the XML
 
 
     // Constructor
@@ -77,7 +79,7 @@ public class BrailleDots {
         });
 
         // Uses the XMLPullParser to fill the Dots list with Dots Objects
-        DotsList = DotsXMLPullParser.getStaticDotsFromFile(activity);
+        DotsList = DotsXMLPullParser.getStaticDotsFromFile(activity, layoutOrder);
 
         // Fill the array with the 45 possible summations
         for (int i = 0; i < nSymbols; i++) {
@@ -355,6 +357,15 @@ public class BrailleDots {
                     case ":":
                         latimOutput = ":";
                         break;
+                    case "$":
+                        latimOutput = "$";
+                        break;
+                    case "\"":
+                        latimOutput = "\"";
+                        break;
+                    case "*":
+                        latimOutput = "*";
+                        break;
                     case "Cf":
                         latimOutput = "Cf";
                         break;
@@ -386,48 +397,19 @@ public class BrailleDots {
 
     // Instantiate dot buttons
     public void createDotButtons () {
+        ButtonDots[0] = (Button) activity.findViewById(R.id.dotButton1);
+        ButtonDots[1] = (Button) activity.findViewById(R.id.dotButton2);
+        ButtonDots[2] = (Button) activity.findViewById(R.id.dotButton3);
+        ButtonDots[3] = (Button) activity.findViewById(R.id.dotButton4);
+        ButtonDots[4] = (Button) activity.findViewById(R.id.dotButton5);
+        ButtonDots[5] = (Button) activity.findViewById(R.id.dotButton6);
+        ImageDots[0] = (ImageView) activity.findViewById(R.id.virtualDotButton1);
+        ImageDots[1] = (ImageView) activity.findViewById(R.id.virtualDotButton2);
+        ImageDots[2] = (ImageView) activity.findViewById(R.id.virtualDotButton3);
+        ImageDots[3] = (ImageView) activity.findViewById(R.id.virtualDotButton4);
+        ImageDots[4] = (ImageView) activity.findViewById(R.id.virtualDotButton5);
+        ImageDots[5] = (ImageView) activity.findViewById(R.id.virtualDotButton6);
 
-        // To be used in Orientation-landscape mode for layouts such as Perkins
-        if (this.reversedLines) {
-            ButtonDots[3] = (Button) activity.findViewById(R.id.dotButton1);
-            ButtonDots[4] = (Button) activity.findViewById(R.id.dotButton2);
-            ButtonDots[5] = (Button) activity.findViewById(R.id.dotButton3);
-            ButtonDots[0] = (Button) activity.findViewById(R.id.dotButton4);
-            ButtonDots[1] = (Button) activity.findViewById(R.id.dotButton5);
-            ButtonDots[2] = (Button) activity.findViewById(R.id.dotButton6);
-            ImageDots[3] = (ImageView) activity.findViewById(R.id.virtualDotButton1);
-            ImageDots[4] = (ImageView) activity.findViewById(R.id.virtualDotButton2);
-            ImageDots[5] = (ImageView) activity.findViewById(R.id.virtualDotButton3);
-            ImageDots[0] = (ImageView) activity.findViewById(R.id.virtualDotButton4);
-            ImageDots[1] = (ImageView) activity.findViewById(R.id.virtualDotButton5);
-            ImageDots[2] = (ImageView) activity.findViewById(R.id.virtualDotButton6);
-
-//            ButtonDots[2] = (Button) activity.findViewById(R.id.dotButton1);
-//            ButtonDots[1] = (Button) activity.findViewById(R.id.dotButton2);
-//            ButtonDots[0] = (Button) activity.findViewById(R.id.dotButton3);
-//            ButtonDots[5] = (Button) activity.findViewById(R.id.dotButton4);
-//            ButtonDots[4] = (Button) activity.findViewById(R.id.dotButton5);
-//            ButtonDots[3] = (Button) activity.findViewById(R.id.dotButton6);
-//            ImageDots[2] = (ImageView) activity.findViewById(R.id.virtualDotButton1);
-//            ImageDots[1] = (ImageView) activity.findViewById(R.id.virtualDotButton2);
-//            ImageDots[0] = (ImageView) activity.findViewById(R.id.virtualDotButton3);
-//            ImageDots[5] = (ImageView) activity.findViewById(R.id.virtualDotButton4);
-//            ImageDots[4] = (ImageView) activity.findViewById(R.id.virtualDotButton5);
-//            ImageDots[3] = (ImageView) activity.findViewById(R.id.virtualDotButton6);
-        } else {
-            ButtonDots[0] = (Button) activity.findViewById(R.id.dotButton1);
-            ButtonDots[1] = (Button) activity.findViewById(R.id.dotButton2);
-            ButtonDots[2] = (Button) activity.findViewById(R.id.dotButton3);
-            ButtonDots[3] = (Button) activity.findViewById(R.id.dotButton4);
-            ButtonDots[4] = (Button) activity.findViewById(R.id.dotButton5);
-            ButtonDots[5] = (Button) activity.findViewById(R.id.dotButton6);
-            ImageDots[0] = (ImageView) activity.findViewById(R.id.virtualDotButton1);
-            ImageDots[1] = (ImageView) activity.findViewById(R.id.virtualDotButton2);
-            ImageDots[2] = (ImageView) activity.findViewById(R.id.virtualDotButton3);
-            ImageDots[3] = (ImageView) activity.findViewById(R.id.virtualDotButton4);
-            ImageDots[4] = (ImageView) activity.findViewById(R.id.virtualDotButton5);
-            ImageDots[5] = (ImageView) activity.findViewById(R.id.virtualDotButton6);
-        }
         for (int i = 0; i < 6; i++) {
             ButtonDots[i].setTag(new Boolean(false));
             ImageDots[i].setImageDrawable(activity.getDrawable(R.drawable.dot_unactive));
@@ -436,15 +418,37 @@ public class BrailleDots {
 
     // Load settings from database
     public void loadSettings() {
-        this.useDotNumberSpeaker = settings.getBoolean("useDotNumberSpeaking", false);
-        this.useVibrationPatterns = settings.getBoolean("useVibrationPatterns", false);
-        this.useToneGenerator = settings.getBoolean("useToneGenerator", false);
-        this.reversedLines = settings.getBoolean("useReversedLines", false);
+        useDotNumberSpeaker = settings.getBoolean("useDotNumberSpeaking", false);
+        useVibrationPatterns = settings.getBoolean("useVibrationPatterns", false);
+        useToneGenerator = settings.getBoolean("useToneGenerator", false);
+        layoutOrder = settings.getString("layoutOrder", "123456");
+
+        Log.d("LAYOUT ORDER SET TO: ", layoutOrder);
+    }
+
+    public void setLayoutOrder(String layoutOrder) {
+        if (layoutOrder.equals("123456") ||
+            layoutOrder.equals("456123") ||
+            layoutOrder.equals("123654") ||
+            layoutOrder.equals("654123") ||
+            layoutOrder.equals("321654") ||
+            layoutOrder.equals("456321") ||
+            layoutOrder.equals("654321") ||
+            layoutOrder.equals("321456")
+        ) {
+            final SharedPreferences.Editor editor = settings.edit();
+            editor.putString("layoutOrder", layoutOrder);
+            editor.apply();
+        }
+    }
+
+    public String getLayoutOrder() {
+        return layoutOrder;
     }
 
     // To be used on activities onDestroy()
     public void freeTTSService() {
-        this.dotTTS.stop();
-        this.dotTTS.shutdown();
+        dotTTS.stop();
+        dotTTS.shutdown();
     }
 }
